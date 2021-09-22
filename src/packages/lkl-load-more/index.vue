@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Model, Vue } from 'vue-property-decorator'
+import { Component, Prop, Vue } from 'vue-property-decorator'
 import frameChange from '../utils/directives/frameChange'
 import offsetChange from '../utils/directives/offsetChange'
 

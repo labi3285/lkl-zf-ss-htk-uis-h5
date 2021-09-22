@@ -1,0 +1,21 @@
+{
+  "name": "lkl-zf-ss-htk-uis-h5",
+  "version": "0.0.1",
+  "description": "汇拓客ui库",
+  "main": "index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/labi3285/lkl-zf-ss-htk-uis-h5.git"
+  },
+  "keywords": [
+    "TypeScript",
+    "ts",
+    "vue2"
+  ],
+  "author": "labi3285",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/labi3285/lkl-zf-ss-htk-uis-h5/issues"
+  },
+  "homepage": "https://github.com/labi3285/lkl-zf-ss-htk-uis-h5#readme"
+}

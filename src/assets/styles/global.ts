@@ -1,4 +1,4 @@
-import { Prop } from '@/components/utils/Prop'
+import { Prop } from '@/packages/utils/Prop'
 
 export const Configs: Prop[] = [
   // 点缀色、主题色

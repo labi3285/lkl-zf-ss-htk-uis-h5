@@ -52,29 +52,29 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-import vContent from '@/components/lkl-content/index.vue'
-import vSpace from '@/components/lkl-space/index.vue'
-import vBreakSpace from '@/components/lkl-break-space/index.vue'
-import vLine from '@/components/lkl-line/index.vue'
-import vBreakLine from '@/components/lkl-break-line/index.vue'
-import vArrow from '@/components/lkl-arrow/index.vue'
+import vContent from '@/packages/lkl-content/index.vue'
+import vSpace from '@/packages/lkl-space/index.vue'
+import vBreakSpace from '@/packages/lkl-break-space/index.vue'
+import vLine from '@/packages/lkl-line/index.vue'
+import vBreakLine from '@/packages/lkl-break-line/index.vue'
+import vArrow from '@/packages/lkl-arrow/index.vue'
 
-import vDotTitle from '@/components/lkl-dot-title/haotk.vue'
+import vDotTitle from '@/packages/lkl-dot-title/haotk.vue'
 
-import vTextButton from '@/components/lkl-text-button/index.vue'
+import vTextButton from '@/packages/lkl-text-button/index.vue'
 
-import vSummaryTotalAb from '@/components/lkl-summary/haotk-total-ab.vue'
+import vSummaryTotalAb from '@/packages/lkl-summary/haotk-total-ab.vue'
 
-import vColumsListHeader from '@/components/lkl-colums-list/haotk-header.vue'
-import vColumsListItem from '@/components/lkl-colums-list/haotk-item.vue'
+import vColumsListHeader from '@/packages/lkl-colums-list/haotk-header.vue'
+import vColumsListItem from '@/packages/lkl-colums-list/haotk-item.vue'
 
-import vPullDownRefresh from '@/components/lkl-pull-down-refresh/index.vue'
-import vLoadMore from '@/components/lkl-load-more/index.vue'
+import vPullDownRefresh from '@/packages/lkl-pull-down-refresh/index.vue'
+import vLoadMore from '@/packages/lkl-load-more/index.vue'
 
-import vDatePickerDateSingle from '@/components/lkl-date-picker/date-single.vue'
-import vDatePickerDateRange from '@/components/lkl-date-picker/date-range.vue'
+import vDatePickerDateSingle from '@/packages/lkl-date-picker/date-single.vue'
+import vDatePickerDateRange from '@/packages/lkl-date-picker/date-range.vue'
 
-import vLineChart from '@/components/lkl-charts/line-chart.vue'
+import vLineChart from '@/packages/lkl-charts/line-chart.vue'
 
 @Component({
   components: {

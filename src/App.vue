@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import { Configs } from '@/assets/styles/global'
-import { updateGlobalProps } from '@/components/index'
+import { updateGlobalProps } from '@/packages/index'
 
 @Component({
   name: 'App'

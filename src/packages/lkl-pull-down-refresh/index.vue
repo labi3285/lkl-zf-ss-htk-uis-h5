@@ -8,7 +8,7 @@
 
 <script lang="ts">
 /* eslint-disable camelcase */
-import { Component, Prop, Model, Vue, Watch } from 'vue-property-decorator'
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 
 @Component({
   components: {
