@@ -1,121 +1,157 @@
 <template>
   <v-content class="page">
-    <v-pull-down-refresh :is-loading.sync="isListLoading" @load="onListLoad(true)" />
-    <v-space />
-    <v-dot-title title="交易统计">
-      <v-date-picker-date-single :pickedDate.sync="pickDate" :defaultDate="new Date()" />
-      <!-- <v-date-picker-date-range :pickedDateRange.sync="pickDateRange" :defaultDateRange="{ start: new Date(), end: new Date() }" /> -->
-    </v-dot-title>
-    <v-space height="4px" />
-    <v-summary-total-ab
-      totalTip="交易额(元)"
-      aTip="自有交易额(元)"
-      bTip="团队交易额(元)"
-    />
-    <v-space />
+    <v-nav title="汇拓客"></v-nav>
+    <v-scroll class="scroll">
+      <v-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" />
+      <v-head-content>
+        <div style="height: 60px; position: relative"></div>
+      </v-head-content>
 
-    <v-break-space/>
-    <v-space />
-    <v-dot-title title="交易趋势">
-      <v-text-button text="查看明细">
-        <template v-slot:right>
-          <v-arrow />
-        </template>
-      </v-text-button>
-    </v-dot-title>
-    <v-space height="4px" />
-    <v-line-chart :data-source="chartDataSource" />
+      <v-card-content>
+        <v-icon-label-tabs style="position: absolute; top: -50px; left: 0; right: 0" :tabs="tabs1" :currentTabCode.sync="currentTabCode" />
+        <v-space />
+        <v-space />
+        <v-space />
+        <v-tabs style="background-color: #EBF3FF" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
+        <v-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" @filte="onFilte" />
+        <v-break-line type='through' />
 
-    <v-break-space/>
-    <v-space />
-    <v-dot-title title="团队情况(本月)" />
-    <v-space height="12px" />
-    <v-colums-list-header :items="headerItems" :colum-widths="['150px', '1', '1']" :right-arrowed="true" />
-    <v-colums-list-item v-for="(e, i) in list" :key="i" :index="i" :items="e" :colum-widths="['150px', '1', '1']" :right-arrowed="true">
-      <template v-slot:item1>
-        <v-arrow />
-      </template>
-      <template v-slot:left0>
-        <v-arrow margin-right="10px" />
-      </template>
-    </v-colums-list-item>
-    <v-load-more
-      :is-loading.sync="isListLoading"
-      :is-load-on-mounted="true"
-      :is-there-more="isListMore"
-      @load="onListLoad(false)"
-    />
+        <v-title title="全部人数总计（人）" value="42" />
 
+        <v-total tip="总交易金额(元）" value="889.00" />
+        <v-break-line />
+        <v-total-ab tipA="交易笔数(笔）" tipB="D0笔数(笔）" valueA="88.00" valueB="88.00" />
+        <v-break-line />
+        <v-total-ab tipA="联盟交易(元）" valueA="88.00" :isBShow="false" />
+        <v-break-space />
+
+        <v-space />
+        <v-tabs :tabs="subTabs" :currentTabCode.sync="currentSubTabCode" />
+        <v-colums-list-header :items="headerItems" />
+        <v-colums-list-item v-for="(e, i) in list" :key="i" :items="e" :index="i" />
+        <v-load-more :isLoadOnMounted="true" :isLoading.sync="isListLoading" :isThereMore="isListMore" @load="onListLoad(false)" />
+      </v-card-content>
+    </v-scroll>
   </v-content>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-import vContent from '@/packages/lkl-content/index.vue'
-import vSpace from '@/packages/lkl-space/index.vue'
-import vBreakSpace from '@/packages/lkl-break-space/index.vue'
-import vLine from '@/packages/lkl-line/index.vue'
-import vBreakLine from '@/packages/lkl-break-line/index.vue'
-import vArrow from '@/packages/lkl-arrow/index.vue'
+import vTabs from '@/packages/lkl-tabs/htk-tabs.vue'
+import vTotal from '@/packages/lkl-summary/htk-total.vue'
+import vTotalAb from '@/packages/lkl-summary/htk-total-ab.vue'
 
-import vDotTitle from '@/packages/lkl-dot-title/haotk.vue'
+import { LklToast } from '@/packages/lkl-toast/index'
+import { LklConfirm, ButtonAction } from '@/packages/lkl-confirm/index'
 
-import vTextButton from '@/packages/lkl-text-button/index.vue'
-
-import vSummaryTotalAb from '@/packages/lkl-summary/haotk-total-ab.vue'
-
-import vColumsListHeader from '@/packages/lkl-colums-list/haotk-header.vue'
-import vColumsListItem from '@/packages/lkl-colums-list/haotk-item.vue'
-
-import vPullDownRefresh from '@/packages/lkl-pull-down-refresh/index.vue'
-import vLoadMore from '@/packages/lkl-load-more/index.vue'
-
-import vDatePickerDateSingle from '@/packages/lkl-date-picker/date-single.vue'
-import vDatePickerDateRange from '@/packages/lkl-date-picker/date-range.vue'
-
-import vLineChart from '@/packages/lkl-charts/line-chart.vue'
+import { LabelValue, Dimension } from '@/packages/lkl-filter/defines'
+import vTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
+import vSideMenu from '@/packages/lkl-filter/htk-side-menu.vue'
+import vSideMenuSection from '@/packages/lkl-filter/htk-side-menu-section.vue'
+import vSideMenuTypeSelect from '@/packages/lkl-filter/htk-side-menu-type-select.vue'
+import vIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
 
 @Component({
   components: {
-    vContent,
-    vSpace,
-    vBreakSpace,
-    vLine,
-    vBreakLine,
-    vArrow,
-    vDotTitle,
-    vTextButton,
-    vColumsListHeader,
-    vColumsListItem,
-
-    vPullDownRefresh,
-    vLoadMore,
-
-    vDatePickerDateSingle,
-    vDatePickerDateRange,
-
-    vSummaryTotalAb,
-
-    vLineChart
-
+    vIconLabelTabs,
+    vTabs,
+    vTotal,
+    vTotalAb,
+    vTypesFilter,
+    vSideMenu,
+    vSideMenuSection,
+    vSideMenuTypeSelect
   }
 })
 export default class Test extends Vue {
-  private onClick () {
-    // xx
+  private posTypeTabs = [
+    { name: '电签POS', code: 'ZPOS' },
+    { name: '传统POS', code: 'BPOS' },
+    { name: '4G电签', code: ' ZPOS4G' }
+  ]
+
+  private posType = 'ZPOS'
+
+  private subTabs = [
+    { name: '合作方', code: 0 },
+    { name: '联盟', code: 1 }
+  ]
+
+  private currentSubTabCode = 0
+
+  private tabs1 = [
+    { name: '合作方', code: 0, icon: require('./icon_reward_nor@3x.png'), iconSelect: require('./icon_reward_checked@3x.png') },
+    { name: '联盟', code: 1, icon: require('./icon_settle_nor@3x.png'), iconSelect: require('./icon_settle_checked@3x.png') }
+  ]
+
+  private onFilte (params: Record<string, string>) {
+    console.warn(params)
+    console.warn(this.query)
   }
 
-  private chartDataSource = {
+  private query: Record<string, string> = {}
+
+  private filteDimensions: Dimension[] = [
+    {
+      name: '收益维度',
+      key: 'a',
+      select: null,
+      options: [
+        { label: '全部', value: '' },
+        { label: '自有收益', value: 'a1' },
+        { label: '合作方收益', value: 'a2' },
+        { label: '联盟收益补贴', value: 'a3' }
+      ]
+    },
+    {
+      name: '结算类型',
+      key: 'b',
+      select: null,
+      options: [
+        { label: '全部', value: '' },
+        { label: '4G电签全活动', value: 'b1' }
+      ]
+    },
+    {
+      name: '活动类型',
+      key: 'c',
+      select: null,
+      options: [
+        { label: '全部', value: '' },
+        { label: '21年好拓客电签非押版活动', value: 'c1' },
+        { label: '21年4G电签非押版活动', value: 'c2' }
+      ]
+    },
+    {
+      name: '收益类型',
+      key: 'd',
+      select: null,
+      options: [
+        { label: '全部', value: '' },
+        { label: '交易收益', value: 'd1' },
+        { label: '返现收益', value: 'd2' },
+        { label: 'D0收益', value: 'd3' }
+      ]
+    }
+  ]
+
+  private pieChartDataSource = [
+    { name: '自有激活数', color: '#FF0000', value: 60000 },
+    { name: '团队激活数', color: '#FFD02F', value: 20000 }
+  ]
+
+  private lineChartDataSource = {
     xLabels: ['x1', 'x2', 'x3', 'x4', 'x5'],
     yInfoValues: [
-      { name: 'a', color: '#ff0000', values: [1, 2, 3, 2, 6] },
-      { name: 'b', color: '#00ff00', values: [2, 2, 1, 4, 3] },
-      { name: 'c', color: '#0000ff', values: [5, 2, 5, 4, 2] }
+      { name: '总收益', color: '#F29C1B', values: [1, 2, 3, 2, 6] },
+      { name: '自有收益', color: '#FF0000', values: [2, 2, 1, 4, 3] },
+      { name: '团队贡献收益', color: '#457FFB', values: [5, 2, 5, 4, 2] }
     ]
   }
 
   private isLoading = false
+  private isSelect = false
 
   private pickDate: Date | null = null
   private pickDateRange: { start: Date, end: Date } | null = null
@@ -152,6 +188,16 @@ export default class Test extends Vue {
 
 <style lang="less">
 .page {
+  height: 100vh;
+  height: 100vh;
+  flex-direction: column;
+  .scroll {
+    flex: 1;
+    // height: 400px;
+    // flex-shrink: 0;
+  }
+  .popup {
+    background-color: yellow;
+  }
 }
-
 </style>

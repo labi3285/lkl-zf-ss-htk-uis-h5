@@ -1,5 +1,5 @@
 <template>
-  <div class="lkl-break-line" :style="{ width, marginLeft, marginRight }" ></div>
+  <div class="lkl-break-line" :style="{ marginLeft, width }" ></div>
 </template>
 
 <script lang="ts">
@@ -7,10 +7,28 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklBreakLine extends Vue {
-  @Prop({ default: '0' }) private marginLeft!: string;
-  @Prop({ default: '0' }) private marginRight!: string;
+  @Prop({ default: 'leftRightMargin' }) private type!: string;
+
+  private get marginLeft (): string {
+    switch (this.type) {
+      case 'leftRightMargin':
+        return 'var(--marginLR)'
+      case 'leftMargin':
+        return 'var(--marginLR)'
+      default:
+        return ''
+    }
+  }
+
   private get width (): string {
-    return `calc(100% - ${this.marginLeft} - ${this.marginRight})`
+    switch (this.type) {
+      case 'leftRightMargin':
+        return 'calc(100% - var(--marginLR) * 2)'
+      case 'leftMargin':
+        return 'calc(100% - var(--marginLR))'
+      default:
+        return '100%'
+    }
   }
 }
 </script>

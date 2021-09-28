@@ -1,7 +1,7 @@
 <template>
-  <div ref="pullDownRefresher" class="lkl-pull-down-refresh">
+  <div ref="pullDownRefresher" class="lkl-pull-down-refresh" :style="{ backgroundColor }" >
     <slot>
-      <div class="slot-default">{{ isLoading ? '刷新中...' : isTriggerRefresh ? '松开刷新' : '下拉刷新' }}</div>
+      <div class="slot-default" :style="{ color: textColor }" >{{ isLoading ? '刷新中...' : isTriggerRefresh ? '松开刷新' : '下拉刷新' }}</div>
     </slot>
   </div>
 </template>
@@ -15,8 +15,28 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
   }
 })
 export default class LklLoadMore extends Vue {
-  @Prop({ default: false }) private isLoading!: boolean;
+  @Prop({ required: true }) private isLoading!: boolean;
   @Prop({ default: 50 }) private refreshDistance!: number;
+  @Prop({ default: 100 }) private maxDistance!: number;
+  @Prop({ default: 'body' }) private type!: string;
+
+  private get backgroundColor () {
+    switch (this.type) {
+      case 'theme':
+        return 'var(--clrTheme)'
+      default:
+        return 'var(--clrBody)'
+    }
+  }
+
+  private get textColor () {
+    switch (this.type) {
+      case 'theme':
+        return 'var(--clrThemeOpposite)'
+      default:
+        return 'var(--clrT3)'
+    }
+  }
 
   private isTriggerRefresh = false
   private startY = 0
@@ -58,7 +78,7 @@ export default class LklLoadMore extends Vue {
       return
     }
     const touch = event.touches[0]
-    this.endY = touch.pageY - this.startY
+    this.endY = Math.min(touch.pageY - this.startY, this.maxDistance)
     el.style.display = 'none'
     if (this.endY > 5) {
       el.style.display = 'block'
@@ -134,9 +154,9 @@ export default class LklLoadMore extends Vue {
   text-align: center;
   display: none;
   overflow: hidden;
+  // margin-bottom: -1px;
   .slot-default {
-    font-size: 14px;
-    color: var(--clrT3);
+    font-size: var(--font14);
     height: 100%;
     display: flex;
     justify-content: center;

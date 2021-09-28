@@ -1,0 +1,133 @@
+<template>
+  <v-popup ref="popup" class="lkl-side-menu" popupClass="lkl-side-menu-popup" :popupStartRect="popupStartRect" :popupRect="popupRect">
+    <div class="lkl-side-menu-popup-nav" :style="{ paddingTop: statusBarHeight + 'px' }">
+      <div class="lkl-side-menu-popup-nav-content">
+        <v-icon-back color="var(--clrTint)" class="lkl-side-menu-popup-nav-content-back" @click.native.stop="close" />
+        <div class="lkl-side-menu-popup-nav-content-title">{{ title }}</div>
+      </div>
+    </div>
+    <div class="lkl-side-menu-popup-content">
+      <slot />
+      <div style="height: 30px"></div>
+    </div>
+    <div class="lkl-side-menu-popup-bottom">
+      <div class="lkl-side-menu-popup-bottom-reset" @click.stop="reset">重置</div>
+      <div class="lkl-side-menu-popup-bottom-confirm" @click.stop="confirm">确定</div>
+    </div>
+  </v-popup>
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator'
+import vPopup, { LklPopupRect } from '../lkl-popup/index.vue'
+import vBetterScroll from '../lkl-scroll/better-scroll.vue'
+import vIconBack from '../lkl-icons/icon-back.vue'
+import { getQueryString } from '../utils/query'
+
+@Component({
+  components: {
+    vIconBack,
+    vPopup,
+    vBetterScroll
+  }
+})
+export default class LklSideMenu extends Vue {
+  @Prop({ default: '更多筛选' }) private title!: string;
+
+  public show (): void {
+    (this.$refs.popup as vPopup).show()
+  }
+
+  public close (): void {
+    (this.$refs.popup as vPopup).close()
+    this.$emit('confirm')
+  }
+
+  public reset (): void {
+    this.$emit('reset')
+  }
+
+  public confirm (): void {
+    this.close()
+    this.$emit('confirm')
+  }
+
+  private get statusBarHeight () {
+    return parseInt(getQueryString('statusBarHeight')) || 20
+  }
+
+  private popupStartRect (maskRect: LklPopupRect): LklPopupRect {
+    return { x: maskRect.w, y: 0, w: maskRect.w - 47, h: maskRect.h }
+  }
+
+  private popupRect (maskRect: LklPopupRect): LklPopupRect {
+    return { x: 47, y: 0, w: maskRect.w - 47, h: maskRect.h }
+  }
+}
+</script>
+
+<style lang="less">
+.lkl-side-menu {
+  &-popup {
+    background-color: var(--clrBody);
+    display: flex;
+    flex-direction: column;
+    &-nav {
+      width: 100%;
+      &-content {
+        display: flex;
+        align-items: center;
+        height: 50px;
+        &-back {
+          margin-left: 10px;
+        }
+        &-title {
+          margin-left: 10px;
+          font-size: 18px;
+          color: var(--clrT1);
+          font-weight: bold;
+        }
+      }
+    }
+    &-content {
+      flex: 1;
+      height: 300px;
+      overflow: scroll;
+    }
+    &-bottom {
+      width: 100%;
+      height: 60px;
+      position: relative;
+      display: flex;
+      &-reset {
+        flex: 1;
+        height: 49px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--clrTint);
+        font-weight: bold;
+        border-top-style: solid;
+        border-top-width: 1px;
+        border-top-color: var(--clrLine);
+        // border-bottom-style: solid;
+        // border-bottom-width: 1px;
+        // border-bottom-color: var(--clrLine);
+      }
+      &-confirm {
+        flex: 1;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: bold;
+        background-color: var(--clrTheme);
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+</style>

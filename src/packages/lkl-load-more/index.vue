@@ -18,9 +18,9 @@ import offsetChange from '../utils/directives/offsetChange'
   }
 })
 export default class LklLoadMore extends Vue {
-  @Prop({ default: false }) private isLoading!: boolean;
+  @Prop({ required: true }) private isLoading!: boolean;
   @Prop({ default: false }) private isLoadOnMounted!: boolean;
-  @Prop({ default: false }) private isThereMore!: boolean;
+  @Prop({ default: true }) private isThereMore!: boolean;
 
   private mounted () {
     if (this.isLoadOnMounted && this.isThereMore) {
@@ -52,9 +52,10 @@ export default class LklLoadMore extends Vue {
     }
     let isShow = false
     if (_next) {
+      const _tolerance = 50
       const _scroll = _next
       const _centerY = _offsetTop + el.offsetHeight / 2
-      const _visibleBottom = _scroll.offsetHeight
+      const _visibleBottom = _scroll.offsetHeight + _tolerance
       isShow = _centerY > 0 && _centerY < _visibleBottom
     } else {
       const _tolerance = 50 // 部分浏览器在滚动页面的时候会隐藏导航栏从而导致滚动出现误差
@@ -75,10 +76,10 @@ export default class LklLoadMore extends Vue {
   width: 100%;
   text-align: center;
   &-slot-default {
-    font-size: 14px;
+    font-size: var(--font14);
     color: var(--clrT3);
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: var(--marginTB);
+    padding-bottom: var(--marginTB);
   }
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="lkl-date-picker-date-range">
-    <div class="lkl-date-picker-date-range-button" @click="showPicker" >{{ showText }}</div>
-    <v-arrow-triangle marginLeft="5px" />
+    <div class="lkl-date-picker-date-range-button" @click.stop="showPicker" >{{ showText }}</div>
+    <v-icon-fold marginLeft="5px" />
     <calendar
       :show.sync="isPopupShow"
       :default-date="defaultDate"
@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { formatDate } from './date'
-import vArrowTriangle from '../lkl-arrow/triangle.vue'
+import vArrowTriangle from '../lkl-icons/triangle.vue'
 import Calendar from 'vue-mobile-calendar'
 Vue.use(Calendar)
 
@@ -27,7 +27,7 @@ Vue.use(Calendar)
   }
 })
 export default class LklDatePickerDateRange extends Vue {
-  @Prop({ default: undefined }) private pickedDateRange!: { start: Date, end: Date };
+  @Prop({ required: true }) private pickedDateRange!: { start: Date, end: Date };
 
   @Prop({ default: undefined }) private defaultDateRange!: { start: Date, end: Date };
   @Prop({ default: '选择日期' }) private defaultText!: Date;

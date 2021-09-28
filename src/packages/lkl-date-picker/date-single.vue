@@ -1,7 +1,7 @@
 <template>
   <div class="lkl-date-picker-date-single">
     <div class="lkl-date-picker-date-single-button" @click="showPicker" >{{ showText }}</div>
-    <v-arrow-triangle marginLeft="5px" />
+    <v-icon-fold marginLeft="5px" />
     <calendar
       :show.sync="isPopupShow"
       :default-date="defaultDate"
@@ -19,7 +19,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { formatDate } from './date'
-import vArrowTriangle from '../lkl-arrow/triangle.vue'
+import vArrowTriangle from '../lkl-icons/triangle.vue'
 import Calendar from 'vue-mobile-calendar'
 Vue.use(Calendar)
 
@@ -29,7 +29,7 @@ Vue.use(Calendar)
   }
 })
 export default class LklDatePickerDateSingle extends Vue {
-  @Prop({ default: undefined }) private pickedDate!: Date;
+  @Prop({ required: true }) private pickedDate!: Date;
 
   @Prop({ default: undefined }) private defaultDate!: Date;
   @Prop({ default: '选择日期' }) private defaultText!: Date;

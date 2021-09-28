@@ -8,8 +8,10 @@
     "url": "git+https://github.com/labi3285/lkl-zf-ss-htk-uis-h5.git"
   },
   "dependencies": {
+    "better-scroll": "^2.4.2",
     "core-js": "^3.6.5",
     "vue": "^2.6.11",
+    "dsbridge": "^3.1.4",
     "echarts": "^4.8.0",
     "vue-class-component": "^7.2.3",
     "vue-mobile-calendar": "^3.3.0",

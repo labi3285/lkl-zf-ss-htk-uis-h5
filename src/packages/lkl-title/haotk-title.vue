@@ -1,8 +1,8 @@
 <template>
-  <div class="lkl-dot-title">
-    <div class="lkl-dot-title-dot"></div>
-    <div class="lkl-dot-title-text">{{ title }}</div>
-    <div class="lkl-dot-title-flex-space"></div>
+  <div class="lkl-title">
+    <div v-if="isDotShow" class="lkl-title-dot"></div>
+    <div class="lkl-title-text">{{ title }}</div>
+    <div class="lkl-title-flex-space"></div>
     <slot />
   </div>
 </template>
@@ -11,25 +11,26 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
-export default class QXDotTitle extends Vue {
+export default class QXTitle extends Vue {
   @Prop({ default: '' }) private title!: string;
+  @Prop({ default: true }) private isDotShow!: boolean;
 }
 </script>
 
 <style lang="less">
-.lkl-dot-title {
-  margin: 8px 10px 8px 10px;
+.lkl-title {
+  margin: var(--marginTB) 10px var(--marginTB) 10px;
   display: flex;
   align-items: center;
   &-dot {
     width: 4px;
     height: 16px;
-    background-color: var(--clrTint);
+    background-color: var(--clrTheme);
     margin-right: 8px;
   }
   &-text {
     font-weight: bold;
-    font-size: 16px;
+    font-size: var(--font16);
     color: var(--clrT1);
   }
   &-flex-space {

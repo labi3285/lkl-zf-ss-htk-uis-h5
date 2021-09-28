@@ -1,6 +1,14 @@
 <template>
   <div class="lkl-line-chart">
-    <div class="lkl-line-chart-chart" ref="chart"></div>
+    <div v-if="dataSource" class="lkl-line-chart-chart" ref="chart"></div>
+    <div v-if="dataSource" class="lkl-line-chart-legend">
+      <div class="lkl-line-chart-legend">
+        <div v-for="(e, i) in dataSource.yInfoValues" :key="i" class="lkl-line-chart-legend-item">
+          <div class="lkl-line-chart-legend-item-dot" :style="{ backgroundColor: e.color }"></div>
+          <div class="lkl-line-chart-legend-item-label">{{ e.name }}</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -51,7 +59,6 @@ export default class LklLineChart extends Vue {
 
   private options () {
     const series = []
-    const legendSeries = []
     if (this.dataSource === undefined) {
       return null
     }
@@ -92,7 +99,6 @@ export default class LklLineChart extends Vue {
           }
         }
       }
-      legendSeries.push(e.name)
       series.push(serie)
     }
 
@@ -101,21 +107,12 @@ export default class LklLineChart extends Vue {
         trigger: 'axis'
       },
       grid: {
-        left: '16px',
-        right: '24px',
-        bottom: '30px',
-        top: '16px',
+        left: '20px',
+        right: '20px',
+        bottom: '8px',
+        top: '8px',
         containLabel: true,
         show: false
-      },
-      legend: {
-        left: 20,
-        bottom: 0,
-        data: legendSeries,
-        icon: 'circle',
-        itemWidth: 10,
-        itemHeight: 10,
-        textStyle: { color: '#666666', size: 9 }
       },
       xAxis: {
         splitLine: {
@@ -190,10 +187,37 @@ export default class LklLineChart extends Vue {
 <style lang="less" scoped>
 .lkl-line-chart {
   width: 100%;
-  height: 243px;
   &-chart {
     width: 100%;
-    height: calc(100% - 10px);
+    height: 200px;
+    // background-color: green;
+  }
+  &-legend {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    &-item {
+      display: flex;
+      align-items: center;
+      &-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: var(--radiusL);
+        border-width: 1px;
+        border-color: #ffffff;
+        border-style: solid;
+        -webkit-box-shadow: var(--clrShadow) 0px 0px 8px;
+        -moz-box-shadow: var(--clrShadow) 0px 0px 8px;
+        box-shadow: var(--clrShadow) 0px 0px 8px;
+        margin-right: 8px;
+      }
+      &-label {
+        color: var(--clrT2);
+        font-size: var(--font12);
+      }
+    }
   }
 }
 </style>
