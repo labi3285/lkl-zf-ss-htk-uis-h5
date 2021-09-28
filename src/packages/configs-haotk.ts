@@ -1,4 +1,4 @@
-import { ValueProp, ColorProp } from '@/packages/utils/Prop'
+import { ValueProp, ColorProp } from './utils/Prop'
 
 export const SizeConfigs: ValueProp[] = [
 
