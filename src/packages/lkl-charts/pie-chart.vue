@@ -123,7 +123,7 @@ export default class LklPieChart extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .lkl-pie-chart {
   width: 100%;
   display: flex;

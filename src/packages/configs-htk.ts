@@ -53,6 +53,7 @@ export const ColorConfigs: ColorProp[] = [
   { key: '--clrBackGray', value: { normal: '#f5f5f5', dark: '#000000' } },
   // 分割线
   { key: '--clrLine', value: { normal: '#e6e6e6', dark: '#3d3d41' } },
+  { key: '--clrLineSlight', value: { normal: '#F0F0F0', dark: '#111111' } },
   // 标题
   { key: '--clrT1', value: { normal: '#333333', dark: '#EFEFEF' } },
   // 次标题、正文

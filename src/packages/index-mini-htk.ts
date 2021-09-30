@@ -9,7 +9,7 @@ import vCol from './lkl-layout/colum.vue'
 import vContent from './lkl-content/index.vue'
 import vScroll from './lkl-scroll/index.vue'
 import vBetterScroll from './lkl-scroll/better-scroll.vue'
-import vCard from './lkl-card/haotk.vue'
+import vCard from './lkl-card/htk.vue'
 import vPopup from './lkl-popup/index.vue'
 
 import vSpace from './lkl-space/index.vue'

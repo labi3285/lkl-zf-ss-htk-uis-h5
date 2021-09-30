@@ -41,7 +41,6 @@ export default class LklColumsList extends Vue {
 .lkl-colums-header {
   padding: var(--paddingTB) 0 var(--paddingTB) 0;
   background-color: var(--clrListHead);
-  // margin: 0 var(--marginLR) 0 var(--marginLR);
   width: calc(100% - var(--marginLR) * 2);
   width: 100%;
   display: flex;

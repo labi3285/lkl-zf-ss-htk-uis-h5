@@ -26,7 +26,7 @@ export default class LklHaotkInfosCard extends Vue {
   &-card {
     margin: 0 var(--marginLR) 0 var(--marginLR);
     width: calc(100% - var(--marginLR) * 2);
-    .auto-bg-image('haotk-infos-bg');
+    .auto-bg-image('resources/haotk-infos-bg');
     background-size: 100% !important;
     border-radius: var(--radiusL);
     position: relative;
@@ -35,7 +35,7 @@ export default class LklHaotkInfosCard extends Vue {
     &-help {
       width: 17px;
       height: 17px;
-      .auto-bg-image('haotk-help');
+      .auto-bg-image('resources/haotk-help');
       position: absolute;
       top: 12px;
       right: 12px;

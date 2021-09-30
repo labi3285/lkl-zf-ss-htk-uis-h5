@@ -1,35 +1,44 @@
 <template>
   <v-content class="page">
-    <v-nav title="汇拓客"></v-nav>
+    <v-nav></v-nav>
     <v-scroll class="scroll">
-      <v-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" />
+      <!-- <v-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" /> -->
       <v-head-content>
-        <div style="height: 60px; position: relative"></div>
+        <v-row alignX="center">
+          <v-date-range-picker color="#ffffff" :pickedDateRange.sync="dateRange" />
+        </v-row>
+        <v-col alignX="center">
+          <div class="total-value">123.00</div>
+          <div class="total-tip">总收益金额（元）</div>
+        </v-col>
+        <v-segs :tabs="businesses" :currentTabCode.sync="business" />
+        <v-space height="60px" />
       </v-head-content>
 
       <v-card-content>
-        <v-icon-label-tabs style="position: absolute; top: -50px; left: 0; right: 0" :tabs="tabs1" :currentTabCode.sync="currentTabCode" />
-        <v-space />
-        <v-space />
-        <v-space />
-        <v-tabs style="background-color: #EBF3FF" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
+        <v-card style="position: absolute; top: -50px; left: 0; right: 0">
+          <v-icon-label-tabs :tabs="settleOrNots" :currentTabCode.sync="settleOrNot" />
+        </v-card>
+        <v-space height="18px" />
+        <v-icon-label-arrow-tabs style="background-color: var(--clrListHead)" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
         <v-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" @filte="onFilte" />
         <v-break-line type='through' />
+        <v-muti-level-statistics nameColumWidth="140" :dataSource="statisticsDataSource1" />
 
-        <v-title title="全部人数总计（人）" value="42" />
+        <!-- <v-title title="全部人数总计（人）" value="42" /> -->
 
-        <v-total tip="总交易金额(元）" value="889.00" />
+        <!-- <v-total tip="总交易金额(元）" value="889.00" />
         <v-break-line />
         <v-total-ab tipA="交易笔数(笔）" tipB="D0笔数(笔）" valueA="88.00" valueB="88.00" />
         <v-break-line />
         <v-total-ab tipA="联盟交易(元）" valueA="88.00" :isBShow="false" />
-        <v-break-space />
+        <v-break-space /> -->
 
         <v-space />
-        <v-tabs :tabs="subTabs" :currentTabCode.sync="currentSubTabCode" />
+        <v-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
         <v-colums-list-header :items="headerItems" />
         <v-colums-list-item v-for="(e, i) in list" :key="i" :items="e" :index="i" />
-        <v-load-more :isLoadOnMounted="true" :isLoading.sync="isListLoading" :isThereMore="isListMore" @load="onListLoad(false)" />
+        <!-- <v-load-more :isLoadOnMounted="true" :isLoading.sync="isListLoading" :isThereMore="isListMore" @load="onListLoad(false)" /> -->
       </v-card-content>
     </v-scroll>
   </v-content>
@@ -38,37 +47,146 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+import vSegs from '@/packages/lkl-tabs/htk-segs.vue'
 import vTabs from '@/packages/lkl-tabs/htk-tabs.vue'
-import vTotal from '@/packages/lkl-summary/htk-total.vue'
-import vTotalAb from '@/packages/lkl-summary/htk-total-ab.vue'
-
-import { LklToast } from '@/packages/lkl-toast/index'
-import { LklConfirm, ButtonAction } from '@/packages/lkl-confirm/index'
-
-import { LabelValue, Dimension } from '@/packages/lkl-filter/defines'
-import vTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
-import vSideMenu from '@/packages/lkl-filter/htk-side-menu.vue'
-import vSideMenuSection from '@/packages/lkl-filter/htk-side-menu-section.vue'
-import vSideMenuTypeSelect from '@/packages/lkl-filter/htk-side-menu-type-select.vue'
 import vIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
+import vIconLabelArrowTabs from '@/packages/lkl-tabs/htk-icon-label-arrow-tabs.vue'
+import vDateRangePicker from '@/packages/lkl-date-picker/date-range.vue'
+import vTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
+import vMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
+
+// import { LklToast } from '@/packages/lkl-toast/index'
+// import { LklConfirm, ButtonAction } from '@/packages/lkl-confirm/index'
 
 @Component({
   components: {
-    vIconLabelTabs,
+    vSegs,
     vTabs,
-    vTotal,
-    vTotalAb,
+    vIconLabelTabs,
+    vIconLabelArrowTabs,
+    vDateRangePicker,
     vTypesFilter,
-    vSideMenu,
-    vSideMenuSection,
-    vSideMenuTypeSelect
+    vMutiLevelStatistics
   }
 })
 export default class Test extends Vue {
+  private dateRange: { start: Date, end: Date } | null = null;
+
+  private statisticsDataSource = {
+    total: {
+      a: { tip: '交易金额(元)', value: '16.20' },
+      b: { tip: 'D0笔数(笔)', value: '16' }
+    },
+    dimensions: [
+      {
+        name: '自有',
+        isFold: true,
+        key: 'self',
+        color: 'red',
+        a: { tip: '交易(元)', value: '1' },
+        b: { tip: 'D0(笔)', value: '1' },
+        subItems: [
+          {
+            name: '模块一',
+            a: { tip: '交易(元)', value: '1' },
+            b: { tip: 'D0(笔)', value: '1' },
+            subItems: [
+              {
+                name: '电签POS非押',
+                a: { tip: '交易(元)', value: '1' },
+                b: { tip: 'D0(笔)', value: '1' },
+                subItems: [
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        name: '自有',
+        isFold: true,
+        key: 'self',
+        color: 'red',
+        a: { tip: '交易(元)', value: '1' },
+        b: { tip: 'D0(笔)', value: '1' }
+      },
+      {
+        name: '自有',
+        isFold: true,
+        key: 'self',
+        color: 'red',
+        a: { tip: '交易(元)', value: '1' },
+        b: { tip: 'D0(笔)', value: '1' },
+        subItems: [
+          {
+            name: '模块一',
+            a: { tip: '交易(元)', value: '1' },
+            b: { tip: 'D0(笔)', value: '1' },
+            subItems: [
+              {
+                name: '电签POS非押',
+                a: { tip: '交易(元)', value: '1' },
+                b: { tip: 'D0(笔)', value: '1' },
+                subItems: [
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+
+    ]
+  }
+
+  private statisticsDataSource1 = {
+    total: {
+      a: { tip: '总收益(元)', value: '12380.92' }
+    },
+    dimensions: [
+      {
+        name: '自有收益',
+        isFold: true,
+        key: 'self',
+        a: { tip: '收益(元)', value: '3000.00' },
+        subItems: [
+          { name: '广发银行', a: { tip: '收益(元)', value: '2000.00' } },
+          { name: '光大银行', a: { tip: '收益(元)', value: '1000.00' } }
+        ]
+      },
+      {
+        name: '合作方办卡',
+        isFold: true,
+        key: 'self',
+        a: { tip: '收益(元)', value: '3000.00' },
+        subItems: [
+          { name: '广发银行', a: { tip: '收益(元)', value: '2000.00' } },
+          { name: '光大银行', a: { tip: '收益(元)', value: '1000.00' } }
+        ]
+      }
+    ]
+  }
+
+  private businesses = [
+    { name: '收单', code: 'TPAD' },
+    { name: '趣伴卡', code: 'CREDIT_CARD' }
+  ]
+
+  private business = 'TPAD'
+
   private posTypeTabs = [
-    { name: '电签POS', code: 'ZPOS' },
-    { name: '传统POS', code: 'BPOS' },
-    { name: '4G电签', code: ' ZPOS4G' }
+    { name: '电签POS', code: 'ZPOS', icon: require('./icon_settle_nor@3x.png') },
+    { name: '传统POS', code: 'BPOS', icon: require('./icon_settle_nor@3x.png') },
+    { name: '4G电签', code: ' ZPOS4G', icon: require('./icon_settle_nor@3x.png') }
   ]
 
   private posType = 'ZPOS'
@@ -78,12 +196,14 @@ export default class Test extends Vue {
     { name: '联盟', code: 1 }
   ]
 
-  private currentSubTabCode = 0
+  private subTabCode = 0
 
-  private tabs1 = [
-    { name: '合作方', code: 0, icon: require('./icon_reward_nor@3x.png'), iconSelect: require('./icon_reward_checked@3x.png') },
-    { name: '联盟', code: 1, icon: require('./icon_settle_nor@3x.png'), iconSelect: require('./icon_settle_checked@3x.png') }
+  private settleOrNots = [
+    { name: '结算', code: 0, icon: require('./icon_settle_nor@3x.png'), iconSelect: require('./icon_settle_checked@3x.png') },
+    { name: '其他', code: 1, icon: require('./icon_other_nor@3x.png'), iconSelect: require('./icon_other_checked@3x.png') }
   ]
+
+  private settleOrNot = 0
 
   private onFilte (params: Record<string, string>) {
     console.warn(params)
@@ -92,7 +212,7 @@ export default class Test extends Vue {
 
   private query: Record<string, string> = {}
 
-  private filteDimensions: Dimension[] = [
+  private filteDimensions = [
     {
       name: '收益维度',
       key: 'a',
@@ -186,7 +306,7 @@ export default class Test extends Vue {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .page {
   height: 100vh;
   height: 100vh;
@@ -196,8 +316,17 @@ export default class Test extends Vue {
     // height: 400px;
     // flex-shrink: 0;
   }
-  .popup {
-    background-color: yellow;
+  .total-value {
+    padding-top: 8px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 32px;
+  }
+  .total-tip {
+    padding-top: 6px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 13px;
+    padding-bottom: 8px;
   }
 }
 </style>

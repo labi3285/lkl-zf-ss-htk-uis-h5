@@ -72,7 +72,7 @@ export default class LklTotal extends Vue {
       width: 22px;
       height: 22px;
       margin-left: var(--marginS);
-      .auto-bg-image('htk-arrow');
+      .auto-bg-image('resources/htk-arrow');
     }
   }
 }

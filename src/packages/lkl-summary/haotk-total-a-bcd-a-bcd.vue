@@ -124,7 +124,7 @@ export default class LklHaoTkTotalABcdABcd extends Vue {
   &-card {
     margin: 0 var(--marginLR) 0 var(--marginLR);
     width: calc(100% - var(--marginLR) * 2);
-    .auto-bg-image('haotk-total-a-bcd-a-bcd-bg');
+    .auto-bg-image('resources/haotk-total-a-bcd-a-bcd-bg');
     background-size: 100% !important;
     border-radius: var(--radiusL);
     position: relative;
@@ -142,13 +142,13 @@ export default class LklHaoTkTotalABcdABcd extends Vue {
         width: 6px;
         height: 10px;
         margin-left: var(--marginS);
-        .auto-bg-image('haotk-arrow');
+        .auto-bg-image('resources/haotk-arrow');
       }
       &-help {
         width: 17px;
         height: 17px;
         margin-left: var(--marginS);
-        .auto-bg-image('haotk-help');
+        .auto-bg-image('resources/haotk-help');
       }
     }
     &-total-value {
@@ -162,7 +162,7 @@ export default class LklHaoTkTotalABcdABcd extends Vue {
     &-help {
       width: 17px;
       height: 17px;
-      .auto-bg-image('haotk-help');
+      .auto-bg-image('resources/haotk-help');
       position: absolute;
       top: 12px;
       right: 12px;

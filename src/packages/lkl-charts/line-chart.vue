@@ -184,7 +184,7 @@ export default class LklLineChart extends Vue {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 .lkl-line-chart {
   width: 100%;
   &-chart {

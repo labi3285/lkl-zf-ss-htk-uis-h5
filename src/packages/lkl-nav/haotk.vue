@@ -74,7 +74,7 @@ export default class NavBar extends Vue {
   }
 }
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .lkl-nav {
   display: flex;
   align-items: center;

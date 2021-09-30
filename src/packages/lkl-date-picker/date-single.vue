@@ -1,7 +1,7 @@
 <template>
   <div class="lkl-date-picker-date-single">
-    <div class="lkl-date-picker-date-single-button" @click="showPicker" >{{ showText }}</div>
-    <v-icon-fold marginLeft="5px" />
+    <div class="lkl-date-picker-date-single-button" @click="showPicker" :style="{ color }" >{{ showText }}</div>
+    <v-icon-fold :color="color" marginLeft="5px" />
     <calendar
       :show.sync="isPopupShow"
       :default-date="defaultDate"
@@ -39,6 +39,8 @@ export default class LklDatePickerDateSingle extends Vue {
   @Prop({ default: undefined }) private disabledDates!: Date[];
   @Prop({ default: undefined }) private minDate!: Date;
   @Prop({ default: undefined }) private maxDate!: Date;
+
+  @Prop({ default: 'var(--clrT2)' }) private color!: string;
 
   private isPopupShow = false
 
@@ -78,7 +80,6 @@ export default class LklDatePickerDateSingle extends Vue {
   flex-shrink: 0;
   &-button {
     font-size: 13px;
-    color: var(--clrT2);
   }
 }
 </style>
