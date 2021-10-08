@@ -79,6 +79,7 @@ export default class LklLoadMore extends Vue {
     }
     const touch = event.touches[0]
     this.endY = Math.min(touch.pageY - this.startY, this.maxDistance)
+    this.endY = Math.max(this.endY, 0)
     el.style.display = 'none'
     if (this.endY > 5) {
       el.style.display = 'block'
@@ -120,12 +121,13 @@ export default class LklLoadMore extends Vue {
     const _frame_t = 1 / 30
     const _delta_height = _total_height / (_total_t / _frame_t)
     let _height = _from_height
+    const _maxDistance = this.maxDistance
     function _interpolator_loop (done: () => void) {
       setTimeout(() => {
         if (_from_height > toHeight) {
           if (_height - _delta_height > toHeight) {
             _height -= _delta_height
-            el.style.height = _height + 'px'
+            el.style.height = Math.max(_height, 0) + 'px'
             _interpolator_loop(done)
           } else {
             el.style.height = toHeight + 'px'
@@ -134,7 +136,7 @@ export default class LklLoadMore extends Vue {
         } else {
           if (_height + _delta_height > toHeight) {
             _height += _delta_height
-            el.style.height = _height + 'px'
+            el.style.height = Math.min(_height, _maxDistance) + 'px'
             _interpolator_loop(done)
           } else {
             el.style.height = toHeight + 'px'

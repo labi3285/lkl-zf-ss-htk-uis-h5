@@ -93,7 +93,7 @@
           </div>
         </div>
 
-        <div v-if="e.subItems && e.subItems.length > 0" class="htk-muti-level-statistics-dimensions-dimension-fold" :class="i < dataSource.dimensions.length ? 'htk-muti-level-statistics-bottom-grid-line' : ''" @click.stop="onFoldClick(e)">
+        <div v-if="e.subItems && e.subItems.length > 0" :style="{ marginLeft: foldButtonMarginLeft }" class="htk-muti-level-statistics-dimensions-dimension-fold" :class="i < dataSource.dimensions.length ? 'htk-muti-level-statistics-bottom-grid-line' : ''" @click.stop="onFoldClick(e)">
           {{ e.isFold ? '详情' : '收起' }}
           <div :style="{ transform: e.isFold ? '' : 'rotate(180deg)' }" class="htk-muti-level-statistics-dimensions-dimension-fold-icon"></div>
         </div>
@@ -104,7 +104,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { TipValue, StatisticsItem, StatisticsDimension, StatisticsData } from './defines'
+import { StatisticsDimension, StatisticsData } from './defines'
 
 @Component
 export default class LklMutiLevelStatistics extends Vue {
@@ -115,8 +115,22 @@ export default class LklMutiLevelStatistics extends Vue {
   // 缩进
   @Prop({ default: 12 }) private levelIndent!: number;
 
+  @Prop({ default: undefined }) private handleUnfold!: (dimension: StatisticsDimension, done: () => void) => void;
+
+  @Prop({ default: '' }) private foldButtonMarginLeft!: string;
+
   private onFoldClick (e: StatisticsDimension) {
-    e.isFold = !e.isFold
+    if (e.isFold) {
+      if (this.handleUnfold !== undefined && this.handleUnfold !== null) {
+        this.handleUnfold(e, () => {
+          e.isFold = false
+        })
+      } else {
+        e.isFold = false
+      }
+    } else {
+      e.isFold = true
+    }
   }
 }
 </script>

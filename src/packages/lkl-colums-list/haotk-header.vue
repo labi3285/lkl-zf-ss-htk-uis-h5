@@ -54,6 +54,7 @@ export default class LklColumsList extends Vue {
     font-weight: bold;
     word-break: break-all;
     word-wrap:break-word;
+    text-align: center;
   }
   &-right-arrow {
     opacity: 0;

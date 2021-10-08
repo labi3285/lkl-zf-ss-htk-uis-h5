@@ -31,7 +31,6 @@ Vue.use(Calendar)
 export default class LklDatePickerDateSingle extends Vue {
   @Prop({ required: true }) private pickedDate!: Date;
 
-  @Prop({ default: undefined }) private defaultDate!: Date;
   @Prop({ default: '选择日期' }) private defaultText!: Date;
   @Prop({ default: 'yyyy-MM-dd' }) private dateFormate!: string;
   @Prop({ default: true }) private closeByClickMask!: boolean;
@@ -42,19 +41,14 @@ export default class LklDatePickerDateSingle extends Vue {
 
   @Prop({ default: 'var(--clrT2)' }) private color!: string;
 
+  private get defaultDate () {
+    return this.pickedDate
+  }
+
   private isPopupShow = false
 
   private get showText () {
     return this.pickedDate ? formatDate(this.pickedDate, this.dateFormate) : this.defaultText
-  }
-
-  private mounted () {
-    if (this.defaultDate) {
-      this.$emit('update:pickedDate', this.defaultDate)
-      this.$nextTick(() => {
-        this.$emit('change')
-      })
-    }
   }
 
   public showPicker (): void {

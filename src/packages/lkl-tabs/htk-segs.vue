@@ -38,16 +38,13 @@ export default class LklHaotkSegs extends Vue {
     border-radius: 13px;
     background-color:rgba(255, 255, 255, 0.2);
     &-tab {
-      height: 24px;
-      line-height: 24px;
+      height: 26px;
+      line-height: 26px;
       text-align: center;
-      border-width: 1px;
       padding-left: 25px;
       padding-right: 25px;
       min-width: 50px;
-      border-style: solid;
-      border-width: 1px;
-      border-color: transparent;
+      border-width: 0;
       color: rgba(255, 255, 255, 0.7);
       font-size: var(--font14);
       font-weight: bold;

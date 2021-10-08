@@ -38,6 +38,7 @@ import vSideMenuTypeSelect from './htk-side-menu-type-select.vue'
 export default class LklHtkTypesFilter extends Vue {
   @Prop({ default: undefined }) private dimensions!: Dimension[];
   @Prop({ default: undefined }) private query!: Record<string, string>;
+  @Prop({ default: undefined }) private handleSideMenuShow!: (done: () => void) => void;
 
   /// 互斥维度, 默认选择第一个
   @Prop({ default: undefined }) private mutexDimensionKeysGroups!: string[][];
@@ -206,7 +207,13 @@ export default class LklHtkTypesFilter extends Vue {
   }
 
   private onFilteClick () {
-    (this.$refs.sideMenu as vSideMenu).show()
+    if (this.handleSideMenuShow === undefined || this.handleSideMenuShow === null) {
+      (this.$refs.sideMenu as vSideMenu).show()
+    } else {
+      this.handleSideMenuShow(() => {
+        (this.$refs.sideMenu as vSideMenu).show()
+      })
+    }
   }
 }
 </script>

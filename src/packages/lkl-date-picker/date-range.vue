@@ -29,7 +29,6 @@ Vue.use(Calendar)
 export default class LklDatePickerDateRange extends Vue {
   @Prop({ required: true }) private pickedDateRange!: { start: Date, end: Date };
 
-  @Prop({ default: undefined }) private defaultDateRange!: { start: Date, end: Date };
   @Prop({ default: '选择日期' }) private defaultText!: Date;
   @Prop({ default: 'yyyy-MM-dd' }) private dateFormate!: string;
   @Prop({ default: true }) private closeByClickMask!: boolean;
@@ -41,20 +40,11 @@ export default class LklDatePickerDateRange extends Vue {
 
   private isPopupShow = false
   private get defaultDate (): Date[] | undefined {
-    return this.defaultDateRange ? [this.defaultDateRange.start, this.defaultDateRange.end] : undefined
+    return this.pickedDateRange ? [this.pickedDateRange.start, this.pickedDateRange.end] : undefined
   }
 
   private get showText () {
     return this.pickedDateRange ? formatDate(this.pickedDateRange.start, this.dateFormate) + ' -- ' + formatDate(this.pickedDateRange.end, this.dateFormate) : this.defaultText
-  }
-
-  private mounted () {
-    if (this.defaultDateRange) {
-      this.$emit('update:pickedDateRange', this.defaultDateRange)
-      this.$nextTick(() => {
-        this.$emit('change')
-      })
-    }
   }
 
   public showPicker (): void {

@@ -42,7 +42,7 @@ export const SizeConfigs: ValueProp[] = [
 
 export const ColorConfigs: ColorProp[] = [
   // 主题色
-  { key: '--clrTheme', value: { normal: '#3A75F3', dark: '#000000' } },
+  { key: '--clrTheme', value: { normal: '#0072ff', dark: '#000000' } },
   // 主题反色
   { key: '--clrThemeOpposite', value: { normal: '#ffffff', dark: '#999999' } },
   // 点缀色、用于强调、强提示

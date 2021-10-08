@@ -21,11 +21,11 @@
         </v-card>
         <v-space height="18px" />
         <v-icon-label-arrow-tabs style="background-color: var(--clrListHead)" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
-        <v-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" @filte="onFilte" />
+        <v-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" :handleSideMenuShow="handleSideMenuShow" @filte="onFilte" />
         <v-break-line type='through' />
-        <v-muti-level-statistics nameColumWidth="140" :dataSource="statisticsDataSource1" />
+        <v-muti-level-statistics foldButtonMarginLeft="130px" nameColumWidth="140" :dataSource="statisticsDataSource1" />
 
-        <!-- <v-title title="全部人数总计（人）" value="42" /> -->
+        <v-title title="全部人数总计（人）" :dotted="false" value="42" />
 
         <!-- <v-total tip="总交易金额(元）" value="889.00" />
         <v-break-line />
@@ -36,7 +36,7 @@
 
         <v-space />
         <v-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
-        <v-colums-list-header :items="headerItems" />
+        <v-colums-list-header :items="headerItems" :columWidths="['1.5', '1.5', '1', '1', '1']" />
         <v-colums-list-item v-for="(e, i) in list" :key="i" :items="e" :index="i" />
         <!-- <v-load-more :isLoadOnMounted="true" :isLoading.sync="isListLoading" :isThereMore="isListMore" @load="onListLoad(false)" /> -->
       </v-card-content>
@@ -71,6 +71,12 @@ import vMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statisti
 })
 export default class Test extends Vue {
   private dateRange: { start: Date, end: Date } | null = null;
+
+  private handleSideMenuShow (done: () => void) {
+    setTimeout(() => {
+      done()
+    }, 1000)
+  }
 
   private statisticsDataSource = {
     total: {
@@ -276,7 +282,7 @@ export default class Test extends Vue {
   private pickDate: Date | null = null
   private pickDateRange: { start: Date, end: Date } | null = null
 
-  private headerItems = ['团队成员名称', '交易额', '交易笔数']
+  private headerItems = ['合作方名称', '总收益金额(元)', '电签POS', '传统POS', '4G电签']
   private list: string[][] = []
   private isListLoading = false
   private isListMore = true

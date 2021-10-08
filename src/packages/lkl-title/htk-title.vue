@@ -1,7 +1,7 @@
 <template>
   <div class="lkl-title">
-    <div v-if="isDotShow" class="lkl-title-dot"></div>
-    <div class="lkl-title-text">{{ title }}</div>
+    <div v-if="dotted" class="lkl-title-dot"></div>
+    <div class="lkl-title-text" :style="{ color: dotted ? 'var(--clrT1)' : 'var(--clrT2)' }">{{ title }}</div>
     <div v-if="value && value.length > 0" class="lkl-title-value">{{ value }}</div>
     <div class="lkl-title-flex-space"></div>
     <slot />
@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 export default class QXTitle extends Vue {
   @Prop({ default: '' }) private title!: string;
   @Prop({ default: undefined }) private value!: string;
-  @Prop({ default: true }) private isDotShow!: boolean;
+  @Prop({ default: true }) private dotted!: boolean;
 }
 </script>
 
@@ -35,7 +35,6 @@ export default class QXTitle extends Vue {
   &-text {
     font-weight: bold;
     font-size: var(--font16);
-    color: var(--clrT1);
   }
   &-value {
     margin-left: 30px;

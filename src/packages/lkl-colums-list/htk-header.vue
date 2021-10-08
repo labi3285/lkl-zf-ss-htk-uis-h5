@@ -50,10 +50,10 @@ export default class LklColumsList extends Vue {
     justify-content: center;
     align-items: center;
     color: var(--clrT2);
-    font-size: var(--font12);
-    // font-weight: bold;
+    font-size: var(--font14);
     word-break: break-all;
     word-wrap:break-word;
+    text-align: center;
   }
   &-right-arrow {
     opacity: 0;
