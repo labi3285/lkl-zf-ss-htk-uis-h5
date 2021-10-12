@@ -17,6 +17,10 @@ export interface StatisticsDimension extends StatisticsItem {
 }
 
 export interface StatisticsData {
-  total: TipValue
+  total: {
+    a: TipValue
+    b?: TipValue
+    c?: TipValue
+  }
   dimensions: StatisticsDimension[]
 }

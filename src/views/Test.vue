@@ -55,7 +55,7 @@ import vDateRangePicker from '@/packages/lkl-date-picker/date-range.vue'
 import vTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
 import vMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
 
-// import { LklToast } from '@/packages/lkl-toast/index'
+import { LklToast } from '@/packages/lkl-toast/index'
 // import { LklConfirm, ButtonAction } from '@/packages/lkl-confirm/index'
 
 @Component({
@@ -71,6 +71,13 @@ import vMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statisti
 })
 export default class Test extends Vue {
   private dateRange: { start: Date, end: Date } | null = null;
+
+  private mounted () {
+    const l = LklToast.loading()
+    setTimeout(() => {
+      // l.clean()
+    }, 1000)
+  }
 
   private handleSideMenuShow (done: () => void) {
     setTimeout(() => {

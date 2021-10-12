@@ -18,6 +18,8 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { formatDate } from './date'
 import vIconFold from '../lkl-icons/icon-fold.vue'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import Calendar from 'vue-mobile-calendar'
 Vue.use(Calendar)
 

@@ -19,13 +19,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import echarts from 'echarts/lib/echarts'
 // 引入图表类型，标题，提示信息等
 import 'echarts/lib/chart/pie'
 // import 'echarts/lib/component/tooltip'
 // import 'echarts/lib/component/legend'
 
-export interface ChartInfoValue {
+export interface PieChartInfoValue {
   name: string
   color: string
   value: number
@@ -33,7 +35,7 @@ export interface ChartInfoValue {
 
 @Component
 export default class LklPieChart extends Vue {
-  @Prop({ default: undefined }) dataSource!: ChartInfoValue[];
+  @Prop({ default: undefined }) dataSource!: PieChartInfoValue[];
   @Watch('dataSource')
   private onDataChange () {
     this.refresh()
@@ -57,7 +59,7 @@ export default class LklPieChart extends Vue {
           c += e.value
         }
       }
-      let arr: ChartInfoValue[] = [{ name: this.allName, value: c, color: 'transparent' }]
+      let arr: PieChartInfoValue[] = [{ name: this.allName, value: c, color: 'transparent' }]
       arr = arr.concat(this.dataSource)
       return arr
     }

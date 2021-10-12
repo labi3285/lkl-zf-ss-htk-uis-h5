@@ -1,5 +1,5 @@
 <template>
-  <div class="lkl-toast" :class="'lkl-toast-position-' + position" @click="onClickBackground($event)">
+  <div class="lkl-toast" :class="'lkl-toast-position-' + position" @click.stop="onClickBackground($event)">
     <div :class="'lkl-toast-position-' + position + '-space-top'"></div>
     <div class="lkl-toast-message-box" @click.stop.prevent>
       <svg v-if="type === 'loading'" class="lkl-toast-message-box-icon-loading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve">
@@ -38,7 +38,15 @@ export default class LklToast extends Vue {
     this.vm.__updater = (msg?: string) => {
       this.message = msg || ''
     }
+    // document.body.style.overflow = 'hidden'
   }
+
+  private beforeDestroy () {
+    // alert(1)
+    // document.body.style.overflow = 'auto'
+  }
+
+  // private bef
 
   private onClickBackground () {
     if (this.type !== 'loading') {

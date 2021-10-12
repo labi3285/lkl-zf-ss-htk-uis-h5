@@ -16,21 +16,28 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import echarts from 'echarts/lib/echarts'
 // 引入图表类型，标题，提示信息等
 import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
 
-export interface ChartInfoValues {
+export interface LineChartInfoValues {
   name: string
   color: string
   values: number[]
 }
 
+export interface LineChartDataSource {
+  xLabels: string[]
+  yInfoValues: LineChartInfoValues[]
+}
+
 @Component
 export default class LklLineChart extends Vue {
-  @Prop({ default: undefined }) dataSource!: { xLabels: string[]; yInfoValues: ChartInfoValues[]; };
+  @Prop({ default: undefined }) dataSource!: LineChartDataSource;
   @Watch('dataSource')
   private onDataChange () {
     this.refresh()
