@@ -1,5 +1,5 @@
 <template>
-  <div class="lkl-haotk-card">
+  <div class="lkl-htk-card">
     <slot />
   </div>
 </template>
@@ -14,7 +14,7 @@ export default class LklHaotkCard extends Vue {
 </script>
 
 <style lang="less">
-.lkl-haotk-card {
+.lkl-htk-card {
   position: relative;
   margin-left: var(--marginLR);
   margin-right: var(--marginLR);

@@ -1,8 +1,6 @@
 <template>
   <div class="lkl-text-button" :style="{ color, textDecoration: isUnderline ? 'underline' : '' }">
-    <slot name="left" />
-    {{ text }}
-    <slot name="right" />
+    <slot>{{ text }}</slot>
   </div>
 </template>
 

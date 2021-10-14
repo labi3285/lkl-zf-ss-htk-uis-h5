@@ -1,15 +1,26 @@
 <template>
   <div class="lkl-htk-types-filter">
     <div v-if="dimensions" class="lkl-htk-types-filter-items">
-      <div v-for="(e, i) in dimensions" :key="i" :style="{ width: dimensionWidth }" :class="e.select ? 'lkl-htk-types-filter-items-item-select' : 'lkl-htk-types-filter-items-item'">
-        {{ ellipsisText(e.select ? e.select.label : e.name) }}
+      <div v-for="(e, i) in dimensions" :key="i" :style="{ width: dimensionWidth }" :class="(e.select && e.select.value !== '') ? 'lkl-htk-types-filter-items-item-select' : 'lkl-htk-types-filter-items-item'">
+        {{ ellipsisText((e.select && e.select.value !== '') ? e.select.label : e.name) }}
       </div>
     </div>
     <div class="lkl-htk-types-filter-button-left">
-      <div class="lkl-htk-types-filter-button-left-line"></div>
+      <svg class="lkl-htk-types-filter-button-left-shadow" viewBox="0 0 9 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <filter x="-187.5%" y="-40.9%" width="475.0%" height="181.8%" filterUnits="objectBoundingBox" id="filter-1">
+            <feGaussianBlur stdDeviation="3" in="SourceGraphic"></feGaussianBlur>
+          </filter>
+        </defs>
+        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.149496389">
+          <g fill="#000000">
+            <ellipse filter="url(#filter-1)" cx="4.4" cy="13" rx="2.4" ry="11"></ellipse>
+          </g>
+        </g>
+      </svg>
     </div>
     <div class="lkl-htk-types-filter-button" @click.stop="onFilteClick" >
-      <k-icon-filter class="lkl-htk-types-filter-button-icon" color="var(--clrT1)" />
+      <v-icon-filter class="lkl-htk-types-filter-button-icon" color="var(--clrT1)" />
       筛选
     </div>
 
@@ -21,15 +32,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import kIconFilter from '../lkl-icons/icon-filter.vue'
-import { Dimension, LabelValue } from './defines'
+import vIconFilter from '../lkl-icons/icon-filter.vue'
+import { Dimension } from './defines'
 import vSideMenu from './htk-side-menu.vue'
 import vSideMenuSection from './htk-side-menu-section.vue'
 import vSideMenuTypeSelect from './htk-side-menu-type-select.vue'
 
 @Component({
   components: {
-    kIconFilter,
+    vIconFilter,
     vSideMenu,
     vSideMenuSection,
     vSideMenuTypeSelect
@@ -227,7 +238,7 @@ export default class LklHtkTypesFilter extends Vue {
   background-color: var(--clrBody);
   &-items {
     height: 40px;
-    width: calc(100% - 70px);
+    width: calc(100% - 64px);
     display: flex;
     align-items: center;
     overflow: scroll;
@@ -246,6 +257,7 @@ export default class LklHtkTypesFilter extends Vue {
       font-size: 12px;
       color: var(--clrT3);
       flex-shrink: 0;
+      white-space: nowrap;
     }
     &-item-select {
       display: flex;
@@ -257,26 +269,21 @@ export default class LklHtkTypesFilter extends Vue {
       font-size: 12px;
       color: var(--clrTint);
       flex-shrink: 0;
+      white-space: nowrap;
     }
   }
   &-button-left {
-    width: 1px;
-    height: 30px;
+    width: 4.5px;
+    height: 25px;
     position: relative;
-    &-line {
+    overflow: hidden;
+    &-shadow {
       position: absolute;
       top: 0;
-      right: 0;
-      width: 1px;
-      height: 30px;
-      background-color: var(--clrLine);
-      // background-color: red;
-      // background-color: var(--clrBody);
-      box-shadow: var(--clrShadow) 0px 0px 8px;
-      -webkit-box-shadow: var(--clrShadow) 0px 0px 8px;
-      -moz-box-shadow: var(--clrShadow) 0px 0px 8px;
+      right: -4.5px;
+      width: 9px;
+      height: 25px;
     }
-    // background-color: var(--clrBody);
   }
   &-button {
     width: 49px;

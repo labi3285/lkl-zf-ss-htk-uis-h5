@@ -49,6 +49,9 @@ export default class LklPopup extends Vue {
 
   public close (): void {
     this.isPopupShow = false
+    this.$nextTick(() => {
+      this.$emit('close')
+    })
   }
 
   private onClickBackground () {

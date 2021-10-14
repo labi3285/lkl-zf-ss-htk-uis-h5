@@ -5,7 +5,6 @@
       <div v-for="(e, i) in items" :key="i" :class="isSelect(e) ? (ignore ? 'lkl-side-menu-type-select-labels-label-select-ignore' : 'lkl-side-menu-type-select-labels-label-select') : 'lkl-side-menu-type-select-labels-label'" @click.stop="onItemClick(e)">
         {{ ellipsisText(e.label) }}
         <svg v-if="isSelect(e)" class="lkl-side-menu-type-select-labels-label-select-corner" viewBox="0 0 13 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-          <title>画板备份</title>
           <g id="画板备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
             <g id="小组件/调价新/小按钮/无色">
               <g id="编组" :fill="ignore ? '#bbbbbb' : 'var(--clrTint)'">

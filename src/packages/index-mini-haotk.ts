@@ -15,7 +15,7 @@ import vIconFold from './lkl-icons/icon-fold.vue'
 import vIconBack from './lkl-icons/icon-back.vue'
 import vIconClose from './lkl-icons/icon-close.vue'
 
-import vTextButton from './lkl-text-button/index.vue'
+import vTextButton from './lkl-button/text-button.vue'
 import vDotTitle from './lkl-title/haotk.vue'
 import vSelect from './lkl-select/select.vue'
 import vCheck from './lkl-select/check.vue'

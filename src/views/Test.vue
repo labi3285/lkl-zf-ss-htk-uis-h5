@@ -2,11 +2,22 @@
   <v-content class="page">
     <v-nav></v-nav>
     <v-scroll class="scroll">
+
       <!-- <v-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" /> -->
       <v-head-content>
-        <v-row alignX="center">
+
+        <v-space />
+
+        <v-row-left-center-right>
           <v-date-range-picker color="#ffffff" :pickedDateRange.sync="dateRange" />
-        </v-row>
+          <template v-slot:right>
+            <v-text-button style="margin-top: 5px" color="#ffffff">
+              <v-icon-filter class="lkl-htk-types-filter-button-icon" color="#ffffff" />
+              筛选
+            </v-text-button>
+          </template>
+        </v-row-left-center-right>
+
         <v-col alignX="center">
           <div class="total-value">123.00</div>
           <div class="total-tip">总收益金额（元）</div>
@@ -73,10 +84,10 @@ export default class Test extends Vue {
   private dateRange: { start: Date, end: Date } | null = null;
 
   private mounted () {
-    const l = LklToast.loading()
-    setTimeout(() => {
-      // l.clean()
-    }, 1000)
+    // const l = LklToast.loading()
+    // setTimeout(() => {
+    //   // l.clean()
+    // }, 1000)
   }
 
   private handleSideMenuShow (done: () => void) {

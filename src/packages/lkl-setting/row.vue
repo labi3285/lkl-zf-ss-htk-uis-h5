@@ -1,7 +1,7 @@
 <template>
   <div class="lkl-setting-row">
     <div class="lkl-setting-row-title">
-      <span class="lkl-setting-row-title-require">*</span>
+      <span v-if="required" class="lkl-setting-row-title-require">*</span>
       {{ title }}
       <slot name="title" />
     </div>
@@ -18,6 +18,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class LklSettingRow extends Vue {
   @Prop({ default: '' }) private title!: string;
+  @Prop({ default: false }) private required!: boolean;
 }
 </script>
 
@@ -27,7 +28,7 @@ export default class LklSettingRow extends Vue {
   display: flex;
   padding: var(--marginTB) var(--marginLR) var(--marginTB) var(--marginLR);
   align-items: center;
-  background-color: var(--clrBody);
+  // background-color: var(--clrBody);
   &-title {
     color: var(--clrT1);
     font-size: var(--font16);

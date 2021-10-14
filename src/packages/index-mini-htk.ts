@@ -6,6 +6,8 @@ import vCardContent from './lkl-content/htk-card-content.vue'
 
 import vRow from './lkl-layout/row.vue'
 import vCol from './lkl-layout/colum.vue'
+import vRowLeftCenterRight from './lkl-layout/row-left-center-right.vue'
+
 import vContent from './lkl-content/index.vue'
 import vScroll from './lkl-scroll/index.vue'
 import vBetterScroll from './lkl-scroll/better-scroll.vue'
@@ -19,10 +21,13 @@ import vBreakLine from './lkl-break-line/index.vue'
 
 import vIconArrow from './lkl-icons/icon-arrow.vue'
 import vIconFold from './lkl-icons/icon-fold.vue'
+import vIconFoldArrow from './lkl-icons/icon-fold-arrow.vue'
 import vIconBack from './lkl-icons/icon-back.vue'
 import vIconClose from './lkl-icons/icon-close.vue'
+import vIconFilter from './lkl-icons/icon-filter.vue'
 
-import vTextButton from './lkl-text-button/index.vue'
+import vButton from './lkl-button/button.vue'
+import vTextButton from './lkl-button/text-button.vue'
 import vTitle from './lkl-title/htk-title.vue'
 import vSelect from './lkl-select/select.vue'
 import vCheck from './lkl-select/check.vue'
@@ -44,6 +49,8 @@ Vue.component('v-card-content', vCardContent)
 
 Vue.component('v-row', vRow)
 Vue.component('v-col', vCol)
+Vue.component('v-row-left-center-right', vRowLeftCenterRight)
+
 Vue.component('v-content', vContent)
 Vue.component('v-scroll', vScroll)
 Vue.component('v-better-scroll', vBetterScroll)
@@ -58,9 +65,12 @@ Vue.component('v-break-line', vBreakLine)
 
 Vue.component('v-icon-arrow', vIconArrow)
 Vue.component('v-icon-fold', vIconFold)
+Vue.component('v-icon-fold-arrow', vIconFoldArrow)
 Vue.component('v-icon-back', vIconBack)
 Vue.component('v-icon-close', vIconClose)
+Vue.component('v-icon-filter', vIconFilter)
 
+Vue.component('v-button', vButton)
 Vue.component('v-text-button', vTextButton)
 Vue.component('v-title', vTitle)
 Vue.component('v-select', vSelect)

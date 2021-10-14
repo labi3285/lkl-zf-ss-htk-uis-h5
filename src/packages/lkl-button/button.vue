@@ -1,8 +1,6 @@
 <template>
-  <div class="lkl-button-button" @click.stop="onClick">
-    <slot name="left"></slot>
+  <div class="lkl-button" @click.stop="onClick">
     <slot>{{ title }}</slot>
-    <slot name="right"></slot>
   </div>
 </template>
 

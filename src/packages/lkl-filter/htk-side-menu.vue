@@ -1,5 +1,5 @@
 <template>
-  <v-popup ref="popup" class="lkl-side-menu" popupClass="lkl-side-menu-popup" :popupStartRect="popupStartRect" :popupRect="popupRect">
+  <v-popup ref="popup" class="lkl-side-menu" popupClass="lkl-side-menu-popup" :popupStartRect="popupStartRect" :popupRect="popupRect" @close="onPopupClose">
     <div class="lkl-side-menu-popup-nav" :style="{ paddingTop: statusBarHeight + 'px' }">
       <div class="lkl-side-menu-popup-nav-content">
         <v-icon-back color="var(--clrTint)" class="lkl-side-menu-popup-nav-content-back" @click.native.stop="close" />
@@ -40,7 +40,6 @@ export default class LklSideMenu extends Vue {
 
   public close (): void {
     (this.$refs.popup as vPopup).close()
-    this.$emit('confirm')
   }
 
   public reset (): void {
@@ -49,11 +48,14 @@ export default class LklSideMenu extends Vue {
 
   public confirm (): void {
     this.close()
+  }
+
+  private onPopupClose () {
     this.$emit('confirm')
   }
 
   private get statusBarHeight () {
-    return parseInt(getQueryString('statusBarHeight')) || 20
+    return parseInt(getQueryString('statusBarHeight')) || 0
   }
 
   private popupStartRect (maskRect: LklPopupRect): LklPopupRect {
@@ -124,7 +126,7 @@ export default class LklSideMenu extends Vue {
         font-size: 16px;
         color: #ffffff;
         font-weight: bold;
-        background-color: var(--clrTheme);
+        background-color: var(--clrTint);
         padding-bottom: 10px;
       }
     }
