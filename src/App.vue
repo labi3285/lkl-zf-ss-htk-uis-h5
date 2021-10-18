@@ -1,8 +1,12 @@
 <template>
   <div id="app">
     <lkl-route-cache>
-      <router-view/>
+      <router-view v-if="$route.meta.cached" :key="$route.path"/>
     </lkl-route-cache>
+    <keep-alive>
+      <router-view v-if="$route.meta.keepAlive" :key="$route.path"/>
+    </keep-alive>
+    <router-view v-if="!$route.meta.keepAlive && !$route.meta.cached" :key="$route.path"/>
   </div>
 </template>
 

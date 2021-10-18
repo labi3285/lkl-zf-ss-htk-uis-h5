@@ -46,11 +46,16 @@ export default function createRouteCache (keyName: string) {
         if (vnode.key && vnode.key.toString().indexOf(key) === -1) {
           vnode.key = `__navigation-${key}-${String(vnode.key)}`
         }
+        console.log(vnode.componentInstance)
+        console.log(vnode)
+
         if (this.cache[key]) {
           if (vnode.key === this.cache[key].key) {
             // restore vnode from cache
+            console.log('from cache')
             vnode.componentInstance = this.cache[key].componentInstance
           } else {
+            console.log('destory')
             // replace vnode to cache
             const componentInstance = this.cache[key].componentInstance
             if (componentInstance) {
@@ -59,6 +64,7 @@ export default function createRouteCache (keyName: string) {
             this.cache[key] = vnode
           }
         } else {
+          console.log('cache')
           // cache new vnode
           this.cache[key] = vnode
         }

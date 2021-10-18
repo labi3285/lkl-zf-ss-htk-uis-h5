@@ -7,6 +7,14 @@
       <v-head-content>
 
         <v-space />
+        <vHeadInfos>
+          <vHeadInfoItem title="编号">xxxx</vHeadInfoItem>
+          <vHeadInfoItem title="编号">xxxx</vHeadInfoItem>
+          <vHeadInfoItem title="编号">xxxx</vHeadInfoItem>
+
+        </vHeadInfos>
+
+        <v-space />
 
         <v-row-left-center-right>
           <v-date-range-picker color="#ffffff" :pickedDateRange.sync="dateRange" />
@@ -58,6 +66,9 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+import vHeadInfos from '@/packages/lkl-content/htk-head-infos.vue'
+import vHeadInfoItem from '@/packages/lkl-content/htk-head-info-item.vue'
+
 import vSegs from '@/packages/lkl-tabs/htk-segs.vue'
 import vTabs from '@/packages/lkl-tabs/htk-tabs.vue'
 import vIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
@@ -71,6 +82,9 @@ import { LklToast } from '@/packages/lkl-toast/index'
 
 @Component({
   components: {
+    vHeadInfos,
+    vHeadInfoItem,
+
     vSegs,
     vTabs,
     vIconLabelTabs,

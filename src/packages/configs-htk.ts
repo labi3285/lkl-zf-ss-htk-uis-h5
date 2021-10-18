@@ -45,6 +45,9 @@ export const ColorConfigs: ColorProp[] = [
   { key: '--clrTheme', value: { normal: '#0072ff', dark: '#000000' } },
   // 主题反色
   { key: '--clrThemeOpposite', value: { normal: '#ffffff', dark: '#999999' } },
+  // 主题色上面的半透明卡片
+  { key: '--clrThemeCard', value: { normal: 'rgba(193,213,255,0.4)', dark: 'rgba(193,213,255,0.1)' } },
+
   // 用于白色的背景，卡片
   { key: '--clrBody', value: { normal: '#ffffff', dark: '#191919' } },
   // 浅灰色背景、分隔

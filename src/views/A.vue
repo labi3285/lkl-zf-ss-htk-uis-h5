@@ -17,7 +17,12 @@ import { Vue, Component } from 'vue-property-decorator'
 export default class A extends Vue {
   private msg = 'a'
 
+  private mounted () {
+    console.warn('mounted ' + this.msg)
+  }
+
   private onClick () {
+    console.warn('click ' + this.msg)
     this.msg = 'aclicked'
   }
 

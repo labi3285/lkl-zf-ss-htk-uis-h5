@@ -13,11 +13,11 @@ const routes: Array<RouteConfig> = [
     name: 'Test',
     component: Test
   },
-  { path: '/aa', name: 'AA', component: A },
-  { path: '/bb', name: 'BB', component: B },
-  { path: '/cc', name: 'CC', component: C },
+  { path: '/aa', name: 'AA', component: A, meta: { title: 'aa', cached: true } },
+  { path: '/bb', name: 'BB', component: B, meta: { title: 'bb', cached: true } },
+  { path: '/cc', name: 'CC', component: C, meta: { title: 'cc', cached: true } },
   {
-    path: '/about',
+    path: '/incomev2',
     name: 'About',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
@@ -27,7 +27,8 @@ const routes: Array<RouteConfig> = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
+  // mode: 'history',
+  mode: 'hash',
   base: process.env.BASE_URL,
   routes
 })
