@@ -39,6 +39,9 @@
           <v-icon-label-tabs :tabs="settleOrNots" :currentTabCode.sync="settleOrNot" />
         </v-card>
         <v-space height="18px" />
+
+        <vRank :rank1="rank1" :rank2="rank1" :rank="rank1" />
+
         <v-icon-label-arrow-tabs style="background-color: var(--clrListHead)" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
         <v-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" :handleSideMenuShow="handleSideMenuShow" @filte="onFilte" />
         <v-break-line type='through' />
@@ -66,6 +69,9 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+import { RankItem } from '@/packages/lkl-rank/defines'
+import vRank from '@/packages/lkl-rank/htk.vue'
+
 import vHeadInfos from '@/packages/lkl-content/htk-head-infos.vue'
 import vHeadInfoItem from '@/packages/lkl-content/htk-head-info-item.vue'
 
@@ -84,6 +90,8 @@ import { LklToast } from '@/packages/lkl-toast/index'
   components: {
     vHeadInfos,
     vHeadInfoItem,
+
+    vRank,
 
     vSegs,
     vTabs,
@@ -108,6 +116,12 @@ export default class Test extends Vue {
     setTimeout(() => {
       done()
     }, 1000)
+  }
+
+  private rank1: RankItem = {
+    name: '1752115455017521154550',
+    value: '123.4',
+    unit: '元'
   }
 
   private statisticsDataSource = {
