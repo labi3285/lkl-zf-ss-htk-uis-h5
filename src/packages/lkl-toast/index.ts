@@ -5,8 +5,8 @@ import vToast from './index.vue'
 
 // Vue.component('v-toast', vToast)
 
-export type ToastType = 'default' | 'success' | 'warning' | 'error' | 'loading'
-export type ToastPosition = 'auto' | 'top' | 'center' | 'bottom'
+export type LklToastType = 'default' | 'success' | 'warning' | 'error' | 'loading'
+export type LklToastPosition = 'auto' | 'top' | 'center' | 'bottom'
 
 /// 获取message需要展示的时长
 export function messageShowDuration (message: string): number {
@@ -17,19 +17,19 @@ export function messageShowDuration (message: string): number {
   return Math.min(Math.max(2 * n / 16, 1.5), 6) * 1000.0
 }
 
-export interface Options {
-  position?: ToastPosition;
+export interface LklToastOptions {
+  position?: LklToastPosition;
   mountElement?: HTMLElement;
 }
 
 export class LklToast {
-  type!: ToastType;
+  type!: LklToastType;
   message?: string;
   update (message?: string): void {
     this.__updater(message)
   }
 
-  static show (message: string, options?: Options): LklToast {
+  static show (message: string, options?: LklToastOptions): LklToast {
     const toast = this.__createAndShowLklToast('default', message, options)
     setTimeout(() => {
       toast.clean()
@@ -37,7 +37,7 @@ export class LklToast {
     return toast
   }
 
-  static success (message: string, options?: Options): LklToast {
+  static success (message: string, options?: LklToastOptions): LklToast {
     const toast = this.__createAndShowLklToast('success', message, options)
     setTimeout(() => {
       toast.clean()
@@ -45,7 +45,7 @@ export class LklToast {
     return toast
   }
 
-  static warning (message: string, options?: Options): LklToast {
+  static warning (message: string, options?: LklToastOptions): LklToast {
     const toast = this.__createAndShowLklToast('warning', message, options)
     setTimeout(() => {
       toast.clean()
@@ -53,7 +53,7 @@ export class LklToast {
     return toast
   }
 
-  static error (message: string, options?: Options): LklToast {
+  static error (message: string, options?: LklToastOptions): LklToast {
     const toast = this.__createAndShowLklToast('error', message, options)
     setTimeout(() => {
       toast.clean()
@@ -61,7 +61,7 @@ export class LklToast {
     return toast
   }
 
-  static loading (message?: string, options?: Options): LklToast {
+  static loading (message?: string, options?: LklToastOptions): LklToast {
     const toast = this.__createAndShowLklToast('loading', message, options)
     return toast
   }
@@ -77,7 +77,7 @@ export class LklToast {
 
   __vue!: Vue;
   __updater!: ((message?: string) => void);
-  static __createAndShowLklToast (type: ToastType, message?: string, options?: Options): LklToast {
+  static __createAndShowLklToast (type: LklToastType, message?: string, options?: LklToastOptions): LklToast {
     const toast = new LklToast()
     toast.type = type
     toast.message = message

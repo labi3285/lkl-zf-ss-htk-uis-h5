@@ -23,7 +23,7 @@ export default class LklColumsListItem extends Vue {
   @Prop({ default: 0 }) private index!: number;
   @Prop({ default: undefined }) private items!: string[];
   @Prop({ default: undefined }) private columWidths!: string[];
-  @Prop({ default: true }) private rightArrowed!: boolean;
+  @Prop({ default: false }) private rightArrowed!: boolean;
 
   private columWidth (i: number) {
     if (this.columWidths && this.columWidths.length > i) {
@@ -61,6 +61,7 @@ export default class LklColumsListItem extends Vue {
     font-weight: bold;
     word-break: break-all;
     word-wrap: break-word;
+    text-align: center;
   }
   &-right-arrow {
     padding-right: 5px;

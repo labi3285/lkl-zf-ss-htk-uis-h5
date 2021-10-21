@@ -1,114 +1,138 @@
 <template>
-  <v-content class="page">
-    <v-nav></v-nav>
-    <v-scroll class="scroll">
+  <lkl-content class="page">
+    <lkl-nav></lkl-nav>
+    <lkl-scroll class="scroll">
 
-      <!-- <v-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" /> -->
-      <v-head-content>
+      <!-- <lkl-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" /> -->
+      <lkl-head-content>
 
-        <v-space />
-        <vHeadInfos>
-          <vHeadInfoItem title="编号">xxxx</vHeadInfoItem>
-          <vHeadInfoItem title="编号">xxxx</vHeadInfoItem>
-          <vHeadInfoItem title="编号">xxxx</vHeadInfoItem>
+        <lkl-input />
 
-        </vHeadInfos>
+        <lkl-space />
 
-        <v-space />
+        <lkl-row>
+          <lkl-space width="var(--marginLR)" />
+          <lklHeadSearch style="flex: 1" />
+          <lkl-space width="var(--marginLR)" />
+        </lkl-row>
+        <lkl-space />
 
-        <v-row-left-center-right>
-          <v-date-range-picker color="#ffffff" :pickedDateRange.sync="dateRange" />
+        <lkl-row>
+          <lkl-space width="var(--marginLR)" />
+          <lklHeadSearchButton style="flex: 1" />
+          <div style="margin-left: 20px; width: 20px; height: 20px; background-color: yellow"></div>
+        </lkl-row>
+
+        <lkl-space />
+        <lklHeadInfos>
+          <lklHeadInfoItem title="编号">xxxx</lklHeadInfoItem>
+          <lklHeadInfoItem title="编号">xxxx</lklHeadInfoItem>
+          <lklHeadInfoItem title="编号">xxxx</lklHeadInfoItem>
+
+        </lklHeadInfos>
+
+        <lkl-space />
+
+        <lkl-row-left-center-right>
+          <lkl-date-range-picker color="#ffffff" :pickedDateRange.sync="dateRange" />
           <template v-slot:right>
-            <v-text-button style="margin-top: 5px" color="#ffffff">
-              <v-icon-filter class="lkl-htk-types-filter-button-icon" color="#ffffff" />
+            <lkl-text-button style="margin-top: 5px" color="#ffffff">
+              <lkl-icon-filter class="lkl-htk-types-filter-button-icon" color="#ffffff" />
               筛选
-            </v-text-button>
+            </lkl-text-button>
           </template>
-        </v-row-left-center-right>
+        </lkl-row-left-center-right>
 
-        <v-col alignX="center">
+        <lkl-col alignX="center">
           <div class="total-value">123.00</div>
           <div class="total-tip">总收益金额（元）</div>
-        </v-col>
-        <v-segs :tabs="businesses" :currentTabCode.sync="business" />
-        <v-space height="60px" />
-      </v-head-content>
+        </lkl-col>
+        <lkl-segs :tabs="businesses" :currentTabCode.sync="business" />
+        <lkl-space height="60px" />
+      </lkl-head-content>
 
-      <v-card-content>
-        <v-card style="position: absolute; top: -50px; left: 0; right: 0">
-          <v-icon-label-tabs :tabs="settleOrNots" :currentTabCode.sync="settleOrNot" />
-        </v-card>
-        <v-space height="18px" />
+      <lkl-card-content>
+        <lkl-card style="position: absolute; top: -50px; left: 0; right: 0">
+          <lkl-icon-label-tabs :tabs="settleOrNots" :currentTabCode.sync="settleOrNot" />
+        </lkl-card>
+        <lkl-space height="18px" />
 
-        <vRank :rank1="rank1" :rank2="rank1" :rank="rank1" />
+        <lklRank :rank1="rank1" :rank2="rank1" :rank="rank1" />
 
-        <v-icon-label-arrow-tabs style="background-color: var(--clrListHead)" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
-        <v-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" :handleSideMenuShow="handleSideMenuShow" @filte="onFilte" />
-        <v-break-line type='through' />
-        <v-muti-level-statistics foldButtonMarginLeft="130px" nameColumWidth="140" :dataSource="statisticsDataSource1" />
+        <lkl-icon-label-arrow-tabs style="background-color: var(--clrListHead)" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
+        <lkl-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" :handleSideMenuShow="handleSideMenuShow" @filte="onFilte" />
+        <lkl-break-line type='through' />
+        <lkl-muti-level-statistics foldButtonMarginLeft="130px" nameColumWidth="140" :dataSource="statisticsDataSource1" />
 
-        <v-title title="全部人数总计（人）" :dotted="false" value="42" />
+        <lkl-title title="全部人数总计（人）" :dotted="false" value="42" />
 
-        <!-- <v-total tip="总交易金额(元）" value="889.00" />
-        <v-break-line />
-        <v-total-ab tipA="交易笔数(笔）" tipB="D0笔数(笔）" valueA="88.00" valueB="88.00" />
-        <v-break-line />
-        <v-total-ab tipA="联盟交易(元）" valueA="88.00" :isBShow="false" />
-        <v-break-space /> -->
+        <!-- <lkl-total tip="总交易金额(元）" value="889.00" />
+        <lkl-break-line />
+        <lkl-total-ab tipA="交易笔数(笔）" tipB="D0笔数(笔）" valueA="88.00" valueB="88.00" />
+        <lkl-break-line />
+        <lkl-total-ab tipA="联盟交易(元）" valueA="88.00" :isBShow="false" />
+        <lkl-break-space /> -->
 
-        <v-space />
-        <v-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
-        <v-colums-list-header :items="headerItems" :columWidths="['1.5', '1.5', '1', '1', '1']" />
-        <v-colums-list-item v-for="(e, i) in list" :key="i" :items="e" :index="i" />
-        <!-- <v-load-more :isLoadOnMounted="true" :isLoading.sync="isListLoading" :isThereMore="isListMore" @load="onListLoad(false)" /> -->
-      </v-card-content>
-    </v-scroll>
-  </v-content>
+        <lkl-space />
+        <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
+        <lkl-colums-list-header :items="headerItems" :columWidths="['1.5', '1.5', '1', '1', '1']" />
+        <lkl-colums-list-item v-for="(e, i) in list" :key="i" :items="e" :index="i" />
+        <!-- <lkl-load-more :isLoadOnMounted="true" :isLoading.sync="isListLoading" :isThereMore="isListMore" @load="onListLoad(false)" /> -->
+      </lkl-card-content>
+    </lkl-scroll>
+  </lkl-content>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-import { RankItem } from '@/packages/lkl-rank/defines'
-import vRank from '@/packages/lkl-rank/htk.vue'
+import { LklRankItem } from '@/packages/lkl-rank/defines'
+import lklRank from '@/packages/lkl-rank/htk.vue'
 
-import vHeadInfos from '@/packages/lkl-content/htk-head-infos.vue'
-import vHeadInfoItem from '@/packages/lkl-content/htk-head-info-item.vue'
+import lklHeadSearchButton from '@/packages/lkl-search/htk-head-search-button.vue'
+import lklHeadSearch from '@/packages/lkl-search/htk-head-search.vue'
 
-import vSegs from '@/packages/lkl-tabs/htk-segs.vue'
-import vTabs from '@/packages/lkl-tabs/htk-tabs.vue'
-import vIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
-import vIconLabelArrowTabs from '@/packages/lkl-tabs/htk-icon-label-arrow-tabs.vue'
-import vDateRangePicker from '@/packages/lkl-date-picker/date-range.vue'
-import vTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
-import vMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
+import lklHeadInfos from '@/packages/lkl-content/htk-head-infos.vue'
+import lklHeadInfoItem from '@/packages/lkl-content/htk-head-info-item.vue'
+
+import lklSegs from '@/packages/lkl-tabs/htk-segs.vue'
+import lklTabs from '@/packages/lkl-tabs/htk-tabs.vue'
+import lklIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
+import lklIconLabelArrowTabs from '@/packages/lkl-tabs/htk-icon-label-arrow-tabs.vue'
+import lklDateRangePicker from '@/packages/lkl-date-picker/date-range.vue'
+import lklTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
+import lklMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
 
 import { LklToast } from '@/packages/lkl-toast/index'
-// import { LklConfirm, ButtonAction } from '@/packages/lkl-confirm/index'
+// import { LklConfirm, LklButtonAction } from '@/packages/lkl-confirm/index'
 
 @Component({
   components: {
-    vHeadInfos,
-    vHeadInfoItem,
+    lklHeadSearchButton,
+    lklHeadSearch,
 
-    vRank,
+    lklHeadInfos,
+    lklHeadInfoItem,
 
-    vSegs,
-    vTabs,
-    vIconLabelTabs,
-    vIconLabelArrowTabs,
-    vDateRangePicker,
-    vTypesFilter,
-    vMutiLevelStatistics
+    lklRank,
+
+    lklSegs,
+    lklTabs,
+    lklIconLabelTabs,
+    lklIconLabelArrowTabs,
+    lklDateRangePicker,
+    lklTypesFilter,
+    lklMutiLevelStatistics
   }
 })
 export default class Test extends Vue {
   private dateRange: { start: Date, end: Date } | null = null;
 
   private mounted () {
+    // document.body.style.overflow = 'hidden'
     // const l = LklToast.loading()
     // setTimeout(() => {
-    //   // l.clean()
+    //   l.clean()
     // }, 1000)
   }
 
@@ -118,7 +142,7 @@ export default class Test extends Vue {
     }, 1000)
   }
 
-  private rank1: RankItem = {
+  private rank1: LklRankItem = {
     name: '1752115455017521154550',
     value: '123.4',
     unit: '元'
@@ -300,6 +324,30 @@ export default class Test extends Vue {
       key: 'd',
       select: null,
       options: [
+        { label: '全部', value: '' },
+        { label: '交易收益', value: 'd1' },
+        { label: '返现收益', value: 'd2' },
+        { label: 'D0收益', value: 'd3' },
+        { label: '全部', value: '' },
+        { label: '交易收益', value: 'd1' },
+        { label: '返现收益', value: 'd2' },
+        { label: 'D0收益', value: 'd3' },
+        { label: '全部', value: '' },
+        { label: '交易收益', value: 'd1' },
+        { label: '返现收益', value: 'd2' },
+        { label: 'D0收益', value: 'd3' },
+        { label: '全部', value: '' },
+        { label: '交易收益', value: 'd1' },
+        { label: '返现收益', value: 'd2' },
+        { label: 'D0收益', value: 'd3' },
+        { label: '全部', value: '' },
+        { label: '交易收益', value: 'd1' },
+        { label: '返现收益', value: 'd2' },
+        { label: 'D0收益', value: 'd3' },
+        { label: '全部', value: '' },
+        { label: '交易收益', value: 'd1' },
+        { label: '返现收益', value: 'd2' },
+        { label: 'D0收益', value: 'd3' },
         { label: '全部', value: '' },
         { label: '交易收益', value: 'd1' },
         { label: '返现收益', value: 'd2' },

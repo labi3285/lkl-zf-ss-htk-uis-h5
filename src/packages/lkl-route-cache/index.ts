@@ -10,7 +10,7 @@ import Component from './component'
 import { genKey, isObjEqual } from './utils'
 import { VueConstructor } from 'vue'
 
-export interface Options {
+export interface LklRouteCacheOptions {
   router: VueRouter
   vuex?: {
     store: Store<any>
@@ -20,7 +20,7 @@ export interface Options {
 }
 
 export default {
-  install: (Vue: VueConstructor, options: Options) => {
+  install: (Vue: VueConstructor, options: LklRouteCacheOptions) => {
     const keyName = options.keyName || 'LklRCK'
     const bus = new Vue()
     const navigator = Navigator(bus, keyName, options.vuex)

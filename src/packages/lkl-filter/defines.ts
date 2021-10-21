@@ -1,11 +1,11 @@
-export interface LabelValue {
+export interface LklLabelValue {
   label: string
   value: string
 }
 
-export interface Dimension {
+export interface LklDimension {
   name: string
   key: string
-  select: LabelValue | null
-  options: LabelValue[]
+  select: LklLabelValue | null
+  options: LklLabelValue[]
 }

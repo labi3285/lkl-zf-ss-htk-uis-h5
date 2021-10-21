@@ -58,6 +58,7 @@ export default class LklColumsListItem extends Vue {
     font-weight: bold;
     word-break: break-all;
     word-wrap: break-word;
+    text-align: center;
   }
   &-right-arrow {
   }

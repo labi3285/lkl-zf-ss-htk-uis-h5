@@ -27,14 +27,14 @@
 </template>
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { RankItem } from './defines'
+import { LklRankItem } from './defines'
 
 @Component
 export default class LklHtkRank extends Vue {
-  @Prop({ default: undefined }) public rank1!: RankItem;
-  @Prop({ default: undefined }) public rank2!: RankItem;
-  @Prop({ default: undefined }) public rank3!: RankItem;
-  @Prop({ default: true }) public isUnitShow!: boolean;
+  @Prop({ default: undefined }) public rank1!: LklRankItem;
+  @Prop({ default: undefined }) public rank2!: LklRankItem;
+  @Prop({ default: undefined }) public rank3!: LklRankItem;
+  @Prop({ default: false }) public isUnitShow!: boolean;
 }
 </script>
 

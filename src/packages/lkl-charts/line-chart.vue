@@ -24,20 +24,20 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
 
-export interface LineChartInfoValues {
+export interface LklLineChartInfoValues {
   name: string
   color: string
   values: number[]
 }
 
-export interface LineChartDataSource {
+export interface LklLineChartDataSource {
   xLabels: string[]
-  yInfoValues: LineChartInfoValues[]
+  yInfoValues: LklLineChartInfoValues[]
 }
 
 @Component
 export default class LklLineChart extends Vue {
-  @Prop({ default: undefined }) dataSource!: LineChartDataSource;
+  @Prop({ default: undefined }) dataSource!: LklLineChartDataSource;
   @Watch('dataSource')
   private onDataChange () {
     this.refresh()

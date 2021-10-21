@@ -1,5 +1,5 @@
 
-export interface RankItem {
+export interface LklRankItem {
   name: string
   value: string
   unit?: string

@@ -14,17 +14,17 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { LklConfirm as LklConfirmVM, Options, ButtonAction } from './index'
+import { LklConfirm as LklConfirmVM, LklConfirmOptions, LklButtonAction } from './index'
 
 @Component
 export default class LklConfirm extends Vue {
   @Prop({ required: true }) private vm!: LklConfirmVM;
-  @Prop({ default: undefined }) private options!: Options;
+  @Prop({ default: undefined }) private options!: LklConfirmOptions;
   @Prop({ required: true }) private closeHandler!: () => void;
 
   private title = ''
   private message = ''
-  private buttonActions: ButtonAction[] = []
+  private buttonActions: LklButtonAction[] = []
 
   private mounted () {
     this.title = this.vm.title || ''
@@ -41,7 +41,7 @@ export default class LklConfirm extends Vue {
     }
   }
 
-  onButtonClick (event: Event, buttonAction: ButtonAction): void {
+  onButtonClick (event: Event, buttonAction: LklButtonAction): void {
     if (buttonAction.disabled !== true) {
       if (buttonAction.todo !== undefined && buttonAction.todo !== null) {
         if (buttonAction.isAutoClose === true) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="lkl-button" @click.stop="onClick">
+  <div class="lkl-button">
     <slot>{{ title }}</slot>
   </div>
 </template>
@@ -10,10 +10,6 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 @Component
 export default class LklSettingRowButton extends Vue {
   @Prop({ default: '按钮' }) private title!: string;
-
-  private onClick () {
-    this.$emit('click')
-  }
 }
 </script>
 

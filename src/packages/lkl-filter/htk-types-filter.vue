@@ -33,7 +33,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import vIconFilter from '../lkl-icons/icon-filter.vue'
-import { Dimension } from './defines'
+import { LklDimension } from './defines'
 import vSideMenu from './htk-side-menu.vue'
 import vSideMenuSection from './htk-side-menu-section.vue'
 import vSideMenuTypeSelect from './htk-side-menu-type-select.vue'
@@ -47,14 +47,14 @@ import vSideMenuTypeSelect from './htk-side-menu-type-select.vue'
   }
 })
 export default class LklHtkTypesFilter extends Vue {
-  @Prop({ default: undefined }) private dimensions!: Dimension[];
+  @Prop({ default: undefined }) private dimensions!: LklDimension[];
   @Prop({ default: undefined }) private query!: Record<string, string>;
   @Prop({ default: undefined }) private handleSideMenuShow!: (done: () => void) => void;
 
   /// 互斥维度, 默认选择第一个
-  @Prop({ default: undefined }) private mutexDimensionKeysGroups!: string[][];
-  @Watch('mutexDimensionKeysGroups')
-  private mutexDimensionKeysGroupsChanged (val: string[][]) {
+  @Prop({ default: undefined }) private mutexLklDimensionKeysGroups!: string[][];
+  @Watch('mutexLklDimensionKeysGroups')
+  private mutexLklDimensionKeysGroupsChanged (val: string[][]) {
     if (val) {
       const arr: string[] = []
       for (const e of val) {
@@ -64,34 +64,34 @@ export default class LklHtkTypesFilter extends Vue {
           arr.push('')
         }
       }
-      this.notIgnoreDimensionKeys = arr
+      this.notIgnoreLklDimensionKeys = arr
     }
   }
 
   private mounted () {
-    if (this.mutexDimensionKeysGroups) {
-      this.mutexDimensionKeysGroupsChanged(this.mutexDimensionKeysGroups)
+    if (this.mutexLklDimensionKeysGroups) {
+      this.mutexLklDimensionKeysGroupsChanged(this.mutexLklDimensionKeysGroups)
     }
   }
 
-  private notIgnoreDimensionKeys: string[] = []
-  private checkIgnore (dimension: Dimension): boolean {
-    const i = this.mutexIndexOfDimension(dimension)
+  private notIgnoreLklDimensionKeys: string[] = []
+  private checkIgnore (dimension: LklDimension): boolean {
+    const i = this.mutexIndexOfLklDimension(dimension)
     if (i !== -1) {
-      return this.notIgnoreDimensionKeys[i] !== dimension.key
+      return this.notIgnoreLklDimensionKeys[i] !== dimension.key
     } else {
       return false
     }
   }
 
-  private mutexIndexOfDimension (dimension: Dimension): number {
-    if (this.mutexDimensionKeysGroups) {
+  private mutexIndexOfLklDimension (dimension: LklDimension): number {
+    if (this.mutexLklDimensionKeysGroups) {
       let index = -1
-      for (let i = 0; i < this.mutexDimensionKeysGroups.length; i++) {
+      for (let i = 0; i < this.mutexLklDimensionKeysGroups.length; i++) {
         if (index !== -1) {
           break
         }
-        for (const key of this.mutexDimensionKeysGroups[i]) {
+        for (const key of this.mutexLklDimensionKeysGroups[i]) {
           if (key === dimension.key) {
             index = i
             break
@@ -103,10 +103,10 @@ export default class LklHtkTypesFilter extends Vue {
     return -1
   }
 
-  private onNoIgnore (dimension: Dimension) {
-    const i = this.mutexIndexOfDimension(dimension)
+  private onNoIgnore (dimension: LklDimension) {
+    const i = this.mutexIndexOfLklDimension(dimension)
     if (i !== -1) {
-      this.notIgnoreDimensionKeys[i] = dimension.key
+      this.notIgnoreLklDimensionKeys[i] = dimension.key
       this.$forceUpdate()
     }
   }
@@ -123,7 +123,7 @@ export default class LklHtkTypesFilter extends Vue {
     if (this.dimensions) {
       const params: Record<string, string> = {}
       for (const e of this.dimensions) {
-        const i = this.mutexIndexOfDimension(e)
+        const i = this.mutexIndexOfLklDimension(e)
         if (i === -1) {
           const val = e.select?.value || ''
           params[e.key] = val
@@ -131,7 +131,7 @@ export default class LklHtkTypesFilter extends Vue {
             this.query[e.key] = val
           }
         } else {
-          if (this.notIgnoreDimensionKeys[i] === e.key) {
+          if (this.notIgnoreLklDimensionKeys[i] === e.key) {
             const val = e.select?.value || ''
             params[e.key] = val
             if (this.query) {

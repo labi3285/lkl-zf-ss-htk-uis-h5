@@ -41,6 +41,7 @@ export default class LklPopup extends Vue {
   }
 
   public show (): void {
+    document.body.style.overflow = 'hidden'
     this.isMaskShow = true
     this.$nextTick(() => {
       this.isPopupShow = true
@@ -48,6 +49,7 @@ export default class LklPopup extends Vue {
   }
 
   public close (): void {
+    document.body.style.overflow = ''
     this.isPopupShow = false
     this.$nextTick(() => {
       this.$emit('close')

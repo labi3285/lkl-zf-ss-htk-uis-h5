@@ -1,4 +1,4 @@
-export interface Tab {
+export interface LklTab {
   icon?: string
   iconSelect?: string
   name: string

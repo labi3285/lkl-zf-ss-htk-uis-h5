@@ -27,7 +27,7 @@ import 'echarts/lib/chart/pie'
 // import 'echarts/lib/component/tooltip'
 // import 'echarts/lib/component/legend'
 
-export interface PieChartInfoValue {
+export interface LklPieChartInfoValue {
   name: string
   color: string
   value: number
@@ -35,7 +35,7 @@ export interface PieChartInfoValue {
 
 @Component
 export default class LklPieChart extends Vue {
-  @Prop({ default: undefined }) dataSource!: PieChartInfoValue[];
+  @Prop({ default: undefined }) dataSource!: LklPieChartInfoValue[];
   @Watch('dataSource')
   private onDataChange () {
     this.refresh()
@@ -59,7 +59,7 @@ export default class LklPieChart extends Vue {
           c += e.value
         }
       }
-      let arr: PieChartInfoValue[] = [{ name: this.allName, value: c, color: 'transparent' }]
+      let arr: LklPieChartInfoValue[] = [{ name: this.allName, value: c, color: 'transparent' }]
       arr = arr.concat(this.dataSource)
       return arr
     }

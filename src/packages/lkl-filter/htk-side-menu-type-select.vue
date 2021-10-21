@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import vSideMenuSection from './htk-side-menu-section.vue'
-import { LabelValue } from './defines'
+import { LklLabelValue } from './defines'
 
 @Component({
   components: {
@@ -33,8 +33,8 @@ import { LabelValue } from './defines'
 })
 export default class LklSideMenuTypeSelect extends Vue {
   @Prop({ default: '类型' }) private title!: string;
-  @Prop({ default: undefined }) private items!: LabelValue[];
-  @Prop({ default: null }) private selectItem!: LabelValue | null;
+  @Prop({ default: undefined }) private items!: LklLabelValue[];
+  @Prop({ default: null }) private selectItem!: LklLabelValue | null;
   @Prop({ default: true }) private canDisselect!: boolean;
   @Prop({ default: false }) private ignore!: boolean;
 
@@ -45,7 +45,7 @@ export default class LklSideMenuTypeSelect extends Vue {
     return undefined
   }
 
-  private isSelect (item: LabelValue) {
+  private isSelect (item: LklLabelValue) {
     if (this.selectItem && this.selectItem !== null) {
       if (item.value === this.selectItem.value) {
         return true
@@ -90,7 +90,7 @@ export default class LklSideMenuTypeSelect extends Vue {
     }
   }
 
-  private onItemClick (item: LabelValue) {
+  private onItemClick (item: LklLabelValue) {
     if (this.ignore) {
       this.$emit('update:selectItem', item)
     } else {

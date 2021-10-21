@@ -1,26 +1,26 @@
-export interface TipValue {
+export interface LklTipValue {
   tip: string
   value: string
 }
 
-export interface StatisticsItem {
+export interface LklStatisticsItem {
   name: string
-  a: TipValue
-  b?: TipValue
-  c?: TipValue
-  subItems?: StatisticsItem[]
+  a: LklTipValue
+  b?: LklTipValue
+  c?: LklTipValue
+  subItems?: LklStatisticsItem[]
 }
 
-export interface StatisticsDimension extends StatisticsItem {
+export interface LklStatisticsLklDimension extends LklStatisticsItem {
   isFold: boolean
   key: string
 }
 
-export interface StatisticsData {
+export interface LklStatisticsData {
   total: {
-    a: TipValue
-    b?: TipValue
-    c?: TipValue
+    a: LklTipValue
+    b?: LklTipValue
+    c?: LklTipValue
   }
-  dimensions: StatisticsDimension[]
+  dimensions: LklStatisticsLklDimension[]
 }

@@ -13,14 +13,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { Tab } from './defines'
+import { LklTab } from './defines'
 
 @Component
 export default class LklHaotkTabs extends Vue {
-  @Prop({ default: undefined }) private tabs!: Tab[];
+  @Prop({ default: undefined }) private tabs!: LklTab[];
   @Prop({ required: true }) private currentTabCode!: string | number;
 
-  private onTabClick (e: Tab) {
+  private onTabClick (e: LklTab) {
     this.$emit('update:currentTabCode', e.code)
     this.$nextTick(() => {
       this.$emit('change')

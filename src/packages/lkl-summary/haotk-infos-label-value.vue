@@ -13,7 +13,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
-export default class LklHaotkInfosLabelValue extends Vue {
+export default class LklHaotkInfosLklLabelValue extends Vue {
   @Prop({ default: 'label' }) private label!: string;
   @Prop({ default: 'value' }) private value!: string;
 }

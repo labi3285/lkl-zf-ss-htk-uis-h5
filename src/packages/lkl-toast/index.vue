@@ -1,5 +1,6 @@
 <template>
-  <div class="lkl-toast" :class="'lkl-toast-position-' + position" @click.stop="onClickBackground($event)">
+<!-- @mousemove.prevent="onNoop" -->
+  <div class="lkl-toast" :class="'lkl-toast-position-' + position" @mousewheel.prevent="() => {}" @touchmove.prevent="() => {}" @click.stop="onClickBackground($event)">
     <div :class="'lkl-toast-position-' + position + '-space-top'"></div>
     <div class="lkl-toast-message-box" @click.stop.prevent>
       <svg v-if="type === 'loading'" class="lkl-toast-message-box-icon-loading" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50" xml:space="preserve">
@@ -17,12 +18,12 @@
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
-import { LklToast as LklToastVM, ToastType, Options } from './index'
+import { LklToast as LklToastVM, LklToastType, LklToastOptions } from './index'
 
 @Component
 export default class LklToast extends Vue {
   @Prop({ required: true }) private vm!: LklToastVM;
-  @Prop({ default: undefined }) private options!: Options;
+  @Prop({ default: undefined }) private options!: LklToastOptions;
   @Prop({ required: true }) private cleanHandler!: () => void;
 
   private get position (): string {
@@ -30,7 +31,7 @@ export default class LklToast extends Vue {
   }
 
   private message = ''
-  private type: ToastType = 'default'
+  private type: LklToastType = 'default'
 
   private mounted () {
     this.type = this.vm.type
@@ -38,15 +39,7 @@ export default class LklToast extends Vue {
     this.vm.__updater = (msg?: string) => {
       this.message = msg || ''
     }
-    // document.body.style.overflow = 'hidden'
   }
-
-  private beforeDestroy () {
-    // alert(1)
-    // document.body.style.overflow = 'auto'
-  }
-
-  // private bef
 
   private onClickBackground () {
     if (this.type !== 'loading') {

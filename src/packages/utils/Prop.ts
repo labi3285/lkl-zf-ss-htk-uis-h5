@@ -1,8 +1,8 @@
-export interface ValueProp {
+export interface LklValueProp {
   key: string;
   value: string;
 }
-export interface ColorProp {
+export interface LklColorProp {
   key: string;
   value: { normal: string, dark?: string };
 }
