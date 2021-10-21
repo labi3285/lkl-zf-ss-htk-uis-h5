@@ -7,7 +7,7 @@
       <div class="lkl-side-menu-section-header-right">
         <div @click.stop="onFoldClick" class="lkl-side-menu-section-header-right-text" :style="{ color: selectTextColor }">
           {{ showSelectText }}
-          <v-icon-fold-arrow :direction="foldDirection" />
+          <lkl-icon-fold-arrow :direction="foldDirection" />
         </div>
       </div>
     </div>
@@ -21,11 +21,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import vIconFoldArrow from '../lkl-icons/icon-fold-arrow.vue'
+import LklIconFoldArrow from '../lkl-icons/icon-fold-arrow.vue'
 
 @Component({
   components: {
-    vIconFoldArrow
+    LklIconFoldArrow
   }
 })
 export default class LklSideMenuSection extends Vue {

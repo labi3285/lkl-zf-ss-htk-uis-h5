@@ -2,7 +2,7 @@
   <div v-if="tabs !== undefined" class="lkl-haotk-round-tabs">
     <div class="lkl-haotk-round-tabs-tabs">
       <div class="lkl-haotk-round-tabs-tabs-content">
-        <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-haotk-round-tabs-tabs-content-tab" @click="onTabClick(e)">
+        <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-haotk-round-tabs-tabs-content-tab" @click.stop="onTabClick(e)">
           <div :class="e.code === currentTabCode ? 'lkl-haotk-round-tabs-tabs-content-tab-title-select' : 'lkl-haotk-round-tabs-tabs-content-tab-title'">{{ e.name }}</div>
           <div :style="{ opacity: e.code === currentTabCode ? 1 : 0 }" class="lkl-haotk-round-tabs-tabs-content-tab-line"></div>
         </div>
@@ -21,6 +21,9 @@ export default class LklHaotkRoundSegs extends Vue {
   @Prop({ required: true }) private currentTabCode!: string | number;
 
   private onTabClick (e: LklTab) {
+    if (e.code === this.currentTabCode) {
+      return
+    }
     this.$emit('update:currentTabCode', e.code)
     this.$nextTick(() => {
       this.$emit('change')

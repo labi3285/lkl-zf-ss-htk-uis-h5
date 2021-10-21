@@ -1,5 +1,5 @@
 <template>
-  <v-side-menu-section class="lkl-side-menu-type-select" :title="title" :selectText="selectText" :ignore="ignore">
+  <lkl-side-menu-section class="lkl-side-menu-type-select" :title="title" :selectText="selectText" :ignore="ignore">
     <div v-if="items === undefined || items.length === 0" class="lkl-side-menu-type-select-empty">暂无筛选条件</div>
     <div else class="lkl-side-menu-type-select-labels">
       <div v-for="(e, i) in items" :key="i" :class="isSelect(e) ? (ignore ? 'lkl-side-menu-type-select-labels-label-select-ignore' : 'lkl-side-menu-type-select-labels-label-select') : 'lkl-side-menu-type-select-labels-label'" @click.stop="onItemClick(e)">
@@ -18,17 +18,17 @@
         </svg>
       </div>
     </div>
-  </v-side-menu-section>
+  </lkl-side-menu-section>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import vSideMenuSection from './htk-side-menu-section.vue'
+import LklSideMenuSection from './htk-side-menu-section.vue'
 import { LklLabelValue } from './defines'
 
 @Component({
   components: {
-    vSideMenuSection
+    LklSideMenuSection
   }
 })
 export default class LklSideMenuTypeSelect extends Vue {

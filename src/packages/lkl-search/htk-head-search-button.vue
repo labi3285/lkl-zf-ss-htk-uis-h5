@@ -20,8 +20,8 @@ export default class SearchButton extends Vue {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 30px;
-    border-radius: 15px;
+    height: 32px;
+    border-radius: 16px;
     background-color: var(--clrThemeCard);
     font-size: 14px;
     color: rgba(255, 255, 255, 0.8);

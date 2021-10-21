@@ -17,6 +17,9 @@ export default class LklHtkIconLabelTabs extends Vue {
   @Prop({ required: true }) private currentTabCode!: string | number;
 
   private onTabClick (e: LklTab) {
+    if (e.code === this.currentTabCode) {
+      return
+    }
     this.$emit('update:currentTabCode', e.code)
     this.$nextTick(() => {
       this.$emit('change')

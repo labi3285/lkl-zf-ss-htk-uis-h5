@@ -1,6 +1,6 @@
 import { LklValueProp, LklColorProp } from './utils/Prop'
 
-export const SizeConfigs: LklValueProp[] = [
+export const defaultSizeConfigs: LklValueProp[] = [
 
   // 字体大
   { key: '--fontNavTitle', value: '16px' },
@@ -40,7 +40,7 @@ export const SizeConfigs: LklValueProp[] = [
   { key: '', value: '' }
 ]
 
-export const ColorConfigs: LklColorProp[] = [
+export const defaultColorConfigs: LklColorProp[] = [
   // 主题色
   { key: '--clrTheme', value: { normal: '#0072ff', dark: '#000000' } },
   // 主题反色

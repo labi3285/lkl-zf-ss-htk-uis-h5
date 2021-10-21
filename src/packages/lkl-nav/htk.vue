@@ -2,10 +2,10 @@
   <div class="lkl-nav" :style="{ height: height + 'px' }" >
     <div class="lkl-nav-bar" :style="{ marginTop: statusBarHeight + 'px', height: navBarHeight + 'px' }" >
       <div class="lkl-nav-bar-back">
-        <v-icon-back color="var(--clrThemeOpposite)" />
+        <lkl-icon-back color="var(--clrThemeOpposite)" />
       </div>
       <div class="lkl-nav-bar-close">
-        <v-icon-close color="var(--clrThemeOpposite)" />
+        <lkl-icon-close color="var(--clrThemeOpposite)" />
       </div>
       <div class="lkl-nav-bar-flex-space" />
       <div class="lkl-nav-bar-title">{{ showTitle }}</div>
@@ -21,13 +21,13 @@
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import { getQueryString } from '../utils/query'
 import dsbridge from 'dsbridge'
-import vIconBack from '../lkl-icons/icon-back.vue'
-import vIconClose from '../lkl-icons/icon-close.vue'
+import LklIconBack from '../lkl-icons/icon-back.vue'
+import LklIconClose from '../lkl-icons/icon-close.vue'
 
 @Component({
   components: {
-    vIconBack,
-    vIconClose
+    LklIconBack,
+    LklIconClose
   }
 })
 export default class NavBar extends Vue {

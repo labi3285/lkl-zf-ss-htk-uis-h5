@@ -1,8 +1,8 @@
 <template>
-  <v-popup ref="popup" class="lkl-side-menu" popupClass="lkl-side-menu-popup" :popupStartRect="popupStartRect" :popupRect="popupRect" @close="onPopupClose">
+  <lkl-popup ref="popup" class="lkl-side-menu" popupClass="lkl-side-menu-popup" :popupStartRect="popupStartRect" :popupRect="popupRect" @close="onPopupClose">
     <div class="lkl-side-menu-popup-nav" :style="{ paddingTop: statusBarHeight + 'px' }">
       <div class="lkl-side-menu-popup-nav-content">
-        <v-icon-back color="var(--clrTint)" class="lkl-side-menu-popup-nav-content-back" @click.native.stop="close" />
+        <lkl-icon-back color="var(--clrTint)" class="lkl-side-menu-popup-nav-content-back" @click.native.stop="close" />
         <div class="lkl-side-menu-popup-nav-content-title">{{ title }}</div>
       </div>
     </div>
@@ -14,32 +14,30 @@
       <div class="lkl-side-menu-popup-bottom-reset" @click.stop="reset">重置</div>
       <div class="lkl-side-menu-popup-bottom-confirm" @click.stop="confirm">确定</div>
     </div>
-  </v-popup>
+  </lkl-popup>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import vPopup, { LklPopupRect } from '../lkl-popup/index.vue'
-import vBetterScroll from '../lkl-scroll/better-scroll.vue'
-import vIconBack from '../lkl-icons/icon-back.vue'
+import LklPopup, { LklPopupRect } from '../lkl-popup/index.vue'
+import LklIconBack from '../lkl-icons/icon-back.vue'
 import { getQueryString } from '../utils/query'
 
 @Component({
   components: {
-    vIconBack,
-    vPopup,
-    vBetterScroll
+    LklIconBack,
+    LklPopup
   }
 })
 export default class LklSideMenu extends Vue {
   @Prop({ default: '更多筛选' }) private title!: string;
 
   public show (): void {
-    (this.$refs.popup as vPopup).show()
+    (this.$refs.popup as LklPopup).show()
   }
 
   public close (): void {
-    (this.$refs.popup as vPopup).close()
+    (this.$refs.popup as LklPopup).close()
   }
 
   public reset (): void {

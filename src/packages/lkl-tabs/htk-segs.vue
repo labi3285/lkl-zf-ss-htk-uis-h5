@@ -1,7 +1,7 @@
 <template>
   <div v-if="tabs !== undefined" class="lkl-htk-segs">
     <div class="lkl-htk-segs-tabs">
-      <div v-for="(e, i) in tabs" :key="i" :class="currentTabCode === e.code ? 'lkl-htk-segs-tabs-tab-select' : 'lkl-htk-segs-tabs-tab'" @click="onTabClick(e)">{{ e.name }}</div>
+      <div v-for="(e, i) in tabs" :key="i" :class="currentTabCode === e.code ? 'lkl-htk-segs-tabs-tab-select' : 'lkl-htk-segs-tabs-tab'" @click.stop="onTabClick(e)">{{ e.name }}</div>
     </div>
   </div>
 </template>
@@ -11,11 +11,14 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { LklTab } from './defines'
 
 @Component
-export default class LklHaotkSegs extends Vue {
+export default class LklHtkSegs extends Vue {
   @Prop({ default: undefined }) private tabs!: LklTab[];
   @Prop({ required: true }) private currentTabCode!: string | number;
 
   private onTabClick (e: LklTab) {
+    if (e.code === this.currentTabCode) {
+      return
+    }
     this.$emit('update:currentTabCode', e.code)
     this.$nextTick(() => {
       this.$emit('change')

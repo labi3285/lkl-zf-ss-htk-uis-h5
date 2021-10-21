@@ -1,7 +1,7 @@
 <template>
   <div class="lkl-date-picker-date-range">
     <div class="lkl-date-picker-date-range-button" @click.stop="showPicker" :style="{ color }" >{{ showText }}</div>
-    <v-icon-fold :color="color" marginLeft="5px" />
+    <lkl-icon-fold :color="color" marginLeft="5px" />
     <calendar
       :show.sync="isPopupShow"
       :default-date="defaultDate"
@@ -17,7 +17,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { formatDate } from './date'
-import vIconFold from '../lkl-icons/icon-fold.vue'
+import LklIconFold from '../lkl-icons/icon-fold.vue'
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 import Calendar from 'vue-mobile-calendar'
@@ -25,7 +25,7 @@ Vue.use(Calendar)
 
 @Component({
   components: {
-    vIconFold
+    LklIconFold
   }
 })
 export default class LklDatePickerDateRange extends Vue {

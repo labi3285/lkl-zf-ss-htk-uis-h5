@@ -2,10 +2,10 @@
   <div class="lkl-nav" :style="{ height: height + 'px' }" >
     <div class="lkl-nav-bar" :style="{ marginTop: statusBarHeight + 'px', height: navBarHeight + 'px' }" >
       <div class="lkl-nav-bar-back">
-        <v-icon-back />
+        <lkl-icon-back />
       </div>
       <div class="lkl-nav-bar-close">
-        <v-icon-close />
+        <lkl-icon-close />
       </div>
     </div>
   </div>
@@ -15,13 +15,13 @@
 import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import { getQueryString } from '../utils/query'
 import dsbridge from 'dsbridge'
-import vIconBack from '../lkl-icons/icon-back.vue'
-import vIconClose from '../lkl-icons/icon-close.vue'
+import LklIconBack from '../lkl-icons/icon-back.vue'
+import LklIconClose from '../lkl-icons/icon-close.vue'
 
 @Component({
   components: {
-    vIconBack,
-    vIconClose
+    LklIconBack,
+    LklIconClose
   }
 })
 export default class NavBar extends Vue {

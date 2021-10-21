@@ -12,8 +12,8 @@
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
-import { SizeConfigs, ColorConfigs } from '@/packages/configs-htk'
-import { setupProps, updateLklColorProps } from '@/packages/index'
+import { defaultSizeConfigs, defaultColorConfigs } from '@/packages/configs-htk'
+import { setupProps, updateColorProps } from '@/packages/index'
 import { getQueryString } from '@/packages/utils/query'
 
 @Component({
@@ -21,8 +21,8 @@ import { getQueryString } from '@/packages/utils/query'
 })
 export default class App extends Vue {
   private mounted () {
-    setupProps(SizeConfigs)
-    updateLklColorProps(ColorConfigs, getQueryString('darkMode') === '1')
+    setupProps(defaultSizeConfigs)
+    updateColorProps(defaultColorConfigs, getQueryString('darkMode') === '1')
   }
 }
 </script>

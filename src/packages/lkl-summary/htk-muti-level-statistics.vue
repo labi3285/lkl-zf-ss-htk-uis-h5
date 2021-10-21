@@ -104,7 +104,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { LklStatisticsLklDimension, LklStatisticsData } from './defines'
+import { LklStatisticsDimension, LklStatisticsData } from './defines'
 
 @Component
 export default class LklMutiLevelStatistics extends Vue {
@@ -115,11 +115,11 @@ export default class LklMutiLevelStatistics extends Vue {
   // 缩进
   @Prop({ default: 12 }) private levelIndent!: number;
 
-  @Prop({ default: undefined }) private handleUnfold!: (dimension: LklStatisticsLklDimension, done: () => void) => void;
+  @Prop({ default: undefined }) private handleUnfold!: (dimension: LklStatisticsDimension, done: () => void) => void;
 
   @Prop({ default: '' }) private foldButtonMarginLeft!: string;
 
-  private onFoldClick (e: LklStatisticsLklDimension) {
+  private onFoldClick (e: LklStatisticsDimension) {
     if (e.isFold) {
       if (this.handleUnfold !== undefined && this.handleUnfold !== null) {
         this.handleUnfold(e, () => {

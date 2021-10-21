@@ -11,7 +11,7 @@ export interface LklStatisticsItem {
   subItems?: LklStatisticsItem[]
 }
 
-export interface LklStatisticsLklDimension extends LklStatisticsItem {
+export interface LklStatisticsDimension extends LklStatisticsItem {
   isFold: boolean
   key: string
 }
@@ -22,5 +22,5 @@ export interface LklStatisticsData {
     b?: LklTipValue
     c?: LklTipValue
   }
-  dimensions: LklStatisticsLklDimension[]
+  dimensions: LklStatisticsDimension[]
 }

@@ -57,6 +57,8 @@
         </lkl-card>
         <lkl-space height="18px" />
 
+        <lkl-item-segs :tabs="businesses" :currentTabCode.sync="business" />
+
         <lklRank :rank1="rank1" :rank2="rank1" :rank="rank1" />
 
         <lkl-icon-label-arrow-tabs style="background-color: var(--clrListHead)" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
@@ -87,42 +89,44 @@
 import { Vue, Component } from 'vue-property-decorator'
 
 import { LklRankItem } from '@/packages/lkl-rank/defines'
-import lklRank from '@/packages/lkl-rank/htk.vue'
+import LklRank from '@/packages/lkl-rank/htk.vue'
 
-import lklHeadSearchButton from '@/packages/lkl-search/htk-head-search-button.vue'
-import lklHeadSearch from '@/packages/lkl-search/htk-head-search.vue'
+import LklHeadSearchButton from '@/packages/lkl-search/htk-head-search-button.vue'
+import LklHeadSearch from '@/packages/lkl-search/htk-head-search.vue'
 
-import lklHeadInfos from '@/packages/lkl-content/htk-head-infos.vue'
-import lklHeadInfoItem from '@/packages/lkl-content/htk-head-info-item.vue'
+import LklHeadInfos from '@/packages/lkl-content/htk-head-infos.vue'
+import LklHeadInfoItem from '@/packages/lkl-content/htk-head-info-item.vue'
 
-import lklSegs from '@/packages/lkl-tabs/htk-segs.vue'
-import lklTabs from '@/packages/lkl-tabs/htk-tabs.vue'
-import lklIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
-import lklIconLabelArrowTabs from '@/packages/lkl-tabs/htk-icon-label-arrow-tabs.vue'
-import lklDateRangePicker from '@/packages/lkl-date-picker/date-range.vue'
-import lklTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
-import lklMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
+import LklSegs from '@/packages/lkl-tabs/htk-segs.vue'
+import LklItemSegs from '@/packages/lkl-tabs/htk-item-segs.vue'
+import LklTabs from '@/packages/lkl-tabs/htk-tabs.vue'
+import LklIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
+import LklIconLabelArrowTabs from '@/packages/lkl-tabs/htk-icon-label-arrow-tabs.vue'
+import LklDateRangePicker from '@/packages/lkl-date-picker/date-range.vue'
+import LklTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
+import LklMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
 
 import { LklToast } from '@/packages/lkl-toast/index'
 // import { LklConfirm, LklButtonAction } from '@/packages/lkl-confirm/index'
 
 @Component({
   components: {
-    lklHeadSearchButton,
-    lklHeadSearch,
+    LklHeadSearchButton,
+    LklHeadSearch,
 
-    lklHeadInfos,
-    lklHeadInfoItem,
+    LklHeadInfos,
+    LklHeadInfoItem,
 
-    lklRank,
+    LklRank,
 
-    lklSegs,
-    lklTabs,
-    lklIconLabelTabs,
-    lklIconLabelArrowTabs,
-    lklDateRangePicker,
-    lklTypesFilter,
-    lklMutiLevelStatistics
+    LklSegs,
+    LklItemSegs,
+    LklTabs,
+    LklIconLabelTabs,
+    LklIconLabelArrowTabs,
+    LklDateRangePicker,
+    LklTypesFilter,
+    LklMutiLevelStatistics
   }
 })
 export default class Test extends Vue {

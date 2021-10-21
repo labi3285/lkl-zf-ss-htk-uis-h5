@@ -20,30 +20,30 @@
       </svg>
     </div>
     <div class="lkl-htk-types-filter-button" @click.stop="onFilteClick" >
-      <v-icon-filter class="lkl-htk-types-filter-button-icon" color="var(--clrT1)" />
+      <lkl-icon-filter class="lkl-htk-types-filter-button-icon" color="var(--clrT1)" />
       筛选
     </div>
 
-    <v-side-menu v-if="dimensions" ref="sideMenu" @reset="reset" @confirm="confirm">
-      <v-side-menu-type-select v-for="(e, i) in dimensions" :key="i" :title="e.name" :items="e.options" :selectItem.sync="e.select" :ignore="checkIgnore(e)" @noIgnore="onNoIgnore(e)" />
-    </v-side-menu>
+    <lkl-side-menu v-if="dimensions" ref="sideMenu" @reset="reset" @confirm="confirm">
+      <lkl-side-menu-type-select v-for="(e, i) in dimensions" :key="i" :title="e.name" :items="e.options" :selectItem.sync="e.select" :ignore="checkIgnore(e)" @noIgnore="onNoIgnore(e)" />
+    </lkl-side-menu>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
-import vIconFilter from '../lkl-icons/icon-filter.vue'
+import LklIconFilter from '../lkl-icons/icon-filter.vue'
 import { LklDimension } from './defines'
-import vSideMenu from './htk-side-menu.vue'
-import vSideMenuSection from './htk-side-menu-section.vue'
-import vSideMenuTypeSelect from './htk-side-menu-type-select.vue'
+import LklSideMenu from './htk-side-menu.vue'
+import LklSideMenuSection from './htk-side-menu-section.vue'
+import LklSideMenuTypeSelect from './htk-side-menu-type-select.vue'
 
 @Component({
   components: {
-    vIconFilter,
-    vSideMenu,
-    vSideMenuSection,
-    vSideMenuTypeSelect
+    LklIconFilter,
+    LklSideMenu,
+    LklSideMenuSection,
+    LklSideMenuTypeSelect
   }
 })
 export default class LklHtkTypesFilter extends Vue {
@@ -219,10 +219,10 @@ export default class LklHtkTypesFilter extends Vue {
 
   private onFilteClick () {
     if (this.handleSideMenuShow === undefined || this.handleSideMenuShow === null) {
-      (this.$refs.sideMenu as vSideMenu).show()
+      (this.$refs.sideMenu as LklSideMenu).show()
     } else {
       this.handleSideMenuShow(() => {
-        (this.$refs.sideMenu as vSideMenu).show()
+        (this.$refs.sideMenu as LklSideMenu).show()
       })
     }
   }

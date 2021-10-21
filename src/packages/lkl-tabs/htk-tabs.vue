@@ -22,6 +22,9 @@ export default class LklHtkTabs extends Vue {
   @Prop({ default: '108px' }) private lineWidth!: string;
 
   private onTabClick (e: LklTab) {
+    if (e.code === this.currentTabCode) {
+      return
+    }
     this.$emit('update:currentTabCode', e.code)
     this.$nextTick(() => {
       this.$emit('change')

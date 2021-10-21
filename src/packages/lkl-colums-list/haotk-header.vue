@@ -5,17 +5,17 @@
       <slot :name="'item' + i">{{ e }}</slot>
       <slot :name="'right' + i" />
     </div>
-    <v-icon-arrow v-if="rightArrowed" class="lkl-colums-header-right-arrow" />
+    <lkl-icon-arrow v-if="rightArrowed" class="lkl-colums-header-right-arrow" />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import vIconArrow from '../lkl-icons/icon-arrow.vue'
+import LklIconArrow from '../lkl-icons/icon-arrow.vue'
 
 @Component({
   components: {
-    vIconArrow
+    LklIconArrow
   }
 })
 export default class LklColumsList extends Vue {

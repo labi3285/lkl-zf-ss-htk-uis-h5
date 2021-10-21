@@ -5,7 +5,7 @@
       <slot :name="'item' + i">{{ e }}</slot>
       <slot :name="'right' + i" />
     </div>
-    <v-icon-arrow v-if="rightArrowed" color="var(--clrTint)" class="lkl-colums-item-right-arrow" />
+    <lkl-icon-arrow  v-if="rightArrowed" color="var(--clrTint)" class="lkl-colums-item-right-arrow" />
     <div class="lkl-colums-item-line" />
   </div>
 </template>
