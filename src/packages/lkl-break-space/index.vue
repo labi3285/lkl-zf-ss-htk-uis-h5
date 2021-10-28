@@ -7,8 +7,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklBreakSpace extends Vue {
-  @Prop({ default: '100%' }) private width!: string;
-  @Prop({ default: 'var(--marginM)' }) private height!: string;
+  @Prop({ default: '100%' }) width!: string;
+  @Prop({ default: 'var(--marginM)' }) height!: string;
 }
 </script>
 

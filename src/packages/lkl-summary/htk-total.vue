@@ -17,10 +17,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklTotal extends Vue {
-  @Prop({ default: 'Total' }) private tip!: string;
-  @Prop({ default: '0' }) private value!: string;
-  @Prop({ default: false }) private arrow!: boolean;
-  @Prop({ default: false }) private help!: boolean;
+  @Prop({ default: 'Total' }) tip!: string;
+  @Prop({ default: '0' }) value!: string;
+  @Prop({ default: false }) arrow!: boolean;
+  @Prop({ default: false }) help!: boolean;
 }
 </script>
 

@@ -18,9 +18,9 @@ import { LklConfirm as LklConfirmVM, LklConfirmOptions, LklButtonAction } from '
 
 @Component
 export default class LklConfirm extends Vue {
-  @Prop({ required: true }) private vm!: LklConfirmVM;
-  @Prop({ default: undefined }) private options!: LklConfirmOptions;
-  @Prop({ required: true }) private closeHandler!: () => void;
+  @Prop({ required: true }) vm!: LklConfirmVM;
+  @Prop({ default: undefined }) options!: LklConfirmOptions;
+  @Prop({ required: true }) closeHandler!: () => void;
 
   private title = ''
   private message = ''

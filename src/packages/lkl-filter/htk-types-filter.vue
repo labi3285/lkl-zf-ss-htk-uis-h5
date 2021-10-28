@@ -23,9 +23,8 @@
       <lkl-icon-filter class="lkl-htk-types-filter-button-icon" color="var(--clrT1)" />
       筛选
     </div>
-
     <lkl-side-menu v-if="dimensions" ref="sideMenu" @reset="reset" @confirm="confirm">
-      <lkl-side-menu-type-select v-for="(e, i) in dimensions" :key="i" :title="e.name" :items="e.options" :selectItem.sync="e.select" :ignore="checkIgnore(e)" @noIgnore="onNoIgnore(e)" />
+      <lkl-side-menu-type-select v-for="(e, i) in dimensions" :index="i" :key="i" :title="e.name" :options="e.options" :selectItem.sync="e.select" :ignore="checkIgnore(e)" @noIgnore="onNoIgnore(e)" :beforeSelect="onBeforeSelectOption" />
     </lkl-side-menu>
   </div>
 </template>
@@ -33,7 +32,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import LklIconFilter from '../lkl-icons/icon-filter.vue'
-import { LklDimension } from './defines'
+import { LklDimension, LklDimensionlOption } from './defines'
 import LklSideMenu from './htk-side-menu.vue'
 import LklSideMenuSection from './htk-side-menu-section.vue'
 import LklSideMenuTypeSelect from './htk-side-menu-type-select.vue'
@@ -47,14 +46,15 @@ import LklSideMenuTypeSelect from './htk-side-menu-type-select.vue'
   }
 })
 export default class LklHtkTypesFilter extends Vue {
-  @Prop({ default: undefined }) private dimensions!: LklDimension[];
-  @Prop({ default: undefined }) private query!: Record<string, string>;
-  @Prop({ default: undefined }) private handleSideMenuShow!: (done: () => void) => void;
+  @Prop({ default: undefined }) dimensions!: LklDimension[];
+  @Prop({ default: undefined }) query!: Record<string, string>;
+  @Prop({ default: undefined }) beforeSideMenuShow!: (done: () => void) => void;
+  @Prop({ default: undefined }) beforeSelectOption!: (dimension: LklDimension, option: LklDimensionlOption, done: () => void) => void;
 
   /// 互斥维度, 默认选择第一个
-  @Prop({ default: undefined }) private mutexLklDimensionKeysGroups!: string[][];
-  @Watch('mutexLklDimensionKeysGroups')
-  private mutexLklDimensionKeysGroupsChanged (val: string[][]) {
+  @Prop({ default: undefined }) mutexDimensionKeysGroups!: string[][];
+  @Watch('mutexDimensionKeysGroups')
+  private mutexDimensionKeysGroupsChanged (val: string[][]) {
     if (val) {
       const arr: string[] = []
       for (const e of val) {
@@ -69,8 +69,8 @@ export default class LklHtkTypesFilter extends Vue {
   }
 
   private mounted () {
-    if (this.mutexLklDimensionKeysGroups) {
-      this.mutexLklDimensionKeysGroupsChanged(this.mutexLklDimensionKeysGroups)
+    if (this.mutexDimensionKeysGroups) {
+      this.mutexDimensionKeysGroupsChanged(this.mutexDimensionKeysGroups)
     }
   }
 
@@ -85,13 +85,13 @@ export default class LklHtkTypesFilter extends Vue {
   }
 
   private mutexIndexOfLklDimension (dimension: LklDimension): number {
-    if (this.mutexLklDimensionKeysGroups) {
+    if (this.mutexDimensionKeysGroups) {
       let index = -1
-      for (let i = 0; i < this.mutexLklDimensionKeysGroups.length; i++) {
+      for (let i = 0; i < this.mutexDimensionKeysGroups.length; i++) {
         if (index !== -1) {
           break
         }
-        for (const key of this.mutexLklDimensionKeysGroups[i]) {
+        for (const key of this.mutexDimensionKeysGroups[i]) {
           if (key === dimension.key) {
             index = i
             break
@@ -218,12 +218,20 @@ export default class LklHtkTypesFilter extends Vue {
   }
 
   private onFilteClick () {
-    if (this.handleSideMenuShow === undefined || this.handleSideMenuShow === null) {
+    if (this.beforeSideMenuShow === undefined || this.beforeSideMenuShow === null) {
       (this.$refs.sideMenu as LklSideMenu).show()
     } else {
-      this.handleSideMenuShow(() => {
+      this.beforeSideMenuShow(() => {
         (this.$refs.sideMenu as LklSideMenu).show()
       })
+    }
+  }
+
+  private onBeforeSelectOption (option: LklDimensionlOption, i: number, done: () => void) {
+    if (this.beforeSelectOption === undefined || this.beforeSelectOption === null) {
+      done()
+    } else {
+      this.beforeSelectOption(this.dimensions[i], option, done)
     }
   }
 }

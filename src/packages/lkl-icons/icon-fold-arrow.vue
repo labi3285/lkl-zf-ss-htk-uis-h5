@@ -7,8 +7,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklIconFoldArrow extends Vue {
-  @Prop({ default: 'down' }) private direction!: string;
-  @Prop({ default: 'var(--clrT2)' }) private color!: string;
+  @Prop({ default: 'down' }) direction!: string;
+  @Prop({ default: 'var(--clrT2)' }) color!: string;
 
   private get rotate (): string {
     switch (this.direction) {

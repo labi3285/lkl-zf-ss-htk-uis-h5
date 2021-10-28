@@ -1,10 +1,10 @@
 <template>
-  <div v-if="tabs !== undefined" class="lkl-htk-tabs">
-    <div class="lkl-htk-tabs-tabs">
-      <div class="lkl-htk-tabs-tabs-content">
-        <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-tabs-tabs-content-tab" @click.stop="onTabClick(e)">
-          <div :class="e.code === currentTabCode ? 'lkl-htk-tabs-tabs-content-tab-title-select' : 'lkl-htk-tabs-tabs-content-tab-title'">{{ e.name }}</div>
-          <div :style="{ opacity: e.code === currentTabCode ? 1 : 0, width: lineWidth }" class="lkl-htk-tabs-tabs-content-tab-line"></div>
+  <div v-if="tabs !== undefined" class="lkl-htk-head-tabs">
+    <div class="lkl-htk-head-tabs-tabs">
+      <div class="lkl-htk-head-tabs-tabs-content">
+        <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-head-tabs-tabs-content-tab" @click.stop="onTabClick(e)">
+          <div :class="e.code === currentTabCode ? 'lkl-htk-head-tabs-tabs-content-tab-title-select' : 'lkl-htk-head-tabs-tabs-content-tab-title'">{{ e.name }}</div>
+          <div :style="{ opacity: e.code === currentTabCode ? 1 : 0, width: lineWidth }" class="lkl-htk-head-tabs-tabs-content-tab-line"></div>
         </div>
       </div>
     </div>
@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { LklTab } from './defines'
 
 @Component
-export default class LklHtkTabs extends Vue {
+export default class LklHtkHeadTabs extends Vue {
   @Prop({ default: undefined }) tabs!: LklTab[];
   @Prop({ required: true }) currentTabCode!: string | number;
   @Prop({ default: '108px' }) lineWidth!: string;
@@ -43,7 +43,7 @@ export default class LklHtkTabs extends Vue {
 </script>
 
 <style lang="less">
-.lkl-htk-tabs {
+.lkl-htk-head-tabs {
   // padding: 0 var(--marginLR);
   padding-left: 10px;
   padding-right: 10px;
@@ -71,18 +71,18 @@ export default class LklHtkTabs extends Vue {
           line-height: 43px;
           font-weight: bold;
           font-size: var(--font16);
-          color: #666666;
+          color: #ffffff;
         }
         &-title-select {
           line-height: 43px;
           font-weight: bold;
           font-size: var(--font16);
-          color: var(--clrTint);
+          color: #ffffff;
         }
         &-line {
           height: 2px;
           border-radius: 1px;
-          background-color: var(--clrTint);
+          background-color: #ffffff;
         }
       }
     }

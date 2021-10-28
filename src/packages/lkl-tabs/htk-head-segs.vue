@@ -1,7 +1,7 @@
 <template>
-  <div v-if="tabs !== undefined" class="lkl-htk-segs">
-    <div class="lkl-htk-segs-tabs">
-      <div v-for="(e, i) in tabs" :key="i" :class="currentTabCode === e.code ? 'lkl-htk-segs-tabs-tab-select' : 'lkl-htk-segs-tabs-tab'" @click.stop="onTabClick(e)">{{ e.name }}</div>
+  <div v-if="tabs !== undefined" class="lkl-htk-head-segs">
+    <div class="lkl-htk-head-segs-tabs">
+      <div v-for="(e, i) in tabs" :key="i" :class="currentTabCode === e.code ? 'lkl-htk-head-segs-tabs-tab-select' : 'lkl-htk-head-segs-tabs-tab'" @click.stop="onTabClick(e)">{{ e.name }}</div>
     </div>
   </div>
 </template>
@@ -11,9 +11,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 import { LklTab } from './defines'
 
 @Component
-export default class LklHtkSegs extends Vue {
-  @Prop({ default: undefined }) private tabs!: LklTab[];
-  @Prop({ required: true }) private currentTabCode!: string | number;
+export default class LklHtkHeadSegs extends Vue {
+  @Prop({ default: undefined }) tabs!: LklTab[];
+  @Prop({ required: true }) currentTabCode!: string | number;
 
   private onTabClick (e: LklTab) {
     if (e.code === this.currentTabCode) {
@@ -28,7 +28,7 @@ export default class LklHtkSegs extends Vue {
 </script>
 
 <style lang="less">
-.lkl-htk-segs {
+.lkl-htk-head-segs {
   padding: 8px;
   display: flex;
   justify-content: center;

@@ -13,9 +13,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class QXTitle extends Vue {
-  @Prop({ default: '' }) private title!: string;
-  @Prop({ default: undefined }) private value!: string;
-  @Prop({ default: true }) private dotted!: boolean;
+  @Prop({ default: '' }) title!: string;
+  @Prop({ default: undefined }) value!: string;
+  @Prop({ default: true }) dotted!: boolean;
 }
 </script>
 

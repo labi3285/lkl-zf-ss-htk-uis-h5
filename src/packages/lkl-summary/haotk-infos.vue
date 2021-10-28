@@ -12,7 +12,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklHaotkInfosCard extends Vue {
-  @Prop({ default: false }) private help!: boolean;
+  @Prop({ default: false }) help!: boolean;
 }
 </script>
 

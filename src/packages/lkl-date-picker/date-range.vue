@@ -29,16 +29,16 @@ Vue.use(Calendar)
   }
 })
 export default class LklDatePickerDateRange extends Vue {
-  @Prop({ required: true }) private pickedDateRange!: { start: Date, end: Date };
+  @Prop({ required: true }) pickedDateRange!: { start: Date, end: Date };
 
-  @Prop({ default: '选择日期' }) private defaultText!: Date;
-  @Prop({ default: 'yyyy-MM-dd' }) private dateFormate!: string;
-  @Prop({ default: true }) private closeByClickMask!: boolean;
+  @Prop({ default: '选择日期' }) defaultText!: Date;
+  @Prop({ default: 'yyyy-MM-dd' }) dateFormate!: string;
+  @Prop({ default: true }) closeByClickMask!: boolean;
 
-  @Prop({ default: undefined }) private minDate!: Date;
-  @Prop({ default: undefined }) private maxDate!: Date;
+  @Prop({ default: undefined }) minDate!: Date;
+  @Prop({ default: undefined }) maxDate!: Date;
 
-  @Prop({ default: 'var(--clrT2)' }) private color!: string;
+  @Prop({ default: 'var(--clrT2)' }) color!: string;
 
   private isPopupShow = false
   private get defaultDate (): Date[] | undefined {

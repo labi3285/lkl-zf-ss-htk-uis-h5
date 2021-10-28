@@ -20,7 +20,7 @@ import frameChange from '../utils/directives/frameChange'
   }
 })
 export default class LklBetterScroll extends Vue {
-  @Prop({ default: undefined }) private contentCls!: string;
+  @Prop({ default: undefined }) contentCls!: string;
 
   private betterScroll: any | null;
 

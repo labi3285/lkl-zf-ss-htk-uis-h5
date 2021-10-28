@@ -30,7 +30,7 @@ import { getQueryString } from '../utils/query'
   }
 })
 export default class LklSideMenu extends Vue {
-  @Prop({ default: '更多筛选' }) private title!: string;
+  @Prop({ default: '更多筛选' }) title!: string;
 
   public show (): void {
     (this.$refs.popup as LklPopup).show()

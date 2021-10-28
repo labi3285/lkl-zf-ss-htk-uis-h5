@@ -9,8 +9,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklIconFold extends Vue {
-  @Prop({ default: 'bottom' }) private direction!: string;
-  @Prop({ default: 'var(--clrT2)' }) private color!: string;
+  @Prop({ default: 'bottom' }) direction!: string;
+  @Prop({ default: 'var(--clrT2)' }) color!: string;
 
   private get rotate (): string {
     switch (this.direction) {

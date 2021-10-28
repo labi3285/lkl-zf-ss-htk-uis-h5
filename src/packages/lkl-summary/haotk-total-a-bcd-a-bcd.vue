@@ -79,34 +79,34 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklHaoTkTotalABcdABcd extends Vue {
-  @Prop({ default: '' }) private tip!: string;
-  @Prop({ default: '' }) private tip1!: string;
-  @Prop({ default: 'Total' }) private totalTip!: string;
-  @Prop({ default: '0' }) private totalValue!: string;
-  @Prop({ default: false }) private totalArrow!: boolean;
-  @Prop({ default: false }) private totalHelp!: boolean;
+  @Prop({ default: '' }) tip!: string;
+  @Prop({ default: '' }) tip1!: string;
+  @Prop({ default: 'Total' }) totalTip!: string;
+  @Prop({ default: '0' }) totalValue!: string;
+  @Prop({ default: false }) totalArrow!: boolean;
+  @Prop({ default: false }) totalHelp!: boolean;
 
-  @Prop({ default: false }) private help!: boolean;
+  @Prop({ default: false }) help!: boolean;
 
-  @Prop({ default: true }) private showSub!: boolean;
+  @Prop({ default: true }) showSub!: boolean;
 
-  @Prop({ default: 'A' }) private aTip!: string;
-  @Prop({ default: '0' }) private aValue!: string;
-  @Prop({ default: 'B' }) private bTip!: string;
-  @Prop({ default: '0' }) private bValue!: string;
-  @Prop({ default: 'C' }) private cTip!: string;
-  @Prop({ default: '0' }) private cValue!: string;
-  @Prop({ default: 'D' }) private dTip!: string;
-  @Prop({ default: '0' }) private dValue!: string;
+  @Prop({ default: 'A' }) aTip!: string;
+  @Prop({ default: '0' }) aValue!: string;
+  @Prop({ default: 'B' }) bTip!: string;
+  @Prop({ default: '0' }) bValue!: string;
+  @Prop({ default: 'C' }) cTip!: string;
+  @Prop({ default: '0' }) cValue!: string;
+  @Prop({ default: 'D' }) dTip!: string;
+  @Prop({ default: '0' }) dValue!: string;
 
-  @Prop({ default: 'A1' }) private aTip1!: string;
-  @Prop({ default: '0' }) private aValue1!: string;
-  @Prop({ default: 'B1' }) private bTip1!: string;
-  @Prop({ default: '0' }) private bValue1!: string;
-  @Prop({ default: 'C1' }) private cTip1!: string;
-  @Prop({ default: '0' }) private cValue1!: string;
-  @Prop({ default: 'D1' }) private dTip1!: string;
-  @Prop({ default: '0' }) private dValue1!: string;
+  @Prop({ default: 'A1' }) aTip1!: string;
+  @Prop({ default: '0' }) aValue1!: string;
+  @Prop({ default: 'B1' }) bTip1!: string;
+  @Prop({ default: '0' }) bValue1!: string;
+  @Prop({ default: 'C1' }) cTip1!: string;
+  @Prop({ default: '0' }) cValue1!: string;
+  @Prop({ default: 'D1' }) dTip1!: string;
+  @Prop({ default: '0' }) dValue1!: string;
 
   private get height () {
     return this.showSub ? '227px' : '100px'

@@ -108,16 +108,16 @@ import { LklStatisticsDimension, LklStatisticsData } from './defines'
 
 @Component
 export default class LklMutiLevelStatistics extends Vue {
-  @Prop({ default: undefined }) private dataSource!: LklStatisticsData;
+  @Prop({ default: undefined }) dataSource!: LklStatisticsData;
 
   // 左侧名称列宽度
-  @Prop({ default: 120 }) private nameColumWidth!: number;
+  @Prop({ default: 120 }) nameColumWidth!: number;
   // 缩进
-  @Prop({ default: 12 }) private levelIndent!: number;
+  @Prop({ default: 12 }) levelIndent!: number;
 
-  @Prop({ default: undefined }) private handleUnfold!: (dimension: LklStatisticsDimension, done: () => void) => void;
+  @Prop({ default: undefined }) handleUnfold!: (dimension: LklStatisticsDimension, done: () => void) => void;
 
-  @Prop({ default: '' }) private foldButtonMarginLeft!: string;
+  @Prop({ default: '' }) foldButtonMarginLeft!: string;
 
   private onFoldClick (e: LklStatisticsDimension) {
     if (e.isFold) {

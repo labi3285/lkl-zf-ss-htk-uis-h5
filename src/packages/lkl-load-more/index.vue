@@ -18,9 +18,9 @@ import offsetChange from '../utils/directives/offsetChange'
   }
 })
 export default class LklLoadMore extends Vue {
-  @Prop({ required: true }) private isLoading!: boolean;
-  @Prop({ default: false }) private isLoadOnMounted!: boolean;
-  @Prop({ default: true }) private isThereMore!: boolean;
+  @Prop({ required: true }) isLoading!: boolean;
+  @Prop({ default: false }) isLoadOnMounted!: boolean;
+  @Prop({ default: true }) isThereMore!: boolean;
 
   private mounted () {
     if (this.isLoadOnMounted && this.isThereMore) {

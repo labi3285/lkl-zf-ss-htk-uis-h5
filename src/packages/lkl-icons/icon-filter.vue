@@ -15,7 +15,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklClose extends Vue {
-  @Prop({ default: 'var(--clrT1)' }) private color!: string;
+  @Prop({ default: 'var(--clrT1)' }) color!: string;
 }
 </script>
 

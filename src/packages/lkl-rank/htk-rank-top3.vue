@@ -1,27 +1,27 @@
 <template>
-  <div class="lkl-htk-rank">
-    <div class="lkl-htk-rank-rank">
-      <div class="lkl-htk-rank-rank-top" style="height: 30px"></div>
-      <div :class="rank2 ? 'lkl-htk-rank-rank-pic-rank2-1' : 'lkl-htk-rank-rank-pic-rank2-0'" class="lkl-htk-rank-rank-pic"></div>
-      <div v-if="rank2" class="lkl-htk-rank-rank-name">{{ rank2.name }}</div>
-      <div v-if="rank2" class="lkl-htk-rank-rank-value">{{ rank2.value }}</div>
-      <div v-if="rank2 && isUnitShow" class="lkl-htk-rank-rank-unit">{{ rank2.unit }}</div>
-      <div v-if="!rank2" class="lkl-htk-rank-rank-empty">暂无排名</div>
+  <div class="lkl-htk-rank-top3">
+    <div class="lkl-htk-rank-top3-rank">
+      <div class="lkl-htk-rank-top3-rank-top" style="height: 30px"></div>
+      <div :class="rank2 ? 'lkl-htk-rank-top3-rank-pic-rank2-1' : 'lkl-htk-rank-top3-rank-pic-rank2-0'" class="lkl-htk-rank-top3-rank-pic"></div>
+      <div v-if="rank2" class="lkl-htk-rank-top3-rank-name">{{ rank2.name }}</div>
+      <div v-if="rank2" class="lkl-htk-rank-top3-rank-value">{{ rank2.value }}</div>
+      <div v-if="rank2 && isUnitShow" class="lkl-htk-rank-top3-rank-unit">{{ rank2.unit }}</div>
+      <div v-if="!rank2" class="lkl-htk-rank-top3-rank-empty">暂无排名</div>
     </div>
-    <div class="lkl-htk-rank-rank">
-      <div :class="rank1 ? 'lkl-htk-rank-rank-pic-rank1-1' : 'lkl-htk-rank-rank-pic-rank1-0'" class="lkl-htk-rank-rank-pic"></div>
-      <div v-if="rank1" class="lkl-htk-rank-rank-name">{{ rank1.name }}</div>
-      <div v-if="rank1" class="lkl-htk-rank-rank-value">{{ rank1.value }}</div>
-      <div v-if="rank1 && isUnitShow" class="lkl-htk-rank-rank-unit">{{ rank1.unit }}</div>
-      <div v-if="!rank1" class="lkl-htk-rank-rank-empty">暂无排名</div>
+    <div class="lkl-htk-rank-top3-rank">
+      <div :class="rank1 ? 'lkl-htk-rank-top3-rank-pic-rank1-1' : 'lkl-htk-rank-top3-rank-pic-rank1-0'" class="lkl-htk-rank-top3-rank-pic"></div>
+      <div v-if="rank1" class="lkl-htk-rank-top3-rank-name">{{ rank1.name }}</div>
+      <div v-if="rank1" class="lkl-htk-rank-top3-rank-value">{{ rank1.value }}</div>
+      <div v-if="rank1 && isUnitShow" class="lkl-htk-rank-top3-rank-unit">{{ rank1.unit }}</div>
+      <div v-if="!rank1" class="lkl-htk-rank-top3-rank-empty">暂无排名</div>
     </div>
-    <div class="lkl-htk-rank-rank">
-      <div class="lkl-htk-rank-rank-top" style="height: 40px"></div>
-      <div :class="rank3 ? 'lkl-htk-rank-rank-pic-rank3-1' : 'lkl-htk-rank-rank-pic-rank3-0'" class="lkl-htk-rank-rank-pic "></div>
-      <div v-if="rank3" class="lkl-htk-rank-rank-name">{{ rank3.name }}</div>
-      <div v-if="rank3" class="lkl-htk-rank-rank-value">{{ rank3.value }}</div>
-      <div v-if="rank3 && isUnitShow" class="lkl-htk-rank-rank-unit">{{ rank3.unit }}</div>
-      <div v-if="!rank3" class="lkl-htk-rank-rank-empty">暂无排名</div>
+    <div class="lkl-htk-rank-top3-rank">
+      <div class="lkl-htk-rank-top3-rank-top" style="height: 40px"></div>
+      <div :class="rank3 ? 'lkl-htk-rank-top3-rank-pic-rank3-1' : 'lkl-htk-rank-top3-rank-pic-rank3-0'" class="lkl-htk-rank-top3-rank-pic "></div>
+      <div v-if="rank3" class="lkl-htk-rank-top3-rank-name">{{ rank3.name }}</div>
+      <div v-if="rank3" class="lkl-htk-rank-top3-rank-value">{{ rank3.value }}</div>
+      <div v-if="rank3 && isUnitShow" class="lkl-htk-rank-top3-rank-unit">{{ rank3.unit }}</div>
+      <div v-if="!rank3" class="lkl-htk-rank-top3-rank-empty">暂无排名</div>
     </div>
   </div>
 </template>
@@ -30,7 +30,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 import { LklRankItem } from './defines'
 
 @Component
-export default class LklHtkRank extends Vue {
+export default class LklHtkRankTop3 extends Vue {
   @Prop({ default: undefined }) public rank1!: LklRankItem;
   @Prop({ default: undefined }) public rank2!: LklRankItem;
   @Prop({ default: undefined }) public rank3!: LklRankItem;
@@ -41,7 +41,7 @@ export default class LklHtkRank extends Vue {
 <style lang="less" scoped>
 @import "../utils/style.less";
 
-.lkl-htk-rank {
+.lkl-htk-rank-top3 {
   width: 100%;
   box-sizing: border-box;
   padding: var(--marginTB) var(--marginLR) var(--marginTB) var(--marginLR);
@@ -100,7 +100,7 @@ export default class LklHtkRank extends Vue {
 
 }
 
-.lkl-htk-rank1 {
+.lkl-htk-rank-top31 {
   // background: @clrBody;
   display: flex;
   margin-top: 8px;

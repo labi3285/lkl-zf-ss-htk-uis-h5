@@ -7,7 +7,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklBreakLine extends Vue {
-  @Prop({ default: 'leftRightMargin' }) private type!: string;
+  @Prop({ default: 'leftRightMargin' }) type!: string;
 
   private get marginLeft (): string {
     switch (this.type) {

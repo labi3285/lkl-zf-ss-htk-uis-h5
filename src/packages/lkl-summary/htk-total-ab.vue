@@ -26,16 +26,16 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklTotalAb extends Vue {
-  @Prop({ default: 'A' }) private tipA!: string;
-  @Prop({ default: '0' }) private valueA!: string;
-  @Prop({ default: false }) private helpA!: boolean;
-  @Prop({ default: false }) private arrowA!: boolean;
+  @Prop({ default: 'A' }) tipA!: string;
+  @Prop({ default: '0' }) valueA!: string;
+  @Prop({ default: false }) helpA!: boolean;
+  @Prop({ default: false }) arrowA!: boolean;
 
-  @Prop({ default: true }) private isBShow!: boolean;
-  @Prop({ default: 'B' }) private tipB!: string;
-  @Prop({ default: '0' }) private valueB!: string;
-  @Prop({ default: false }) private helpB!: boolean;
-  @Prop({ default: false }) private arrowB!: boolean;
+  @Prop({ default: true }) isBShow!: boolean;
+  @Prop({ default: 'B' }) tipB!: string;
+  @Prop({ default: '0' }) valueB!: string;
+  @Prop({ default: false }) helpB!: boolean;
+  @Prop({ default: false }) arrowB!: boolean;
 }
 </script>
 

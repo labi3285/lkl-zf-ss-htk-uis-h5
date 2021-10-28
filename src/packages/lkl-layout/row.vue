@@ -9,9 +9,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklLayoutRow extends Vue {
-  @Prop({ default: 'left' }) private alignX!: string;
-  @Prop({ default: 'center' }) private alignY!: string;
-  @Prop({ default: true }) private wrap!: boolean;
+  @Prop({ default: 'left' }) alignX!: string;
+  @Prop({ default: 'center' }) alignY!: string;
+  @Prop({ default: true }) wrap!: boolean;
 
   private get alignItems () {
     switch (this.alignY) {

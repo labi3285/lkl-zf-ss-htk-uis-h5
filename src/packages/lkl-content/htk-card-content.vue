@@ -28,6 +28,7 @@ export default class LklContentCardHead extends Vue {
     border-top-right-radius: 20px;
     background-color: var(--clrBody);
     min-height: 100px;
+    overflow: hidden;
   }
 }
 </style>

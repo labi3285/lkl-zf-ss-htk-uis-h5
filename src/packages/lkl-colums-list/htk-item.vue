@@ -20,10 +20,10 @@ import vIconArrow from '../lkl-icons/icon-arrow.vue'
   }
 })
 export default class LklColumsListItem extends Vue {
-  @Prop({ default: 0 }) private index!: number;
-  @Prop({ default: undefined }) private items!: string[];
-  @Prop({ default: undefined }) private columWidths!: string[];
-  @Prop({ default: false }) private rightArrowed!: boolean;
+  @Prop({ default: 0 }) index!: number;
+  @Prop({ default: undefined }) items!: string[];
+  @Prop({ default: undefined }) columWidths!: string[];
+  @Prop({ default: false }) rightArrowed!: boolean;
 
   private columWidth (i: number) {
     if (this.columWidths && this.columWidths.length > i) {

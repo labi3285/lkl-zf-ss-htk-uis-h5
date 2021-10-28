@@ -17,8 +17,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklSettingRow extends Vue {
-  @Prop({ default: '' }) private title!: string;
-  @Prop({ default: false }) private required!: boolean;
+  @Prop({ default: '' }) title!: string;
+  @Prop({ default: false }) required!: boolean;
 }
 </script>
 

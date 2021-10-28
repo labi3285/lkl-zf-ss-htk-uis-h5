@@ -31,17 +31,17 @@ Vue.use(Calendar)
   }
 })
 export default class LklDatePickerDateSingle extends Vue {
-  @Prop({ required: true }) private pickedDate!: Date;
+  @Prop({ required: true }) pickedDate!: Date;
 
-  @Prop({ default: '选择日期' }) private defaultText!: Date;
-  @Prop({ default: 'yyyy-MM-dd' }) private dateFormate!: string;
-  @Prop({ default: true }) private closeByClickMask!: boolean;
+  @Prop({ default: '选择日期' }) defaultText!: Date;
+  @Prop({ default: 'yyyy-MM-dd' }) dateFormate!: string;
+  @Prop({ default: true }) closeByClickMask!: boolean;
 
-  @Prop({ default: undefined }) private disabledDates!: Date[];
-  @Prop({ default: undefined }) private minDate!: Date;
-  @Prop({ default: undefined }) private maxDate!: Date;
+  @Prop({ default: undefined }) disabledDates!: Date[];
+  @Prop({ default: undefined }) minDate!: Date;
+  @Prop({ default: undefined }) maxDate!: Date;
 
-  @Prop({ default: 'var(--clrT2)' }) private color!: string;
+  @Prop({ default: 'var(--clrT2)' }) color!: string;
 
   private get defaultDate () {
     return this.pickedDate

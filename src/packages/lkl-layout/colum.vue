@@ -9,10 +9,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklLayoutColum extends Vue {
-  @Prop({ default: 'left' }) private alignX!: string;
-  @Prop({ default: 'top' }) private alignY!: string;
-  @Prop({ default: '' }) private padding!: string;
-  @Prop({ default: '' }) private margin!: string;
+  @Prop({ default: 'left' }) alignX!: string;
+  @Prop({ default: 'top' }) alignY!: string;
+  @Prop({ default: '' }) padding!: string;
+  @Prop({ default: '' }) margin!: string;
 
   private get alignItems () {
     switch (this.alignX) {

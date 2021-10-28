@@ -48,29 +48,29 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklHaoTkTotalAbc extends Vue {
-  @Prop({ default: '' }) private tip!: string;
-  @Prop({ default: '' }) private tip1!: string;
-  @Prop({ default: 'Total' }) private totalTip!: string;
-  @Prop({ default: false }) private totalArrow!: boolean;
-  @Prop({ default: false }) private totalHelp!: boolean;
+  @Prop({ default: '' }) tip!: string;
+  @Prop({ default: '' }) tip1!: string;
+  @Prop({ default: 'Total' }) totalTip!: string;
+  @Prop({ default: false }) totalArrow!: boolean;
+  @Prop({ default: false }) totalHelp!: boolean;
 
-  @Prop({ default: false }) private help!: boolean;
+  @Prop({ default: false }) help!: boolean;
 
-  @Prop({ default: true }) private showSub!: boolean;
+  @Prop({ default: true }) showSub!: boolean;
 
-  @Prop({ default: '0' }) private totalValue!: string;
+  @Prop({ default: '0' }) totalValue!: string;
 
-  @Prop({ default: 'A' }) private aTip!: string;
-  @Prop({ default: '0' }) private aValue!: string;
-  @Prop({ default: false }) private aArrow!: boolean;
+  @Prop({ default: 'A' }) aTip!: string;
+  @Prop({ default: '0' }) aValue!: string;
+  @Prop({ default: false }) aArrow!: boolean;
 
-  @Prop({ default: 'B' }) private bTip!: string;
-  @Prop({ default: '0' }) private bValue!: string;
-  @Prop({ default: false }) private bArrow!: boolean;
+  @Prop({ default: 'B' }) bTip!: string;
+  @Prop({ default: '0' }) bValue!: string;
+  @Prop({ default: false }) bArrow!: boolean;
 
-  @Prop({ default: 'C' }) private cTip!: string;
-  @Prop({ default: '0' }) private cValue!: string;
-  @Prop({ default: false }) private cArrow!: boolean;
+  @Prop({ default: 'C' }) cTip!: string;
+  @Prop({ default: '0' }) cValue!: string;
+  @Prop({ default: false }) cArrow!: boolean;
 
   private get height () {
     return this.showSub ? '184px' : '100px'

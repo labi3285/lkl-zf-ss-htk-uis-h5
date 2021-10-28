@@ -22,9 +22,9 @@ import { LklToast as LklToastVM, LklToastType, LklToastOptions } from './index'
 
 @Component
 export default class LklToast extends Vue {
-  @Prop({ required: true }) private vm!: LklToastVM;
-  @Prop({ default: undefined }) private options!: LklToastOptions;
-  @Prop({ required: true }) private cleanHandler!: () => void;
+  @Prop({ required: true }) vm!: LklToastVM;
+  @Prop({ default: undefined }) options!: LklToastOptions;
+  @Prop({ required: true }) cleanHandler!: () => void;
 
   private get position (): string {
     return this.options?.position || 'auto'

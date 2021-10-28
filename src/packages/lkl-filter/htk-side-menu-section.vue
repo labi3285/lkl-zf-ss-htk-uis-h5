@@ -29,9 +29,9 @@ import LklIconFoldArrow from '../lkl-icons/icon-fold-arrow.vue'
   }
 })
 export default class LklSideMenuSection extends Vue {
-  @Prop({ default: '标题' }) private title!: string;
-  @Prop({ default: undefined }) private selectText!: string;
-  @Prop({ default: false }) private ignore!: boolean;
+  @Prop({ default: '标题' }) title!: string;
+  @Prop({ default: undefined }) selectText!: string;
+  @Prop({ default: false }) ignore!: boolean;
 
   private isFold = false
 

@@ -9,7 +9,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklSettingRowButton extends Vue {
-  @Prop({ default: '按钮' }) private title!: string;
+  @Prop({ default: '按钮' }) title!: string;
 }
 </script>
 

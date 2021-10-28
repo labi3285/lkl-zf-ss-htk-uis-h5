@@ -15,10 +15,10 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
   }
 })
 export default class LklLoadMore extends Vue {
-  @Prop({ required: true }) private isLoading!: boolean;
-  @Prop({ default: 50 }) private refreshDistance!: number;
-  @Prop({ default: 100 }) private maxDistance!: number;
-  @Prop({ default: 'body' }) private type!: string;
+  @Prop({ required: true }) isLoading!: boolean;
+  @Prop({ default: 50 }) refreshDistance!: number;
+  @Prop({ default: 100 }) maxDistance!: number;
+  @Prop({ default: 'body' }) type!: string;
 
   private get backgroundColor () {
     switch (this.type) {

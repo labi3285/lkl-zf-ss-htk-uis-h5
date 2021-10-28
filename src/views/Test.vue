@@ -8,6 +8,8 @@
 
         <lkl-input />
 
+        <lkl-head-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
+
         <lkl-space />
 
         <lkl-row>
@@ -47,7 +49,7 @@
           <div class="total-value">123.00</div>
           <div class="total-tip">总收益金额（元）</div>
         </lkl-col>
-        <lkl-segs :tabs="businesses" :currentTabCode.sync="business" />
+        <lkl-head-segs :tabs="businesses" :currentTabCode.sync="business" />
         <lkl-space height="60px" />
       </lkl-head-content>
 
@@ -57,12 +59,19 @@
         </lkl-card>
         <lkl-space height="18px" />
 
+        <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
+
         <lkl-item-segs :tabs="businesses" :currentTabCode.sync="business" />
 
-        <lklRank :rank1="rank1" :rank2="rank1" :rank="rank1" />
+        <LklRankTop3 :rank1="rank1" :rank2="rank1" :rank="rank1" />
+        <lkl-break-space/>
+        <LklRankMine />
+        <lkl-break-space/>
+        <LklRankOther />
+        <lkl-break-space/>
 
         <lkl-icon-label-arrow-tabs style="background-color: var(--clrListHead)" lineWidth="55px" :tabs="posTypeTabs" :currentTabCode.sync="posType" />
-        <lkl-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" :handleSideMenuShow="handleSideMenuShow" @filte="onFilte" />
+        <lkl-types-filter :query="query" :dimensions="filteDimensions" :mutexDimensionKeysGroups="[['c', 'd']]" :handleSideMenuShow="handleSideMenuShow" @filte="onFilte" :beforeSelectOption="beforeFilterSelectOption" />
         <lkl-break-line type='through' />
         <lkl-muti-level-statistics foldButtonMarginLeft="130px" nameColumWidth="140" :dataSource="statisticsDataSource1" />
 
@@ -89,7 +98,9 @@
 import { Vue, Component } from 'vue-property-decorator'
 
 import { LklRankItem } from '@/packages/lkl-rank/defines'
-import LklRank from '@/packages/lkl-rank/htk.vue'
+import LklRankTop3 from '@/packages/lkl-rank/htk-rank-top3.vue'
+import LklRankMine from '@/packages/lkl-rank/htk-rank-mine.vue'
+import LklRankOther from '@/packages/lkl-rank/htk-rank-other.vue'
 
 import LklHeadSearchButton from '@/packages/lkl-search/htk-head-search-button.vue'
 import LklHeadSearch from '@/packages/lkl-search/htk-head-search.vue'
@@ -97,8 +108,9 @@ import LklHeadSearch from '@/packages/lkl-search/htk-head-search.vue'
 import LklHeadInfos from '@/packages/lkl-content/htk-head-infos.vue'
 import LklHeadInfoItem from '@/packages/lkl-content/htk-head-info-item.vue'
 
-import LklSegs from '@/packages/lkl-tabs/htk-segs.vue'
+import LklHeadSegs from '@/packages/lkl-tabs/htk-head-segs.vue'
 import LklItemSegs from '@/packages/lkl-tabs/htk-item-segs.vue'
+import LklHeadTabs from '@/packages/lkl-tabs/htk-head-tabs.vue'
 import LklTabs from '@/packages/lkl-tabs/htk-tabs.vue'
 import LklIconLabelTabs from '@/packages/lkl-tabs/htk-icon-label-tabs.vue'
 import LklIconLabelArrowTabs from '@/packages/lkl-tabs/htk-icon-label-arrow-tabs.vue'
@@ -107,6 +119,7 @@ import LklTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
 import LklMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
 
 import { LklToast } from '@/packages/lkl-toast/index'
+import { LklDimension, LklDimensionlOption } from '@/packages/lkl-filter/defines'
 // import { LklConfirm, LklButtonAction } from '@/packages/lkl-confirm/index'
 
 @Component({
@@ -117,10 +130,13 @@ import { LklToast } from '@/packages/lkl-toast/index'
     LklHeadInfos,
     LklHeadInfoItem,
 
-    LklRank,
+    LklRankTop3,
+    LklRankMine,
+    LklRankOther,
 
-    LklSegs,
+    LklHeadSegs,
     LklItemSegs,
+    LklHeadTabs,
     LklTabs,
     LklIconLabelTabs,
     LklIconLabelArrowTabs,
@@ -298,7 +314,16 @@ export default class Test extends Vue {
       key: 'a',
       select: null,
       options: [
-        { label: '全部', value: '' },
+        {
+          label: '全部',
+          value: '',
+          sub: {
+            b: [
+              { label: '全部', value: '' },
+              { label: '4G电签全活动', value: 'b1' }
+            ]
+          }
+        },
         { label: '自有收益', value: 'a1' },
         { label: '合作方收益', value: 'a2' },
         { label: '联盟收益补贴', value: 'a3' }
@@ -309,8 +334,7 @@ export default class Test extends Vue {
       key: 'b',
       select: null,
       options: [
-        { label: '全部', value: '' },
-        { label: '4G电签全活动', value: 'b1' }
+        { label: '全部', value: '' }
       ]
     },
     {
@@ -328,37 +352,20 @@ export default class Test extends Vue {
       key: 'd',
       select: null,
       options: [
-        { label: '全部', value: '' },
-        { label: '交易收益', value: 'd1' },
-        { label: '返现收益', value: 'd2' },
-        { label: 'D0收益', value: 'd3' },
-        { label: '全部', value: '' },
-        { label: '交易收益', value: 'd1' },
-        { label: '返现收益', value: 'd2' },
-        { label: 'D0收益', value: 'd3' },
-        { label: '全部', value: '' },
-        { label: '交易收益', value: 'd1' },
-        { label: '返现收益', value: 'd2' },
-        { label: 'D0收益', value: 'd3' },
-        { label: '全部', value: '' },
-        { label: '交易收益', value: 'd1' },
-        { label: '返现收益', value: 'd2' },
-        { label: 'D0收益', value: 'd3' },
-        { label: '全部', value: '' },
-        { label: '交易收益', value: 'd1' },
-        { label: '返现收益', value: 'd2' },
-        { label: 'D0收益', value: 'd3' },
-        { label: '全部', value: '' },
-        { label: '交易收益', value: 'd1' },
-        { label: '返现收益', value: 'd2' },
-        { label: 'D0收益', value: 'd3' },
-        { label: '全部', value: '' },
-        { label: '交易收益', value: 'd1' },
-        { label: '返现收益', value: 'd2' },
-        { label: 'D0收益', value: 'd3' }
+        { label: '全部', value: '' }
       ]
     }
   ]
+
+  private beforeFilterSelectOption (dimension: LklDimension, option: LklDimensionlOption, done: () => void) {
+    this.filteDimensions[3].options = [
+      { label: '全部', value: '' },
+      { label: '交易收益', value: 'd1' },
+      { label: '返现收益', value: 'd2' },
+      { label: 'D0收益', value: 'd3' }
+    ]
+    done()
+  }
 
   private pieChartDataSource = [
     { name: '自有激活数', color: '#FF0000', value: 60000 },

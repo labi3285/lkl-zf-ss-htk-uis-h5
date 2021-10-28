@@ -19,9 +19,9 @@ import LklIconArrow from '../lkl-icons/icon-arrow.vue'
   }
 })
 export default class LklColumsList extends Vue {
-  @Prop({ default: undefined }) private items!: string[];
-  @Prop({ default: undefined }) private columWidths!: string[];
-  @Prop({ default: false }) private rightArrowed!: boolean;
+  @Prop({ default: undefined }) items!: string[];
+  @Prop({ default: undefined }) columWidths!: string[];
+  @Prop({ default: false }) rightArrowed!: boolean;
 
   private columWidth (i: number) {
     if (this.columWidths && this.columWidths.length > i) {

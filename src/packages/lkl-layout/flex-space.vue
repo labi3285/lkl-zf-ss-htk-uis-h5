@@ -7,7 +7,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklLayoutRowLFlexSpace extends Vue {
-  @Prop({ default: '1' }) private rate!: string;
+  @Prop({ default: '1' }) rate!: string;
 }
 </script>
 

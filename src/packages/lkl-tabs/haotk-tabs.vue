@@ -17,8 +17,8 @@ import { LklTab } from './defines'
 
 @Component
 export default class LklHaotkTabs extends Vue {
-  @Prop({ default: undefined }) private tabs!: LklTab[];
-  @Prop({ required: true }) private currentTabCode!: string | number;
+  @Prop({ default: undefined }) tabs!: LklTab[];
+  @Prop({ required: true }) currentTabCode!: string | number;
 
   private onTabClick (e: LklTab) {
     if (e.code === this.currentTabCode) {

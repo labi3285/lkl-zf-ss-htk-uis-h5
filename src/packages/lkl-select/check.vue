@@ -11,8 +11,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklCheck extends Vue {
-  @Prop({ required: true }) private isSelect!: boolean;
-  @Prop({ default: undefined }) private label!: string;
+  @Prop({ required: true }) isSelect!: boolean;
+  @Prop({ default: undefined }) label!: string;
 
   private onClick () {
     this.$emit('update:isSelect', !this.isSelect)

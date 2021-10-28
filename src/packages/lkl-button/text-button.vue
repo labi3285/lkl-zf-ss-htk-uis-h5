@@ -9,9 +9,9 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklTextButton extends Vue {
-  @Prop({ default: 'var(--clrTheme)' }) private color!: string;
-  @Prop({ default: '按钮' }) private text!: string;
-  @Prop({ default: false }) private isUnderline!: boolean;
+  @Prop({ default: 'var(--clrTheme)' }) color!: string;
+  @Prop({ default: '按钮' }) text!: string;
+  @Prop({ default: false }) isUnderline!: boolean;
 }
 </script>
 

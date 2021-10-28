@@ -7,8 +7,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklLine extends Vue {
-  @Prop({ default: '1px' }) private width!: string;
-  @Prop({ default: '1px' }) private height!: string;
+  @Prop({ default: '1px' }) width!: string;
+  @Prop({ default: '1px' }) height!: string;
 }
 </script>
 

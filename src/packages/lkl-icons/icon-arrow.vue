@@ -7,8 +7,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
 export default class LklArrow extends Vue {
-  @Prop({ default: 'right' }) private direction!: string;
-  @Prop({ default: 'var(--clrT2)' }) private color!: string;
+  @Prop({ default: 'right' }) direction!: string;
+  @Prop({ default: 'var(--clrT2)' }) color!: string;
 
   private get rotate (): string {
     switch (this.direction) {

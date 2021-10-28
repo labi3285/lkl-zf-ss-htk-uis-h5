@@ -31,7 +31,7 @@ import LklIconClose from '../lkl-icons/icon-close.vue'
   }
 })
 export default class NavBar extends Vue {
-  @Prop({ default: undefined }) private title!: string;
+  @Prop({ default: undefined }) title!: string;
 
   private get statusBarHeight () {
     return parseInt(getQueryString('statusBarHeight')) || 20

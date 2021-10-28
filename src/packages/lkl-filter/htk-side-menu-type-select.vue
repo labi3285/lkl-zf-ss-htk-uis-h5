@@ -1,8 +1,8 @@
 <template>
   <lkl-side-menu-section class="lkl-side-menu-type-select" :title="title" :selectText="selectText" :ignore="ignore">
-    <div v-if="items === undefined || items.length === 0" class="lkl-side-menu-type-select-empty">暂无筛选条件</div>
+    <div v-if="options === undefined || options.length === 0" class="lkl-side-menu-type-select-empty">暂无筛选条件</div>
     <div else class="lkl-side-menu-type-select-labels">
-      <div v-for="(e, i) in items" :key="i" :class="isSelect(e) ? (ignore ? 'lkl-side-menu-type-select-labels-label-select-ignore' : 'lkl-side-menu-type-select-labels-label-select') : 'lkl-side-menu-type-select-labels-label'" @click.stop="onItemClick(e)">
+      <div v-for="(e, i) in options" :key="i" :class="isSelect(e) ? (ignore ? 'lkl-side-menu-type-select-labels-label-select-ignore' : 'lkl-side-menu-type-select-labels-label-select') : 'lkl-side-menu-type-select-labels-label'" @click.stop="onItemClick(e)">
         {{ ellipsisText(e.label) }}
         <svg v-if="isSelect(e)" class="lkl-side-menu-type-select-labels-label-select-corner" viewBox="0 0 13 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <g id="画板备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import LklSideMenuSection from './htk-side-menu-section.vue'
-import { LklLabelValue } from './defines'
+import { LklDimensionlOption } from './defines'
 
 @Component({
   components: {
@@ -32,11 +32,13 @@ import { LklLabelValue } from './defines'
   }
 })
 export default class LklSideMenuTypeSelect extends Vue {
-  @Prop({ default: '类型' }) private title!: string;
-  @Prop({ default: undefined }) private items!: LklLabelValue[];
-  @Prop({ default: null }) private selectItem!: LklLabelValue | null;
-  @Prop({ default: true }) private canDisselect!: boolean;
-  @Prop({ default: false }) private ignore!: boolean;
+  @Prop({ default: '类型' }) title!: string;
+  @Prop({ default: undefined }) options!: LklDimensionlOption[];
+  @Prop({ default: null }) selectItem!: LklDimensionlOption | null;
+  @Prop({ default: true }) canDisselect!: boolean;
+  @Prop({ default: false }) ignore!: boolean;
+  @Prop({ default: undefined }) beforeSelect!: (option: LklDimensionlOption, index: number, done: () => void) => void;
+  @Prop({ default: undefined }) index!: number;
 
   private get selectText () {
     if (this.selectItem && this.selectItem !== null) {
@@ -45,7 +47,7 @@ export default class LklSideMenuTypeSelect extends Vue {
     return undefined
   }
 
-  private isSelect (item: LklLabelValue) {
+  private isSelect (item: LklDimensionlOption) {
     if (this.selectItem && this.selectItem !== null) {
       if (item.value === this.selectItem.value) {
         return true
@@ -90,7 +92,20 @@ export default class LklSideMenuTypeSelect extends Vue {
     }
   }
 
-  private onItemClick (item: LklLabelValue) {
+  private onItemClick (item: LklDimensionlOption) {
+    if (this.selectItem && this.selectItem.value === item.value) {
+      return
+    }
+    if (this.beforeSelect !== undefined || this.beforeSelect !== null) {
+      this.beforeSelect(item, this.index, () => {
+        this._doSelect(item)
+      })
+    } else {
+      this._doSelect(item)
+    }
+  }
+
+  private _doSelect (item: LklDimensionlOption) {
     if (this.ignore) {
       this.$emit('update:selectItem', item)
     } else {
