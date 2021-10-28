@@ -3,6 +3,8 @@
     <lkl-nav></lkl-nav>
     <lkl-scroll class="scroll">
 
+      <lkl-title title="xxx" :value="12" />
+
       <!-- <lkl-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" /> -->
       <lkl-head-content>
 
@@ -58,6 +60,8 @@
           <lkl-icon-label-tabs :tabs="settleOrNots" :currentTabCode.sync="settleOrNot" />
         </lkl-card>
         <lkl-space height="18px" />
+
+        <LklTotalAbSimple/>
 
         <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
 
@@ -122,8 +126,11 @@ import { LklToast } from '@/packages/lkl-toast/index'
 import { LklDimension, LklDimensionlOption } from '@/packages/lkl-filter/defines'
 // import { LklConfirm, LklButtonAction } from '@/packages/lkl-confirm/index'
 
+import LklTotalAbSimple from '@/packages/lkl-summary/htk-total-ab-simple.vue'
+
 @Component({
   components: {
+    LklTotalAbSimple,
     LklHeadSearchButton,
     LklHeadSearch,
 

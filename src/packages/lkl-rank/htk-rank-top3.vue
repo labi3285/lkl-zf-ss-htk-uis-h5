@@ -34,7 +34,7 @@ export default class LklHtkRankTop3 extends Vue {
   @Prop({ default: undefined }) public rank1!: LklRankItem;
   @Prop({ default: undefined }) public rank2!: LklRankItem;
   @Prop({ default: undefined }) public rank3!: LklRankItem;
-  @Prop({ default: false }) public isUnitShow!: boolean;
+  @Prop({ default: true }) public isUnitShow!: boolean;
 }
 </script>
 

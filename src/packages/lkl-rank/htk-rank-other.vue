@@ -60,6 +60,7 @@ export default class LklHtkRankMine extends Vue {
         color: #D16954;
         font-weight: bold;
         font-size: 20px;
+        padding-bottom: 5px;
       }
     }
   }
