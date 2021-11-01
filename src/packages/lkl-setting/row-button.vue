@@ -21,8 +21,8 @@ export default class LklSettingRowButton extends Vue {
 .lkl-setting-row-button {
   padding: var(--marginTB) var(--marginLR) var(--marginTB) var(--marginLR);
   &-button {
-    height: var(--buttonH);
-    border-radius: var(--radiusM);
+    height: 45px;
+    border-radius: 4px;
     background-color: var(--clrTheme);
     display: flex;
     align-items: center;

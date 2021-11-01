@@ -211,7 +211,7 @@ export default class LklLineChart extends Vue {
       &-dot {
         width: 8px;
         height: 8px;
-        border-radius: var(--radiusL);
+        border-radius: 8px;
         border-width: 1px;
         border-color: #ffffff;
         border-style: solid;

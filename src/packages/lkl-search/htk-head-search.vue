@@ -1,11 +1,11 @@
 <template>
   <div class="lkl-htk-head-search">
-    <lkl-input class="lkl-htk-head-search-input" color="#ffffff" :clean="true" cleanStyle="cross" placeholderColor="rgba(255, 255, 255, 0.8)" />
+    <lkl-input :text.sync="inputText" :pattern="pattern" :placeholder="placeholder" class="lkl-htk-head-search-input" color="#ffffff" :clean="true" cleanStyle="cross" placeholderColor="rgba(255, 255, 255, 0.8)" @enter="onEnter" @blur="onBlur" @clean="onClean" />
   </div>
 </template>
 
 <script lang="ts">
-import { Vue, Component, Prop } from 'vue-property-decorator'
+import { Vue, Component, Prop, Watch } from 'vue-property-decorator'
 import LklInput from '../lkl-input/input.vue'
 
 @Component({
@@ -15,6 +15,33 @@ import LklInput from '../lkl-input/input.vue'
 })
 export default class SearchButton extends Vue {
   @Prop({ default: '请输入内容' }) public placeholder!: string;
+  @Prop({ default: '' }) public pattern!: string;
+  @Prop({ required: true }) text!: string;
+
+  private inputText = ''
+  @Watch('inputText')
+  private onInputTextChange () {
+    this.$emit('update:text', this.inputText)
+    this.$nextTick(() => {
+      this.$emit('change')
+    })
+  }
+
+  private onEnter () {
+    this.$emit('enter')
+  }
+
+  private onBlur () {
+    this.$emit('blur')
+  }
+
+  private onClean () {
+    this.inputText = ''
+    this.$emit('update:text', '')
+    this.$nextTick(() => {
+      this.$emit('clean')
+    })
+  }
 }
 </script>
 

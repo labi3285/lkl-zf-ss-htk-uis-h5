@@ -32,7 +32,8 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import LklIconFilter from '../lkl-icons/icon-filter.vue'
-import { LklDimension, LklDimensionlOption } from './defines'
+import { LklLabelValue } from '../defines/key-value'
+import { LklDimension } from './defines'
 import LklSideMenu from './htk-side-menu.vue'
 import LklSideMenuSection from './htk-side-menu-section.vue'
 import LklSideMenuTypeSelect from './htk-side-menu-type-select.vue'
@@ -49,7 +50,7 @@ export default class LklHtkTypesFilter extends Vue {
   @Prop({ default: undefined }) dimensions!: LklDimension[];
   @Prop({ default: undefined }) query!: Record<string, string>;
   @Prop({ default: undefined }) beforeSideMenuShow!: (done: () => void) => void;
-  @Prop({ default: undefined }) beforeSelectOption!: (dimension: LklDimension, option: LklDimensionlOption, done: () => void) => void;
+  @Prop({ default: undefined }) beforeSelectOption!: (dimension: LklDimension, option: LklLabelValue, done: () => void) => void;
 
   /// 互斥维度, 默认选择第一个
   @Prop({ default: undefined }) mutexDimensionKeysGroups!: string[][];
@@ -227,7 +228,7 @@ export default class LklHtkTypesFilter extends Vue {
     }
   }
 
-  private onBeforeSelectOption (option: LklDimensionlOption, i: number, done: () => void) {
+  private onBeforeSelectOption (option: LklLabelValue, i: number, done: () => void) {
     if (this.beforeSelectOption === undefined || this.beforeSelectOption === null) {
       done()
     } else {

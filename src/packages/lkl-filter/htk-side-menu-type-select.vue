@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import LklSideMenuSection from './htk-side-menu-section.vue'
-import { LklDimensionlOption } from './defines'
+import { LklLabelValue } from '../defines/key-value'
 
 @Component({
   components: {
@@ -33,11 +33,11 @@ import { LklDimensionlOption } from './defines'
 })
 export default class LklSideMenuTypeSelect extends Vue {
   @Prop({ default: '类型' }) title!: string;
-  @Prop({ default: undefined }) options!: LklDimensionlOption[];
-  @Prop({ default: null }) selectItem!: LklDimensionlOption | null;
+  @Prop({ default: undefined }) options!: LklLabelValue[];
+  @Prop({ default: null }) selectItem!: LklLabelValue | null;
   @Prop({ default: true }) canDisselect!: boolean;
   @Prop({ default: false }) ignore!: boolean;
-  @Prop({ default: undefined }) beforeSelect!: (option: LklDimensionlOption, index: number, done: () => void) => void;
+  @Prop({ default: undefined }) beforeSelect!: (option: LklLabelValue, index: number, done: () => void) => void;
   @Prop({ default: undefined }) index!: number;
 
   private get selectText () {
@@ -47,7 +47,7 @@ export default class LklSideMenuTypeSelect extends Vue {
     return undefined
   }
 
-  private isSelect (item: LklDimensionlOption) {
+  private isSelect (item: LklLabelValue) {
     if (this.selectItem && this.selectItem !== null) {
       if (item.value === this.selectItem.value) {
         return true
@@ -92,7 +92,7 @@ export default class LklSideMenuTypeSelect extends Vue {
     }
   }
 
-  private onItemClick (item: LklDimensionlOption) {
+  private onItemClick (item: LklLabelValue) {
     if (this.selectItem && this.selectItem.value === item.value) {
       return
     }
@@ -105,7 +105,7 @@ export default class LklSideMenuTypeSelect extends Vue {
     }
   }
 
-  private _doSelect (item: LklDimensionlOption) {
+  private _doSelect (item: LklLabelValue) {
     if (this.ignore) {
       this.$emit('update:selectItem', item)
     } else {

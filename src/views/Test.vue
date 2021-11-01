@@ -8,15 +8,13 @@
       <!-- <lkl-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" /> -->
       <lkl-head-content>
 
-        <lkl-input />
-
         <lkl-head-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
 
         <lkl-space />
 
         <lkl-row>
           <lkl-space width="var(--marginLR)" />
-          <lklHeadSearch style="flex: 1" />
+          <lklHeadSearch :text.sync="text" style="flex: 1" />
           <lkl-space width="var(--marginLR)" />
         </lkl-row>
         <lkl-space />
@@ -63,6 +61,8 @@
 
         <LklTotalAbSimple/>
 
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+
         <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
 
         <lkl-item-segs :tabs="businesses" :currentTabCode.sync="business" />
@@ -87,7 +87,6 @@
         <lkl-break-line />
         <lkl-total-ab tipA="联盟交易(元）" valueA="88.00" :isBShow="false" />
         <lkl-break-space /> -->
-
         <lkl-space />
         <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
         <lkl-colums-list-header :items="headerItems" :columWidths="['1.5', '1.5', '1', '1', '1']" />
@@ -95,11 +94,35 @@
         <!-- <lkl-load-more :isLoadOnMounted="true" :isLoading.sync="isListLoading" :isThereMore="isListMore" @load="onListLoad(false)" /> -->
       </lkl-card-content>
     </lkl-scroll>
+
+    <lkl-button @click.native="confirmClick">确认</lkl-button>
+    <lkl-button :disabled="true" @click.native="confirmClick">确认</lkl-button>
+
+    <lkl-button type='default' size='normal'>休闲鞋</lkl-button>
+    <lkl-button type='default' size='normal' disabled="true">休闲鞋</lkl-button>
+
+    <lkl-button type='border' size='normal'>休闲鞋</lkl-button>
+    <lkl-button type='border' size='normal' disabled="true">休闲鞋1</lkl-button>
+
+    <lkl-button type='default' size='small'>休闲鞋</lkl-button>
+    <lkl-button type='default' size='small' disabled="true">休闲鞋</lkl-button>
+
+    <lkl-button type='border' size='small'>休闲鞋</lkl-button>
+    <lkl-button type='border' size='small' disabled="true">休闲鞋</lkl-button>
+
+    <lkl-dialog ref="confirm" @reset="onReset" @confirm="onConfirm">
+      基本流程：喷水、喷清洗剂、洗涤、喷水清洗、风干、喷抛光剂、抛光、出库。全程流水作业，不需要人工。
+    </lkl-dialog>
   </lkl-content>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
+
+import LklDialog from '@/packages/lkl-dialog/htk-dialog.vue'
+
+import { LklLabelValue } from '@/packages/defines/key-value'
+import LklFoldSelect from '@/packages/lkl-fold-select/htk.vue'
 
 import { LklRankItem } from '@/packages/lkl-rank/defines'
 import LklRankTop3 from '@/packages/lkl-rank/htk-rank-top3.vue'
@@ -123,13 +146,17 @@ import LklTypesFilter from '@/packages/lkl-filter/htk-types-filter.vue'
 import LklMutiLevelStatistics from '@/packages/lkl-summary/htk-muti-level-statistics.vue'
 
 import { LklToast } from '@/packages/lkl-toast/index'
-import { LklDimension, LklDimensionlOption } from '@/packages/lkl-filter/defines'
-// import { LklConfirm, LklButtonAction } from '@/packages/lkl-confirm/index'
+import { LklDimension } from '@/packages/lkl-filter/defines'
+import { LklConfirm, LklButtonAction, LklConfirmButtonType } from '@/packages/lkl-confirm/index'
 
 import LklTotalAbSimple from '@/packages/lkl-summary/htk-total-ab-simple.vue'
 
 @Component({
   components: {
+    LklDialog,
+
+    LklFoldSelect,
+
     LklTotalAbSimple,
     LklHeadSearchButton,
     LklHeadSearch,
@@ -154,6 +181,49 @@ import LklTotalAbSimple from '@/packages/lkl-summary/htk-total-ab-simple.vue'
 })
 export default class Test extends Vue {
   private dateRange: { start: Date, end: Date } | null = null;
+
+  private text = ''
+
+  private confirmClick () {
+    LklConfirm.show('标题', '基本流程：喷水、喷清洗剂、洗涤、喷水清洗、风干、喷抛光剂、抛光、出库。全程流水作业，不需要人工。', [
+
+      {
+        type: 'default',
+        title: '确定'
+      },
+      {
+        type: 'default',
+        title: '确定'
+      },
+      {
+        type: 'default',
+        title: '确定'
+      },
+      {
+        type: 'cancel',
+        title: '取消'
+      }
+    ])
+    // (this.$refs.confirm as LklDialog).show()
+  }
+
+  private onReset () {
+    // xx
+  }
+
+  private onConfirm () {
+    // x
+  }
+
+  private xxx (e: string) {
+    console.log(e)
+  }
+
+  private foldSelectSelectValue = ''
+  private foldSelectItems: LklLabelValue[] = [
+    { label: 'AAA', value: '1' },
+    { label: 'BBB', value: '2' }
+  ]
 
   private mounted () {
     // document.body.style.overflow = 'hidden'
@@ -364,7 +434,7 @@ export default class Test extends Vue {
     }
   ]
 
-  private beforeFilterSelectOption (dimension: LklDimension, option: LklDimensionlOption, done: () => void) {
+  private beforeFilterSelectOption (dimension: LklDimension, option: LklLabelValue, done: () => void) {
     this.filteDimensions[3].options = [
       { label: '全部', value: '' },
       { label: '交易收益', value: 'd1' },

@@ -3,9 +3,9 @@ import Vue from 'vue'
 
 import vConfirm from './index.vue'
 
-export type LklButtonType = 'default' | 'danger' | 'warning' | 'cancel'
+export type LklConfirmButtonType = 'default' | 'danger' | 'warning' | 'cancel'
 export interface LklButtonAction {
-  type?: LklButtonType;
+  type?: LklConfirmButtonType;
   title: string;
   /// default: false
   disabled?: boolean;

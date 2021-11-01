@@ -44,7 +44,7 @@ export default class LklTotal extends Vue {
     margin: 0 var(--marginLR) 0 var(--marginLR);
     width: calc(100% - var(--marginLR) * 2);
     .auto-bg-image('resources/haotk-total-bg');
-    border-radius: var(--radiusL);
+    border-radius: 8px;
     position: relative;
     height: 100px;
     background-color: #ffd53e;

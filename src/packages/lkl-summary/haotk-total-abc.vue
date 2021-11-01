@@ -90,7 +90,7 @@ export default class LklHaoTkTotalAbc extends Vue {
     width: calc(100% - var(--marginLR) * 2);
     .auto-bg-image('resources/haotk-total-abc-bg');
     background-size: 100% !important;
-    border-radius: var(--radiusL);
+    border-radius: 8px;
     position: relative;
     overflow: hidden;
     background-color: #ffd53e;

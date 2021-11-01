@@ -1,4 +1,4 @@
-import { LklValueProp, LklColorProp } from './utils/Prop'
+import { LklValueProp, LklColorProp } from './defines/color'
 
 export function setupProps (props: LklValueProp[]): void {
   for (const e of props) {

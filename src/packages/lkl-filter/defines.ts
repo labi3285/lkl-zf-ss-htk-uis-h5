@@ -1,11 +1,8 @@
-export interface LklDimensionlOption {
-  label: string
-  value: string
-}
+import { LklLabelValue } from '../defines/key-value'
 
 export interface LklDimension {
   name: string
   key: string
-  select: LklDimensionlOption | null
-  options: LklDimensionlOption[]
+  select: LklLabelValue | null
+  options: LklLabelValue[]
 }

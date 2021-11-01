@@ -1,4 +1,4 @@
-import { LklValueProp, LklColorProp } from './utils/Prop'
+import { LklValueProp, LklColorProp } from './defines/color'
 
 export const defaultSizeConfigs: LklValueProp[] = [
 
@@ -25,17 +25,8 @@ export const defaultSizeConfigs: LklValueProp[] = [
   // 行上下的padding
   { key: '--paddingTB', value: '15px' },
 
-  // 按钮高
-  { key: '--buttonH', value: '45px' },
   // 行高
   { key: '--rowH', value: '45px' },
-
-  // 圆角小，用于小标签等
-  { key: '--radiusS', value: '2px' },
-  // 圆角中等，用于按钮
-  { key: '--radiusM', value: '4px' },
-  // 圆角大，用于卡片等
-  { key: '--radiusL', value: '8px' },
 
   { key: '', value: '' }
 ]
@@ -75,6 +66,8 @@ export const defaultColorConfigs: LklColorProp[] = [
   // 用于required
   { key: '--clrRequire', value: { normal: 'red' } },
 
+  { key: '--clrDisable', value: { normal: '#cccccc', dark: '#333333' } },
+
   // 提示颜色-警告
   { key: '--clrWarning', value: { normal: 'orange' } },
   // 提示颜色-成功
@@ -90,7 +83,7 @@ export const defaultColorConfigs: LklColorProp[] = [
   { key: '--clrToast', value: { normal: 'rgba(0, 0, 0, 0.8)', dark: 'rgba(50, 50, 50, 0.7)' } },
 
   // 蒙板颜色
-  { key: '--clrMask', value: { normal: 'rgba(0, 0, 0, 0.2)', dark: 'rgba(0, 0, 0, 0.2)' } },
+  { key: '--clrMask', value: { normal: 'rgba(0, 0, 0, 0.7)', dark: 'rgba(0, 0, 0, 0.2)' } },
 
   { key: '', value: { normal: '' } }
 ]

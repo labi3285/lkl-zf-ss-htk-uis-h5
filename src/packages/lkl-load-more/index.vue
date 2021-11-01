@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator'
+import { Component, Watch, Prop, Vue } from 'vue-property-decorator'
 import frameChange from '../utils/directives/frameChange'
 import offsetChange from '../utils/directives/offsetChange'
 
@@ -21,6 +21,20 @@ export default class LklLoadMore extends Vue {
   @Prop({ required: true }) isLoading!: boolean;
   @Prop({ default: false }) isLoadOnMounted!: boolean;
   @Prop({ default: true }) isThereMore!: boolean;
+
+  @Watch('isLoading')
+  private onIsLoadingChange () {
+    if (!this.isLoading && this.isThereMore) {
+      this.onViewChange()
+    }
+  }
+
+  @Watch('isThereMore')
+  private onIsThereMore () {
+    if (!this.isLoading && this.isThereMore) {
+      this.onViewChange()
+    }
+  }
 
   private mounted () {
     if (this.isLoadOnMounted && this.isThereMore) {

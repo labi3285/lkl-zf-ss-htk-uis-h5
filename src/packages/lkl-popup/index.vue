@@ -19,14 +19,14 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export interface LklPopupRect {
   x: number;
   y: number;
-  w: number;
-  h: number;
+  w?: number;
+  h?: number;
 }
 
 @Component
 export default class LklPopup extends Vue {
-  @Prop({ default: undefined }) popupStartRect!: (maskRect: LklPopupRect) => LklPopupRect;
-  @Prop({ required: true }) popupRect!: (maskRect: LklPopupRect) => LklPopupRect;
+  @Prop({ default: undefined }) popupStartRect!: (maskRect: DOMRect) => LklPopupRect;
+  @Prop({ required: true }) popupRect!: (maskRect: DOMRect) => LklPopupRect;
   @Prop({ default: 0.2 }) popupShowSecs!: number;
   @Prop({ default: 0.2 }) popupHideSecs!: number;
   @Prop({ default: true }) isHideOnTapBankground!: boolean;
@@ -68,23 +68,27 @@ export default class LklPopup extends Vue {
     const r = (this.$refs.popup as HTMLDivElement).getBoundingClientRect()
     let rect: LklPopupRect
     if (this.popupStartRect !== undefined && this.popupStartRect !== null) {
-      rect = this.popupStartRect({ x: r.x, y: r.y, w: r.width, h: r.height })
+      rect = this.popupStartRect(r)
     } else {
-      rect = this.popupRect({ x: r.x, y: r.y, w: r.width, h: r.height })
+      rect = this.popupRect(r)
     }
     el.style.left = rect.x + 'px'
     el.style.top = rect.y + 'px'
-    el.style.width = rect.w + 'px'
-    el.style.height = rect.h + 'px'
+    if (rect.w) {
+      el.style.width = rect.w + 'px'
+    }
+    if (rect.h) {
+      el.style.height = rect.h + 'px'
+    }
   }
 
   private enter (el: HTMLElement, done: () => void) {
     const mask = this.$refs.popup as HTMLElement
     const r = (this.$refs.popup as HTMLDivElement).getBoundingClientRect()
-    const to = this.popupRect({ x: r.x, y: r.y, w: r.width, h: r.height })
+    const to = this.popupRect(r)
     let from = to
     if (this.popupStartRect !== undefined && this.popupStartRect !== null) {
-      from = this.popupStartRect({ x: r.x, y: r.y, w: r.width, h: r.height })
+      from = this.popupStartRect(r)
     }
     this.__animatePopup(el, from, to, this.popupShowSecs, done)
     this.__animateMask(mask, 0, 1, this.popupHideSecs, () => {
@@ -95,10 +99,10 @@ export default class LklPopup extends Vue {
   private leave (el: HTMLElement, done: () => void) {
     const mask = this.$refs.popup as HTMLElement
     const r = (this.$refs.popup as HTMLDivElement).getBoundingClientRect()
-    const from = this.popupRect({ x: r.x, y: r.y, w: r.width, h: r.height })
+    const from = this.popupRect(r)
     let to = from
     if (this.popupStartRect !== undefined && this.popupStartRect !== null) {
-      to = this.popupStartRect({ x: r.x, y: r.y, w: r.width, h: r.height })
+      to = this.popupStartRect(r)
     }
     this.__animatePopup(el, from, to, this.popupHideSecs, () => {
       done()
@@ -122,17 +126,21 @@ export default class LklPopup extends Vue {
   private __animatePopup (el: HTMLElement, from: LklPopupRect, to: LklPopupRect, secs: number, done: () => void) {
     let x = from.x
     let y = from.y
-    let w = from.w
-    let h = from.h
-    this.__animatePoints([from.x, from.y, from.w, from.h], [to.x, to.y, to.w, to.h], secs, (frame: number, deltas: number[], isDone: boolean) => {
+    let w = from.w ?? 0
+    let h = from.h ?? 0
+    this.__animatePoints([from.x, from.y, from.w ?? 0, from.h ?? 0], [to.x, to.y, to.w ?? 0, to.h ?? 0], secs, (frame: number, deltas: number[], isDone: boolean) => {
       x += deltas[0]
       y += deltas[1]
       w += deltas[2]
       h += deltas[3]
       el.style.left = x + 'px'
       el.style.top = y + 'px'
-      el.style.width = w + 'px'
-      el.style.height = h + 'px'
+      if (to.w) {
+        el.style.width = w + 'px'
+      }
+      if (to.h) {
+        el.style.height = h + 'px'
+      }
       if (isDone) {
         done()
       }

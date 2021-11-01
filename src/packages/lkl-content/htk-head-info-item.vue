@@ -3,7 +3,7 @@
     <div class="lkl-htk-head-info-item-icon" :class="iconCls"></div>
     <span class="lkl-htk-head-info-item-title">{{ title }}： </span>
     <span class="lkl-htk-head-info-item-content">
-      <slot>{{ content }}</slot>
+      <slot></slot>
     </span>
   </div>
 </template>

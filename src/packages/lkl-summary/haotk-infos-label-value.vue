@@ -13,7 +13,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
 @Component
-export default class LklHaotkInfosLklDimensionlOption extends Vue {
+export default class LklHaotkInfosLklLabelValue extends Vue {
   @Prop({ default: 'label' }) label!: string;
   @Prop({ default: 'value' }) value!: string;
 }

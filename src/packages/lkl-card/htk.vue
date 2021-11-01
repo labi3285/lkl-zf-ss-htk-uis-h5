@@ -19,7 +19,7 @@ export default class LklHaotkCard extends Vue {
   margin-left: var(--marginLR);
   margin-right: var(--marginLR);
   background-color: var(--clrBody);
-  border-radius: var(--radiusM);
+  border-radius: 4px;
   -webkit-box-shadow: var(--clrShadow) 0px 0px 3px;
   -moz-box-shadow: var(--clrShadow) 0px 0px 3px;
   box-shadow: var(--clrShadow) 0px 0px 3px;

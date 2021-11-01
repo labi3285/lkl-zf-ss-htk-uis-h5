@@ -149,7 +149,7 @@ export default class LklPieChart extends Vue {
       &-item {
         width: 8px;
         height: 8px;
-        border-radius: var(--radiusL);
+        border-radius: 8px;
         border-width: 1px;
         border-color: #ffffff;
         border-style: solid;

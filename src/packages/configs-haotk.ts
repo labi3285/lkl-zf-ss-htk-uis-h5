@@ -1,4 +1,4 @@
-import { LklValueProp, LklColorProp } from './utils/Prop'
+import { LklValueProp, LklColorProp } from './defines/color'
 
 export const defaultSizeConfigs: LklValueProp[] = [
 
@@ -23,15 +23,11 @@ export const defaultSizeConfigs: LklValueProp[] = [
   // 行上下的padding
   { key: '--paddingTB', value: '15px' },
 
-  // 按钮高
-  { key: '--buttonH', value: '45px' },
   // 行高
   { key: '--rowH', value: '45px' },
 
   // 圆角小，用于小标签等
   { key: '--radiusS', value: '2px' },
-  // 圆角中等，用于按钮
-  { key: '--radiusM', value: '4px' },
   // 圆角大，用于卡片等
   { key: '--radiusL', value: '8px' },
 
@@ -58,6 +54,8 @@ export const defaultColorConfigs: LklColorProp[] = [
 
   // 列表高亮row
   { key: '--clrListDiv', value: { normal: '#FFFDEB', dark: '#000000' } },
+
+  { key: '--clrDisable', value: { normal: '#efefef', dark: '#666666' } },
 
   // 卡片阴影
   { key: '--clrShadow', value: { normal: '#E3E3E3', dark: '#121212' } },

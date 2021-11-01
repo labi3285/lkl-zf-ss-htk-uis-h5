@@ -11,8 +11,8 @@
       <div style="height: 30px"></div>
     </div>
     <div class="lkl-side-menu-popup-bottom">
-      <div class="lkl-side-menu-popup-bottom-reset" @click.stop="reset">重置</div>
-      <div class="lkl-side-menu-popup-bottom-confirm" @click.stop="confirm">确定</div>
+      <div class="lkl-side-menu-popup-bottom-reset" @click.stop="onReset">重置</div>
+      <div class="lkl-side-menu-popup-bottom-confirm" @click.stop="onConfirm">确定</div>
     </div>
   </lkl-popup>
 </template>
@@ -40,11 +40,11 @@ export default class LklSideMenu extends Vue {
     (this.$refs.popup as LklPopup).close()
   }
 
-  public reset (): void {
+  public onReset (): void {
     this.$emit('reset')
   }
 
-  public confirm (): void {
+  public onConfirm (): void {
     this.close()
   }
 
@@ -56,12 +56,12 @@ export default class LklSideMenu extends Vue {
     return parseInt(getQueryString('statusBarHeight')) || 0
   }
 
-  private popupStartRect (maskRect: LklPopupRect): LklPopupRect {
-    return { x: maskRect.w, y: 0, w: maskRect.w - 47, h: maskRect.h }
+  private popupStartRect (maskRect: DOMRect): LklPopupRect {
+    return { x: maskRect.width, y: 0, w: maskRect.width - 47, h: maskRect.height }
   }
 
-  private popupRect (maskRect: LklPopupRect): LklPopupRect {
-    return { x: 47, y: 0, w: maskRect.w - 47, h: maskRect.h }
+  private popupRect (maskRect: DOMRect): LklPopupRect {
+    return { x: 47, y: 0, w: maskRect.width - 47, h: maskRect.height }
   }
 }
 </script>

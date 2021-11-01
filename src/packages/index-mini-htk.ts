@@ -27,7 +27,7 @@ import LklIconBack from './lkl-icons/icon-back.vue'
 import LklIconClose from './lkl-icons/icon-close.vue'
 import LklIconFilter from './lkl-icons/icon-filter.vue'
 
-import LklButton from './lkl-button/button.vue'
+import LklButton from './lkl-button/htk-button.vue'
 import LklTextButton from './lkl-button/text-button.vue'
 import LklInput from './lkl-input/input.vue'
 import LklTitle from './lkl-title/htk-title.vue'
