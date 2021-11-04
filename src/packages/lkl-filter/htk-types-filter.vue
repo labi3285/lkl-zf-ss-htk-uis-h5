@@ -1,5 +1,5 @@
 <template>
-  <div class="lkl-htk-types-filter" @click.stop="onFilteClick">
+  <div class="lkl-htk-types-filter" @click="onFilteClick">
     <div v-if="dimensions" class="lkl-htk-types-filter-items">
       <div v-for="(e, i) in dimensions" :key="i" :style="{ width: dimensionWidth }" :class="(e.select && e.select.value !== '') ? 'lkl-htk-types-filter-items-item-select' : 'lkl-htk-types-filter-items-item'">
         {{ ellipsisText((e.select && e.select.value !== '') ? e.select.label : e.name) }}

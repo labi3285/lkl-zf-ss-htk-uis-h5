@@ -1,6 +1,6 @@
 <template>
   <div v-if="items" class="lkl-colums-header">
-    <div v-for="(e, i) in items" :key="i" class="lkl-colums-header-item" :style="columWidth(i)" @click.stop="onItemClick(i)" >
+    <div v-for="(e, i) in items" :key="i" class="lkl-colums-header-item" :style="columWidth(i)" @click="onItemClick(i)" >
       <slot :name="'left' + i" />
       <slot :name="'item' + i">{{ e }}</slot>
       <slot :name="'right' + i" />

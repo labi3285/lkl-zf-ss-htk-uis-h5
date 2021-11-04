@@ -1,15 +1,15 @@
 <template>
-  <lkl-popup ref="popup" :isHideOnTapBankground="isHideOnTapBankground" class="lkl-confirm" popupClass="lkl-confirm-box" :popupStartRect="popupStartRect" :popupRect="popupRect">
-    <div class="lkl-confirm-box-title">{{ title }}</div>
-    <div class="lkl-confirm-box-message">
-      <div class="lkl-confirm-box-message-text">
-        <slot>{{ message }}</slot>
+  <lkl-popup ref="popup" :isHideOnTapBankground="isHideOnTapBankground" class="lkl-dialog" popupClass="lkl-dialog-box" :popupStartRect="popupStartRect" :popupRect="popupRect">
+    <div v-if="title && title.length > 0" class="lkl-dialog-box-title">{{ title }}</div>
+    <div class="lkl-dialog-box-message">
+      <div class="lkl-dialog-box-message-text">
+        <slot />
       </div>
     </div>
     <div style="height: 80px"></div>
-    <div class="lkl-confirm-box-buttons">
-      <div class="lkl-confirm-box-buttons-confirm" @click.stop="onConfirm" >{{ confirmTitle }}</div>
-      <div class="lkl-confirm-box-buttons-cancel" @click.stop="onCancel">取消</div>
+    <div class="lkl-dialog-box-buttons">
+      <div class="lkl-dialog-box-buttons-confirm" @click="onConfirm" >{{ confirmTitle }}</div>
+      <div class="lkl-dialog-box-buttons-cancel" @click="onCancel">取消</div>
     </div>
   </lkl-popup>
 </template>
@@ -38,7 +38,7 @@ export default class LklDialog extends Vue {
   @Prop({ default: undefined }) dialogLeftRightMargin!: number;
   @Prop({ default: 250 }) dialogTop!: number;
 
-  @Prop({ default: true }) isHideOnTapBankground!: boolean;
+  @Prop({ default: false }) isHideOnTapBankground!: boolean;
 
   public show (): void {
     (this.$refs.popup as LklPopup).show()
@@ -98,7 +98,7 @@ export default class LklDialog extends Vue {
 </script>
 
 <style lang="less">
-.lkl-confirm {
+.lkl-dialog {
   &-box {
     border-radius: 10px;
     background-color: var(--clrBody);
@@ -118,6 +118,7 @@ export default class LklDialog extends Vue {
       &-text {
         color: var(--clrT2);
         font-size: 14px;
+        line-height: 20px;
       }
     }
     &-buttons {

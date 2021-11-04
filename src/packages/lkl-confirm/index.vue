@@ -1,7 +1,7 @@
 <template>
   <div class="lkl-confirm" @click.stop="onClickBackground($event)">
     <div class="lkl-confirm-space-top"></div>
-    <div class="lkl-confirm-confirm-box" @click.stop.prevent>
+    <div id="confirmBox" class="lkl-confirm-confirm-box" @click.stop.prevent>
       <div v-if="title.length > 0" class="lkl-confirm-confirm-box-title">{{ title }}</div>
       <div v-if="message.length > 0" class="lkl-confirm-confirm-box-message">{{ message }}</div>
       <div v-if="buttonActions.length > 0" class="lkl-confirm-confirm-box-button-box">

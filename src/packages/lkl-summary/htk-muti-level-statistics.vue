@@ -93,7 +93,7 @@
           </div>
         </div>
 
-        <div v-if="e.subItems && e.subItems.length > 0" :style="{ marginLeft: foldButtonMarginLeft }" class="htk-muti-level-statistics-dimensions-dimension-fold" :class="i < dataSource.dimensions.length ? 'htk-muti-level-statistics-bottom-grid-line' : ''" @click.stop="onFoldClick(e)">
+        <div v-if="e.subItems && e.subItems.length > 0" :style="{ marginLeft: foldButtonMarginLeft }" class="htk-muti-level-statistics-dimensions-dimension-fold" :class="i < dataSource.dimensions.length ? 'htk-muti-level-statistics-bottom-grid-line' : ''" @click="onFoldClick(e)">
           {{ e.isFold ? '详情' : '收起' }}
           <div :style="{ transform: e.isFold ? '' : 'rotate(180deg)' }" class="htk-muti-level-statistics-dimensions-dimension-fold-icon"></div>
         </div>

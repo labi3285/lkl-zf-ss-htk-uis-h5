@@ -1,6 +1,6 @@
 <template>
-  <div class="lkl-htk-fold-select">
-    <div :class="disabled ? 'lkl-htk-fold-select-main-disabled' : 'lkl-htk-fold-select-main-normal'" :style="{ width: foldWidth }" @click="onMainClick" v-clickOutside="onClickoutside">
+  <div ref="foldSelect" class="lkl-htk-fold-select">
+    <div :class="disabled ? 'lkl-htk-fold-select-main-disabled' : 'lkl-htk-fold-select-main-normal'" :style="{ width: foldWidth }" @click="onMainClick">
       <span :class="disabled ? 'lkl-htk-fold-select-main-disabled-title' : 'lkl-htk-fold-select-main-normal-title'">{{ title }}</span>
       <lkl-icon-fold :color="disabled ? 'var(--clrT3)' : 'var(--clrTint)'" />
     </div>
@@ -16,13 +16,9 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import LklIconFold from '../lkl-icons/icon-fold.vue'
-import clickOutside from '../utils/directives/clickOutside'
 import { LklLabelValue } from '../defines/key-value'
 
 @Component({
-  directives: {
-    clickOutside
-  },
   components: {
     LklIconFold
   }
@@ -33,9 +29,11 @@ export default class LklHtkFoldSelect extends Vue {
   @Prop({ default: '类型' }) public placeholder!: string;
   @Prop({ default: false }) public disabled!: boolean;
 
+  @Prop({ default: undefined }) public containerId!: string;
+
   @Prop({ default: '100px' }) public foldWidth!: string;
 
-  private onClickoutside () {
+  private onClickOutside () {
     this.isFold = true
   }
 
@@ -57,6 +55,24 @@ export default class LklHtkFoldSelect extends Vue {
 
   private get foldListWidth () {
     return `calc(${this.foldWidth} - 2px)`
+  }
+
+  private mounted () {
+    let el: Node = document
+    if (this.containerId) {
+      alert(1)
+      const _el = document.getElementById(this.containerId)
+      if (_el) {
+        el = _el
+      }
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    el.addEventListener('click', (e: any) => {
+      if (this.$el.contains(e.target)) {
+        return false
+      }
+      this.isFold = true
+    })
   }
 
   private onMainClick () {
@@ -124,6 +140,7 @@ export default class LklHtkFoldSelect extends Vue {
     }
   }
   &-dropdown {
+    z-index: 2;
     box-sizing: border-box;
     position: absolute;
     overflow: hidden;

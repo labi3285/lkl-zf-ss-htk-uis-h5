@@ -1,9 +1,11 @@
 <template>
-  <lkl-content class="page">
+  <lkl-content id="container" ref="page" class="page">
     <lkl-nav></lkl-nav>
     <lkl-scroll class="scroll">
 
-      <lkl-title title="xxx" :value="12" />
+      <lkl-title title="xxx" :value="12">
+        <lkl-icon-info @click.native="onHelp" />
+      </lkl-title>
 
       <!-- <lkl-pull-down-refresh :isLoading.sync="isListLoading" type="theme" @load="onListLoad(true)" /> -->
       <lkl-head-content>
@@ -59,8 +61,20 @@
         </lkl-card>
         <lkl-space height="18px" />
 
-        <LklTotalAbSimple/>
+        <LklAbListFolder :dataSource="foldListData" />
 
+        <lkl-empty />
+
+        <LklTotalAbSimple/>
+<!-- containerId="container" -->
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
+        <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
         <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
 
         <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
@@ -110,6 +124,16 @@
     <lkl-button type='border' size='small'>休闲鞋</lkl-button>
     <lkl-button type='border' size='small' disabled="true">休闲鞋</lkl-button>
 
+    <lkl-close-dialog ref="closeDialog" @reset="onReset" @confirm="onConfirm">
+      <strong>进件数：</strong>
+      <br>
+      喷水、喷清洗剂、洗涤、喷水清洗、风干、喷抛光剂、抛光、出库。全程流水作业，不需要人工。
+      <br>
+      <strong>进件数：</strong>
+      <br>
+      喷水、喷清洗剂、洗涤、喷水清洗、风干、喷抛光剂、抛光、出库。全程流水作业，不需要人工。
+    </lkl-close-dialog>
+
     <lkl-dialog ref="confirm" @reset="onReset" @confirm="onConfirm">
       基本流程：喷水、喷清洗剂、洗涤、喷水清洗、风干、喷抛光剂、抛光、出库。全程流水作业，不需要人工。
     </lkl-dialog>
@@ -119,7 +143,11 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
+import { LklTotalAbListFoldData } from '@/packages/lkl-summary/defines'
+import LklAbListFolder from '@/packages/lkl-summary/htk-total-ab-list-folder.vue'
+
 import LklDialog from '@/packages/lkl-dialog/htk-dialog.vue'
+import LklCloseDialog from '@/packages/lkl-dialog/htk-close-dialog.vue'
 
 import { LklLabelValue } from '@/packages/defines/key-value'
 import LklFoldSelect from '@/packages/lkl-fold-select/htk.vue'
@@ -153,7 +181,10 @@ import LklTotalAbSimple from '@/packages/lkl-summary/htk-total-ab-simple.vue'
 
 @Component({
   components: {
+    LklAbListFolder,
+
     LklDialog,
+    LklCloseDialog,
 
     LklFoldSelect,
 
@@ -183,6 +214,59 @@ export default class Test extends Vue {
   private dateRange: { start: Date, end: Date } | null = null;
 
   private text = ''
+
+  private foldListData: LklTotalAbListFoldData = {
+    name: '自有终端',
+    total: {
+      a: { label: '激活奖励次数', value: '12.0' },
+      b: { label: '交易奖励次数', value: '12' }
+    },
+    isFold: true,
+    list: [
+      {
+        name: '电签POS非押',
+        a: {
+          total: { label: '激活奖励次数', value: '12.0' },
+          list: [
+            { label: '51结算1', value: '12.0' },
+            { label: '51结算2', value: '12.0' }
+          ]
+        },
+        b: {
+          total: { label: '交易奖励次数', value: '12.0' },
+          list: [
+            { label: '51结算1', value: '12.0' },
+            { label: '51结算2', value: '12.0' }
+          ]
+        }
+      },
+      {
+        name: '电签POS非押',
+        a: {
+          total: { label: '激活奖励次数', value: '12.0' },
+          list: [
+            { label: '51结算1', value: '12.0' },
+            { label: '51结算2', value: '12.0' }
+          ]
+        },
+        b: {
+          total: { label: '交易奖励次数', value: '12.0' },
+          list: [
+            { label: '51结算1', value: '12.0' },
+            { label: '51结算2', value: '12.0' }
+          ]
+        }
+      }
+    ]
+  }
+
+  private onHelp () {
+    (this.$refs.closeDialog as LklCloseDialog).show()
+  }
+
+  private getContainer () {
+    return this.$refs.page
+  }
 
   private confirmClick () {
     LklConfirm.show('标题', '基本流程：喷水、喷清洗剂、洗涤、喷水清洗、风干、喷抛光剂、抛光、出库。全程流水作业，不需要人工。', [

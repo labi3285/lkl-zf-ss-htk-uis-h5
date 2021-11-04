@@ -6,7 +6,7 @@
       @enter="enter"
       @leave="leave"
     >
-      <div v-show="isPopupShow" class="lkl-popup-popup-box" :class="popupClass" @click.stop.prevent>
+      <div id="popupBox" v-show="isPopupShow" class="lkl-popup-popup-box" :class="popupClass" @click.stop.prevent>
         <slot />
       </div>
     </transition>

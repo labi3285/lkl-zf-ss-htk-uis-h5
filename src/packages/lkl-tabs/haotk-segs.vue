@@ -1,7 +1,7 @@
 <template>
   <div v-if="tabs !== undefined" class="lkl-haotk-segs">
     <div class="lkl-haotk-segs-tabs">
-      <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" :class="currentTabCode === e.code ? 'lkl-haotk-segs-tabs-tab-select' : 'lkl-haotk-segs-tabs-tab'" @click.stop="onTabClick(e)">{{ e.name }}</div>
+      <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" :class="currentTabCode === e.code ? 'lkl-haotk-segs-tabs-tab-select' : 'lkl-haotk-segs-tabs-tab'" @click="onTabClick(e)">{{ e.name }}</div>
     </div>
   </div>
 </template>

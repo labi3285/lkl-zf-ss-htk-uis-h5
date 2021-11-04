@@ -11,8 +11,8 @@
       <div style="height: 30px"></div>
     </div>
     <div class="lkl-side-menu-popup-bottom">
-      <div class="lkl-side-menu-popup-bottom-reset" @click.stop="onReset">重置</div>
-      <div class="lkl-side-menu-popup-bottom-confirm" @click.stop="onConfirm">确定</div>
+      <div class="lkl-side-menu-popup-bottom-reset" @click="onReset">重置</div>
+      <div class="lkl-side-menu-popup-bottom-confirm" @click="onConfirm">确定</div>
     </div>
   </lkl-popup>
 </template>

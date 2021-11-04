@@ -1,6 +1,6 @@
 <template>
   <div v-if="tabs !== undefined" class="lkl-htk-icon-label-arrow-tabs">
-    <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-icon-label-arrow-tabs-tab" @click.stop="onTabClick(e)">
+    <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-icon-label-arrow-tabs-tab" @click="onTabClick(e)">
       <img class="lkl-htk-icon-label-arrow-tabs-tab-icon" :src="e.icon" />
       <div class="lkl-htk-icon-label-arrow-tabs-tab-label">{{ e.name }}</div>
       <svg :style="{ opacity: currentTabCode === e.code ? 1 : 0 }" t="1632860685404" class="lkl-htk-icon-label-arrow-tabs-tab-arrow" fill="var(--clrTint)" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12396" width="200" height="200"><path d="M42.666667 896 981.333333 896 512 85.333333" p-id="12397"></path></svg>

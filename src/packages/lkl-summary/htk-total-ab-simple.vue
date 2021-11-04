@@ -1,11 +1,11 @@
 <template>
   <div class="lkl-total-ab-simple">
     <div class="lkl-total-ab-simple-item">
-      <div class="lkl-total-ab-simple-item-value">{{ valueA }}</div>
+      <div :style="{ color: valueColor }" class="lkl-total-ab-simple-item-value">{{ valueA }}</div>
       <div class="lkl-total-ab-simple-item-tip">{{ tipA }}</div>
     </div>
     <div v-if="isBShow" class="lkl-total-ab-simple-item">
-      <div class="lkl-total-ab-simple-item-value">{{ valueB }}</div>
+      <div :style="{ color: valueColor }" class="lkl-total-ab-simple-item-value">{{ valueB }}</div>
       <div class="lkl-total-ab-simple-item-tip">{{ tipB }}</div>
     </div>
   </div>
@@ -21,6 +21,8 @@ export default class LklTotalAbSimple extends Vue {
   @Prop({ default: true }) isBShow!: boolean;
   @Prop({ default: 'B' }) tipB!: string;
   @Prop({ default: '0' }) valueB!: string;
+
+  @Prop({ default: '' }) valueColor!: string;
 }
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <div v-if="tabs !== undefined" class="lkl-htk-icon-label-tabs">
-    <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-icon-label-tabs-tab" @click.stop="onTabClick(e)">
+    <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-icon-label-tabs-tab" @click="onTabClick(e)">
       <img class="lkl-htk-icon-label-tabs-tab-icon" :src="currentTabCode === e.code ? e.iconSelect : e.icon" />
       <div class="lkl-htk-icon-label-tabs-tab-label">{{ e.name }}</div>
     </div>

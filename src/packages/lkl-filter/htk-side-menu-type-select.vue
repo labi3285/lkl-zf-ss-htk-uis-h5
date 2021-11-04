@@ -2,7 +2,7 @@
   <lkl-side-menu-section class="lkl-side-menu-type-select" :title="title" :selectText="selectText" :ignore="ignore">
     <div v-if="options === undefined || options.length === 0" class="lkl-side-menu-type-select-empty">暂无筛选条件</div>
     <div else class="lkl-side-menu-type-select-labels">
-      <div v-for="(e, i) in options" :key="i" :class="isSelect(e) ? (ignore ? 'lkl-side-menu-type-select-labels-label-select-ignore' : 'lkl-side-menu-type-select-labels-label-select') : 'lkl-side-menu-type-select-labels-label'" @click.stop="onItemClick(e)">
+      <div v-for="(e, i) in options" :key="i" :class="isSelect(e) ? (ignore ? 'lkl-side-menu-type-select-labels-label-select-ignore' : 'lkl-side-menu-type-select-labels-label-select') : 'lkl-side-menu-type-select-labels-label'" @click="onItemClick(e)">
         {{ ellipsisText(e.label) }}
         <svg v-if="isSelect(e)" class="lkl-side-menu-type-select-labels-label-select-corner" viewBox="0 0 13 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <g id="画板备份" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -96,7 +96,7 @@ export default class LklSideMenuTypeSelect extends Vue {
     if (this.selectItem && this.selectItem.value === item.value) {
       return
     }
-    if (this.beforeSelect !== undefined || this.beforeSelect !== null) {
+    if (this.beforeSelect !== undefined && this.beforeSelect !== null) {
       this.beforeSelect(item, this.index, () => {
         this._doSelect(item)
       })

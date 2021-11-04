@@ -3,6 +3,7 @@ import Vue from 'vue'
 import LklNav from './lkl-nav/htk.vue'
 import LklHeadContent from './lkl-content/htk-head-content.vue'
 import LklCardContent from './lkl-content/htk-card-content.vue'
+import LklEmpty from './lkl-content/empty.vue'
 
 import LklRow from './lkl-layout/row.vue'
 import LklCol from './lkl-layout/colum.vue'
@@ -26,6 +27,7 @@ import LklIconFoldArrow from './lkl-icons/icon-fold-arrow.vue'
 import LklIconBack from './lkl-icons/icon-back.vue'
 import LklIconClose from './lkl-icons/icon-close.vue'
 import LklIconFilter from './lkl-icons/icon-filter.vue'
+import LklIconInfo from './lkl-icons/icon-info.vue'
 
 import LklButton from './lkl-button/htk-button.vue'
 import LklTextButton from './lkl-button/text-button.vue'
@@ -48,6 +50,7 @@ Vue.component('lkl-nav', LklNav)
 
 Vue.component('lkl-head-content', LklHeadContent)
 Vue.component('lkl-card-content', LklCardContent)
+Vue.component('lkl-empty', LklEmpty)
 
 Vue.component('lkl-row', LklRow)
 Vue.component('lkl-col', LklCol)
@@ -72,6 +75,7 @@ Vue.component('lkl-icon-fold-arrow', LklIconFoldArrow)
 Vue.component('lkl-icon-back', LklIconBack)
 Vue.component('lkl-icon-close', LklIconClose)
 Vue.component('lkl-icon-filter', LklIconFilter)
+Vue.component('lkl-icon-info', LklIconInfo)
 
 Vue.component('lkl-button', LklButton)
 Vue.component('lkl-text-button', LklTextButton)

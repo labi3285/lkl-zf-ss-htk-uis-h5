@@ -1,6 +1,6 @@
 <template>
   <div class="lkl-htk-item-segs">
-    <div v-for="(e, i) in tabs" :key="i" class="lkl-htk-item-segs-tab" :class="currentTabCode === e.code ? 'lkl-htk-item-segs-tab-select' : 'lkl-htk-item-segs-tab-normal'" @click.stop="onTabClick(e)">{{ e.name }}</div>
+    <div v-for="(e, i) in tabs" :key="i" class="lkl-htk-item-segs-tab" :class="currentTabCode === e.code ? 'lkl-htk-item-segs-tab-select' : 'lkl-htk-item-segs-tab-normal'" @click="onTabClick(e)">{{ e.name }}</div>
     <div class="lkl-htk-item-segs-flex-space"></div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="lkl-date-picker-date-range">
-    <div class="lkl-date-picker-date-range-button" @click.stop="showPicker" :style="{ color }" >{{ showText }}</div>
+    <div class="lkl-date-picker-date-range-button" @click="showPicker" :style="{ color }" >{{ showText }}</div>
     <lkl-icon-fold :color="color" marginLeft="5px" />
     <calendar
       :show.sync="isPopupShow"

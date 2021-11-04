@@ -5,7 +5,7 @@
       <div class="lkl-side-menu-section-header-title">{{ title }}：</div>
       <div class="lkl-side-menu-section-header-flex-space" />
       <div class="lkl-side-menu-section-header-right">
-        <div @click.stop="onFoldClick" class="lkl-side-menu-section-header-right-text" :style="{ color: selectTextColor }">
+        <div @click="onFoldClick" class="lkl-side-menu-section-header-right-text" :style="{ color: selectTextColor }">
           {{ showSelectText }}
           <lkl-icon-fold-arrow :direction="foldDirection" />
         </div>

@@ -2,7 +2,7 @@
   <div v-if="tabs !== undefined" class="lkl-htk-tabs">
     <div class="lkl-htk-tabs-tabs">
       <div class="lkl-htk-tabs-tabs-content">
-        <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-tabs-tabs-content-tab" @click.stop="onTabClick(e)">
+        <div v-for="(e, i) in tabs" :key="i" :style="{ width: tabWidth }" class="lkl-htk-tabs-tabs-content-tab" @click="onTabClick(e)">
           <div :class="e.code === currentTabCode ? 'lkl-htk-tabs-tabs-content-tab-title-select' : 'lkl-htk-tabs-tabs-content-tab-title'">{{ e.name }}</div>
           <div :style="{ opacity: e.code === currentTabCode ? 1 : 0, width: lineWidth }" class="lkl-htk-tabs-tabs-content-tab-line"></div>
         </div>
