@@ -1,42 +1,42 @@
 <template>
   <div class="lkl-total-abc">
     <div class="lkl-total-abc-card" :style="{ height }">
-      <div class="lkl-total-abc-card-total-tip">
-        {{ totalTip }}
-        <div v-if="totalArrow" class="lkl-total-abc-card-total-tip-arrow"></div>
-        <div v-if="totalHelp" class="lkl-total-abc-card-total-tip-help"></div>
+      <div v-if="total" class="lkl-total-abc-card-total-label">
+        {{ total.label }}
+        <div v-if="totalArrow" class="lkl-total-abc-card-total-label-arrow"></div>
+        <div v-if="totalHelp" class="lkl-total-abc-card-total-label-help"></div>
       </div>
 
       <div v-if="help" class="lkl-total-abc-card-help"></div>
 
-      <div class="lkl-total-abc-card-total-value">{{ totalValue }}</div>
+      <div v-if="total" class="lkl-total-abc-card-total-value">{{ total.value }}</div>
 
       <div class="lkl-total-abc-card-tip">{{ tip }}</div>
       <div class="lkl-total-abc-card-tip1">{{ tip1 }}</div>
 
       <div v-if="showSub" class="lkl-total-abc-card-items">
         <div class="lkl-total-abc-card-items-item">
-          <div class="lkl-total-abc-card-items-item-tip">
-            {{ aTip }}
-            <div v-if="aArrow" class="lkl-total-abc-card-total-tip-arrow"></div>
+          <div class="lkl-total-abc-card-items-item-label">
+            {{ a.tip }}
+            <div v-if="aArrow" class="lkl-total-abc-card-total-label-arrow"></div>
           </div>
-          <div class="lkl-total-abc-card-items-item-value">{{ aValue }}</div>
+          <div class="lkl-total-abc-card-items-item-value">{{ a.value }}</div>
         </div>
-        <div class="lkl-total-abc-card-items-break"></div>
-        <div class="lkl-total-abc-card-items-item">
-          <div class="lkl-total-abc-card-items-item-tip">
-            {{ bTip }}
-            <div v-if="bArrow" class="lkl-total-abc-card-total-tip-arrow"></div>
+        <div v-if="b" class="lkl-total-abc-card-items-break"></div>
+        <div v-if="b" class="lkl-total-abc-card-items-item">
+          <div class="lkl-total-abc-card-items-item-label">
+            {{ b.tip }}
+            <div v-if="bArrow" class="lkl-total-abc-card-total-label-arrow"></div>
           </div>
-          <div class="lkl-total-abc-card-items-item-value">{{ bValue }}</div>
+          <div class="lkl-total-abc-card-items-item-value">{{ b.value }}</div>
         </div>
-        <div class="lkl-total-abc-card-items-break"></div>
-        <div class="lkl-total-abc-card-items-item">
-          <div class="lkl-total-abc-card-items-item-tip">
-            {{ cTip }}
-            <div v-if="cArrow" class="lkl-total-abc-card-total-tip-arrow"></div>
+        <div v-if="c" class="lkl-total-abc-card-items-break"></div>
+        <div v-if="c" class="lkl-total-abc-card-items-item">
+          <div class="lkl-total-abc-card-items-item-label">
+            {{ c.tip }}
+            <div v-if="cArrow" class="lkl-total-abc-card-total-label-arrow"></div>
           </div>
-          <div class="lkl-total-abc-card-items-item-value">{{ cValue }}</div>
+          <div class="lkl-total-abc-card-items-item-value">{{ c.value }}</div>
         </div>
       </div>
     </div>
@@ -45,31 +45,27 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { LklLabelValue } from '../defines/label-value'
 
 @Component
 export default class LklHaoTkTotalAbc extends Vue {
   @Prop({ default: '' }) tip!: string;
   @Prop({ default: '' }) tip1!: string;
-  @Prop({ default: 'Total' }) totalTip!: string;
+
+  @Prop({ default: undefined }) total!: LklLabelValue;
   @Prop({ default: false }) totalArrow!: boolean;
   @Prop({ default: false }) totalHelp!: boolean;
 
   @Prop({ default: false }) help!: boolean;
-
   @Prop({ default: true }) showSub!: boolean;
 
-  @Prop({ default: '0' }) totalValue!: string;
-
-  @Prop({ default: 'A' }) aTip!: string;
-  @Prop({ default: '0' }) aValue!: string;
+  @Prop({ default: undefined }) a!: LklLabelValue;
   @Prop({ default: false }) aArrow!: boolean;
 
-  @Prop({ default: 'B' }) bTip!: string;
-  @Prop({ default: '0' }) bValue!: string;
+  @Prop({ default: undefined }) b!: LklLabelValue;
   @Prop({ default: false }) bArrow!: boolean;
 
-  @Prop({ default: 'C' }) cTip!: string;
-  @Prop({ default: '0' }) cValue!: string;
+  @Prop({ default: undefined }) c!: LklLabelValue;
   @Prop({ default: false }) cArrow!: boolean;
 
   private get height () {
@@ -94,7 +90,7 @@ export default class LklHaoTkTotalAbc extends Vue {
     position: relative;
     overflow: hidden;
     background-color: #ffd53e;
-    &-total-tip {
+    &-total-label {
       position: absolute;
       top: 30px;
       left: 24px;
@@ -153,7 +149,7 @@ export default class LklHaoTkTotalAbc extends Vue {
       display: flex;
       &-item {
         flex: 1;
-        &-tip {
+        &-label {
           margin-left: 24px;
           color: #333333;
           font-size: var(--font12);

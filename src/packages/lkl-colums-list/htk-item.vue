@@ -6,7 +6,7 @@
       <slot :name="'right' + i" />
     </div>
     <lkl-icon-arrow  v-if="rightArrowed" color="var(--clrTint)" class="lkl-colums-item-right-arrow" />
-    <div class="lkl-colums-item-line" />
+    <!-- <div class="lkl-colums-item-line" /> -->
   </div>
 </template>
 

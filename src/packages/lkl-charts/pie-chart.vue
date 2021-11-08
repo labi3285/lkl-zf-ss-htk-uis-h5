@@ -27,11 +27,7 @@ import 'echarts/lib/chart/pie'
 // import 'echarts/lib/component/tooltip'
 // import 'echarts/lib/component/legend'
 
-export interface LklPieChartInfoValue {
-  name: string
-  color: string
-  value: number
-}
+import { LklPieChartInfoValue } from './defines'
 
 @Component
 export default class LklPieChart extends Vue {

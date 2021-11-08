@@ -24,16 +24,7 @@ import 'echarts/lib/chart/line'
 import 'echarts/lib/component/tooltip'
 import 'echarts/lib/component/legend'
 
-export interface LklLineChartInfoValues {
-  name: string
-  color: string
-  values: number[]
-}
-
-export interface LklLineChartDataSource {
-  xLabels: string[]
-  yInfoValues: LklLineChartInfoValues[]
-}
+import { LklLineChartDataSource } from './defines'
 
 @Component
 export default class LklLineChart extends Vue {

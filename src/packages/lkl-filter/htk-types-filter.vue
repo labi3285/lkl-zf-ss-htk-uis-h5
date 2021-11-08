@@ -32,7 +32,7 @@
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator'
 import LklIconFilter from '../lkl-icons/icon-filter.vue'
-import { LklLabelValue } from '../defines/key-value'
+import { LklLabelValue } from '../defines/label-value'
 import { LklDimension } from './defines'
 import LklSideMenu from './htk-side-menu.vue'
 import LklSideMenuSection from './htk-side-menu-section.vue'

@@ -16,7 +16,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import LklIconFold from '../lkl-icons/icon-fold.vue'
-import { LklLabelValue } from '../defines/key-value'
+import { LklLabelValue } from '../defines/label-value'
 
 @Component({
   components: {
@@ -80,6 +80,7 @@ export default class LklHtkFoldSelect extends Vue {
       return
     }
     this.isFold = !this.isFold
+    this.$forceUpdate()
   }
 
   private onItemClick (event: Event, e: LklLabelValue) {

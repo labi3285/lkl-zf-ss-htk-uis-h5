@@ -3,15 +3,15 @@
     <div class="htk-muti-level-statistics-total">
       <div class="htk-muti-level-statistics-total-item">
         <div class="htk-muti-level-statistics-total-item-value">{{ dataSource.total.a.value }}</div>
-        <div class="htk-muti-level-statistics-total-item-tip">{{ dataSource.total.a.tip }}</div>
+        <div class="htk-muti-level-statistics-total-item-label">{{ dataSource.total.a.label }}</div>
       </div>
       <div v-if="dataSource.total.b" class="htk-muti-level-statistics-total-item">
         <div class="htk-muti-level-statistics-total-item-value">{{ dataSource.total.b.value }}</div>
-        <div class="htk-muti-level-statistics-total-item-tip">{{ dataSource.total.b.tip }}</div>
+        <div class="htk-muti-level-statistics-total-item-label">{{ dataSource.total.b.label }}</div>
       </div>
       <div v-if="dataSource.total.c" class="htk-muti-level-statistics-total-item">
         <div class="htk-muti-level-statistics-total-item-value">{{ dataSource.total.c.value }}</div>
-        <div class="htk-muti-level-statistics-total-item-tip">{{ dataSource.total.c.tip }}</div>
+        <div class="htk-muti-level-statistics-total-item-label">{{ dataSource.total.c.label }}</div>
       </div>
     </div>
 
@@ -21,15 +21,15 @@
           <div :style="{ color: '#0068F1', fontWeight: 'bold', marginLeft:  '12px', width: (nameColumWidth) + 'px' }" class="htk-muti-level-statistics-dimensions-dimension-row-name">{{ e.name }}</div>
           <div class="htk-muti-level-statistics-dimensions-dimension-row-abc">
             <div :style="{ color: e.isFold ? 'var(--clrT1)' : '#0068F1' }" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e.a.value }}</div>
-            <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e.a.tip }}</div>
+            <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e.a.label }}</div>
           </div>
           <div v-if="e.b" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
             <div :style="{ color: e.isFold ? 'var(--clrT1)' : '#0068F1' }" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e.b.value }}</div>
-            <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e.b.tip }}</div>
+            <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e.b.label }}</div>
           </div>
           <div v-if="e.c" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
             <div :style="{ color: e.isFold ? 'var(--clrT1)' : '#0068F1' }" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e.c.value }}</div>
-            <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e.c.tip }}</div>
+            <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e.c.label }}</div>
           </div>
         </div>
 
@@ -39,15 +39,15 @@
               <div :style="{ color: '#F7BA13', fontWeight: 'bold', marginLeft: (12 + levelIndent) + 'px', width: (nameColumWidth - levelIndent) + 'px' }" class="htk-muti-level-statistics-dimensions-dimension-row-name">{{ e1.name }}</div>
               <div class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                 <div style="color: #F7BA13" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e1.a.value }}</div>
-                <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e1.a.tip }}</div>
+                <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e1.a.label }}</div>
               </div>
               <div v-if="e1.b" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                 <div style="color: #F7BA13" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e1.b.value }}</div>
-                <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e1.b.tip }}</div>
+                <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e1.b.label }}</div>
               </div>
               <div v-if="e1.c" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                 <div style="color: #F7BA13" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e1.c.value }}</div>
-                <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e1.c.tip }}</div>
+                <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e1.c.label }}</div>
               </div>
             </div>
 
@@ -57,15 +57,15 @@
                   <div :style="{ color: '#FA7268', marginLeft: (12 + levelIndent * 2) + 'px', width: (nameColumWidth - levelIndent * 2) + 'px' }" class="htk-muti-level-statistics-dimensions-dimension-row-name">{{ e2.name }}</div>
                   <div class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                     <div style="color: #FA7268" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e2.a.value }}</div>
-                    <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e2.a.tip }}</div>
+                    <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e2.a.label }}</div>
                   </div>
                   <div v-if="e2.b" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                     <div style="color: #FA7268" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e2.b.value }}</div>
-                    <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e2.b.tip }}</div>
+                    <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e2.b.label }}</div>
                   </div>
                   <div v-if="e2.c" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                     <div style="color: #FA7268" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e2.c.value }}</div>
-                    <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e2.c.tip }}</div>
+                    <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e2.c.label }}</div>
                   </div>
                 </div>
 
@@ -75,15 +75,15 @@
                       <div :style="{ color: '#999999', marginLeft: (12 + levelIndent * 3) + 'px', width: (nameColumWidth - levelIndent * 3) + 'px' }" class="htk-muti-level-statistics-dimensions-dimension-row-name">{{ e3.name }}</div>
                       <div class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                         <div style="color: #999999" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e3.a.value }}</div>
-                        <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e3.a.tip }}</div>
+                        <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e3.a.label }}</div>
                       </div>
                       <div v-if="e3.b" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                         <div style="color: #999999" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e3.b.value }}</div>
-                        <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e3.b.tip }}</div>
+                        <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e3.b.label }}</div>
                       </div>
                       <div v-if="e3.c" class="htk-muti-level-statistics-dimensions-dimension-row-abc">
                         <div style="color: #999999" class="htk-muti-level-statistics-dimensions-dimension-row-abc-value">{{ e3.c.value }}</div>
-                        <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-tip">{{ e3.c.tip }}</div>
+                        <div class="htk-muti-level-statistics-dimensions-dimension-row-abc-label">{{ e3.c.label }}</div>
                       </div>
                     </div>
                   </div>
@@ -104,11 +104,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
-import { LklStatisticsDimension, LklStatisticsData } from './defines'
+import { LklStatisticsDimension, LklStatisticsDataSource } from './defines'
 
 @Component
 export default class LklMutiLevelStatistics extends Vue {
-  @Prop({ default: undefined }) dataSource!: LklStatisticsData;
+  @Prop({ default: undefined }) dataSource!: LklStatisticsDataSource;
 
   // 左侧名称列宽度
   @Prop({ default: 120 }) nameColumWidth!: number;
@@ -124,12 +124,15 @@ export default class LklMutiLevelStatistics extends Vue {
       if (this.handleUnfold !== undefined && this.handleUnfold !== null) {
         this.handleUnfold(e, () => {
           e.isFold = false
+          this.$forceUpdate()
         })
       } else {
         e.isFold = false
+        this.$forceUpdate()
       }
     } else {
       e.isFold = true
+      this.$forceUpdate()
     }
   }
 }
@@ -162,7 +165,7 @@ export default class LklMutiLevelStatistics extends Vue {
         font-weight: bold;
         color: var(--clrT1);
       }
-      &-tip {
+      &-label {
         margin-top: 5px;
         font-size: 12px;
         color: var(--clrT1);
@@ -195,7 +198,7 @@ export default class LklMutiLevelStatistics extends Vue {
           &-value {
             font-weight: bold;
           }
-          &-tip {
+          &-label {
             margin-top: 5px;
             font-size: 9px;
             color: var(--clrT3);

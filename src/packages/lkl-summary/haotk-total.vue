@@ -1,15 +1,15 @@
 <template>
   <div class="lkl-total">
     <div class="lkl-total-card">
-      <div class="lkl-total-card-total-tip">
-        {{ totalTip }}
+      <div v-if="total" class="lkl-total-card-total-label">
+        {{ total.label }}
         <div v-if="totalArrow" class="lkl-total-card-total-tip-arrow"></div>
         <div v-if="totalHelp" class="lkl-total-card-total-tip-help"></div>
       </div>
 
       <div v-if="help" class="lkl-total-card-help"></div>
 
-      <div class="lkl-total-card-total-value">{{ totalValue }}</div>
+      <div v-if="total" class="lkl-total-card-total-value">{{ total.value }}</div>
 
       <div class="lkl-total-card-tip">{{ tip }}</div>
       <div class="lkl-total-card-tip1">{{ tip1 }}</div>
@@ -19,15 +19,15 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { LklLabelValue } from '../defines/label-value'
 
 @Component
 export default class LklTotal extends Vue {
   @Prop({ default: '' }) tip!: string;
   @Prop({ default: '' }) tip1!: string;
-  @Prop({ default: 'Total' }) totalTip!: string;
+  @Prop({ default: undefined }) total!: LklLabelValue;
   @Prop({ default: false }) totalArrow!: boolean;
   @Prop({ default: false }) totalHelp!: boolean;
-  @Prop({ default: '0' }) totalValue!: string;
 
   @Prop({ default: false }) help!: boolean;
 }
@@ -48,7 +48,7 @@ export default class LklTotal extends Vue {
     position: relative;
     height: 100px;
     background-color: #ffd53e;
-    &-total-tip {
+    &-total-label {
       position: absolute;
       top: 30px;
       left: 24px;

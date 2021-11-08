@@ -1,21 +1,21 @@
 <template>
-  <div class="lkl-total-ab">
-    <div class="lkl-total-ab-item">
-      <div class="lkl-total-ab-item-value">{{ valueA }}</div>
-      <div class="lkl-total-ab-item-dot"></div>
-      <div class="lkl-total-ab-item-tip">
-        <div class="lkl-total-ab-item-tip-tip">{{ tipA }}</div>
-        <div v-if="helpA" class="lkl-total-ab-item-tip-help">?</div>
-        <div v-if="arrowA" class="lkl-total-ab-item-tip-arrow"></div>
+  <div class="lkl-tip-value-ab">
+    <div v-if="a" class="lkl-tip-value-ab-item">
+      <div class="lkl-tip-value-ab-item-value">{{ a?.value }}</div>
+      <div class="lkl-tip-value-ab-item-dot"></div>
+      <div class="lkl-tip-value-ab-item-tip">
+        <div class="lkl-tip-value-ab-item-tip-tip">{{ a?.label }}</div>
+        <div v-if="helpA" class="lkl-tip-value-ab-item-tip-help">?</div>
+        <div v-if="arrowA" class="lkl-tip-value-ab-item-tip-arrow"></div>
       </div>
     </div>
-    <div v-if="isBShow" class="lkl-total-ab-item">
-      <div class="lkl-total-ab-item-value">{{ valueB }}</div>
-      <div class="lkl-total-ab-item-dot"></div>
-      <div class="lkl-total-ab-item-tip">
-        <div class="lkl-total-ab-item-tip-tip">{{ tipB }}</div>
-        <div v-if="helpB" class="lkl-total-ab-item-tip-help">?</div>
-        <div v-if="arrowB" class="lkl-total-ab-item-tip-arrow"></div>
+    <div v-if="b" class="lkl-tip-value-ab-item">
+      <div class="lkl-tip-value-ab-item-value">{{ b?.value }}</div>
+      <div class="lkl-tip-value-ab-item-dot"></div>
+      <div class="lkl-tip-value-ab-item-tip">
+        <div class="lkl-tip-value-ab-item-tip-tip">{{ b?.label }}</div>
+        <div v-if="helpB" class="lkl-tip-value-ab-item-tip-help">?</div>
+        <div v-if="arrowB" class="lkl-tip-value-ab-item-tip-arrow"></div>
       </div>
     </div>
   </div>
@@ -23,17 +23,16 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { LklLabelValue } from '../defines/label-value'
 
 @Component
-export default class LklTotalAb extends Vue {
-  @Prop({ default: 'A' }) tipA!: string;
-  @Prop({ default: '0' }) valueA!: string;
+export default class LklTipValueAb extends Vue {
+  @Prop({ default: undefined }) a!: LklLabelValue;
   @Prop({ default: false }) helpA!: boolean;
   @Prop({ default: false }) arrowA!: boolean;
 
-  @Prop({ default: true }) isBShow!: boolean;
-  @Prop({ default: 'B' }) tipB!: string;
-  @Prop({ default: '0' }) valueB!: string;
+  @Prop({ default: undefined }) b!: LklLabelValue;
+
   @Prop({ default: false }) helpB!: boolean;
   @Prop({ default: false }) arrowB!: boolean;
 }
@@ -42,7 +41,7 @@ export default class LklTotalAb extends Vue {
 <style lang="less">
 @import "../utils/style.less";
 
-.lkl-total-ab {
+.lkl-tip-value-ab {
   width: 100%;
   padding: 16px var(--marginLR) 16px var(--marginLR);
   width: calc(100% - var(--marginLR) * 2);

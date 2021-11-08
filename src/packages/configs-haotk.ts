@@ -1,4 +1,4 @@
-import { LklValueProp, LklColorProp } from './defines/color'
+import { LklValueProp, LklColorProp } from './defines/style'
 
 export const defaultSizeConfigs: LklValueProp[] = [
 

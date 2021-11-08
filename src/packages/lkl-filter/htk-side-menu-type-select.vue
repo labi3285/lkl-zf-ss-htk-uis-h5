@@ -24,7 +24,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import LklSideMenuSection from './htk-side-menu-section.vue'
-import { LklLabelValue } from '../defines/key-value'
+import { LklLabelValue } from '../defines/label-value'
 
 @Component({
   components: {

@@ -1,4 +1,4 @@
-import { LklLabelValue } from '../defines/key-value'
+import { LklLabelValue } from '../defines/label-value'
 
 export interface LklDimension {
   name: string

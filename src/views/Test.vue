@@ -61,11 +61,13 @@
         </lkl-card>
         <lkl-space height="18px" />
 
-        <LklAbListFolder :dataSource="foldListData" />
+        <LklAbTotalListFolder :dataSource="foldListData" />
+        <lkl-space />
+        <LklTipValueAbcListFolder :dataSource="foldListData1" />
 
         <lkl-empty />
 
-        <LklTotalAbSimple/>
+        <LklTipValueAbSimple/>
 <!-- containerId="container" -->
         <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
         <LklFoldSelect :selectValue.sync="foldSelectSelectValue" :items="foldSelectItems" @change="xxx" />
@@ -80,6 +82,9 @@
         <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
 
         <lkl-item-segs :tabs="businesses" :currentTabCode.sync="business" />
+
+        <LklLabelValueAbSmall :a="{ label: '总终端数', value: '12386' }" :b="{ label: '未开通终端数', value: '32' }" />
+        <LklLabelValueAbSmall :a="{ label: '总终端数', value: '12386' }" :b="{ label: '未开通终端数', value: '32' }" />
 
         <LklRankTop3 :rank1="rank1" :rank2="rank1" :rank="rank1" />
         <lkl-break-space/>
@@ -97,9 +102,9 @@
 
         <!-- <lkl-total tip="总交易金额(元）" value="889.00" />
         <lkl-break-line />
-        <lkl-total-ab tipA="交易笔数(笔）" tipB="D0笔数(笔）" valueA="88.00" valueB="88.00" />
+        <lkl-total-ab labelA="交易笔数(笔）" labelB="D0笔数(笔）" valueA="88.00" valueB="88.00" />
         <lkl-break-line />
-        <lkl-total-ab tipA="联盟交易(元）" valueA="88.00" :isBShow="false" />
+        <lkl-total-ab labelA="联盟交易(元）" valueA="88.00" :isBShow="false" />
         <lkl-break-space /> -->
         <lkl-space />
         <lkl-tabs :tabs="subTabs" :currentTabCode.sync="subTabCode" />
@@ -143,13 +148,16 @@
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 
-import { LklTotalAbListFoldData } from '@/packages/lkl-summary/defines'
-import LklAbListFolder from '@/packages/lkl-summary/htk-total-ab-list-folder.vue'
+import { LklAbTotalListFoldData, LklStatisticsDataSource, LklTipValueAbcListFoldData } from '@/packages/lkl-summary/defines'
+import LklAbTotalListFolder from '@/packages/lkl-summary/htk-ab-total-list-folder.vue'
+import LklTipValueAbcListFolder from '@/packages/lkl-summary/htk-total-abc-list-folder.vue'
+
+import LklLabelValueAbSmall from '@/packages/lkl-summary/htk-label-value-ab-small.vue'
 
 import LklDialog from '@/packages/lkl-dialog/htk-dialog.vue'
 import LklCloseDialog from '@/packages/lkl-dialog/htk-close-dialog.vue'
 
-import { LklLabelValue } from '@/packages/defines/key-value'
+import { LklLabelValue } from '@/packages/defines/label-value'
 import LklFoldSelect from '@/packages/lkl-fold-select/htk.vue'
 
 import { LklRankItem } from '@/packages/lkl-rank/defines'
@@ -177,18 +185,21 @@ import { LklToast } from '@/packages/lkl-toast/index'
 import { LklDimension } from '@/packages/lkl-filter/defines'
 import { LklConfirm, LklButtonAction, LklConfirmButtonType } from '@/packages/lkl-confirm/index'
 
-import LklTotalAbSimple from '@/packages/lkl-summary/htk-total-ab-simple.vue'
+import LklTipValueAbSimple from '@/packages/lkl-summary/htk-label-value-ab-simple.vue'
 
 @Component({
   components: {
-    LklAbListFolder,
+    LklAbTotalListFolder,
+    LklTipValueAbcListFolder,
+
+    LklLabelValueAbSmall,
 
     LklDialog,
     LklCloseDialog,
 
     LklFoldSelect,
 
-    LklTotalAbSimple,
+    LklTipValueAbSimple,
     LklHeadSearchButton,
     LklHeadSearch,
 
@@ -215,7 +226,7 @@ export default class Test extends Vue {
 
   private text = ''
 
-  private foldListData: LklTotalAbListFoldData = {
+  private foldListData: LklAbTotalListFoldData = {
     name: '自有终端',
     total: {
       a: { label: '激活奖励次数', value: '12.0' },
@@ -228,7 +239,6 @@ export default class Test extends Vue {
         a: {
           total: { label: '激活奖励次数', value: '12.0' },
           list: [
-            { label: '51结算1', value: '12.0' },
             { label: '51结算2', value: '12.0' }
           ]
         },
@@ -245,17 +255,41 @@ export default class Test extends Vue {
         a: {
           total: { label: '激活奖励次数', value: '12.0' },
           list: [
-            { label: '51结算1', value: '12.0' },
-            { label: '51结算2', value: '12.0' }
+            { label: 'a51结算1', value: '12.0' },
+            { label: 'a51结算2', value: '12.0' }
           ]
         },
         b: {
           total: { label: '交易奖励次数', value: '12.0' },
           list: [
-            { label: '51结算1', value: '12.0' },
-            { label: '51结算2', value: '12.0' }
+            { label: 'b51结算1', value: '12.0' }
           ]
         }
+      }
+    ]
+  }
+
+  private foldListData1: LklTipValueAbcListFoldData = {
+    name: '自有终端',
+    total: { label: '总终端数', value: '30' },
+    a: { label: '未开通终端数', value: '30' },
+    b: { label: '已开通终端数', value: '30' },
+    c: { label: '开通未激活数', value: '30' },
+    isFold: true,
+    list: [
+      {
+        name: '电签POS非押',
+        total: { label: '总终端数', value: '30' },
+        a: { label: '未开通终端数', value: '30' },
+        b: { label: '已开通终端数', value: '30' },
+        c: { label: '开通未激活数', value: '30' }
+      },
+      {
+        name: '电签POS非押',
+        total: { label: '总终端数', value: '30' },
+        a: { label: '未开通终端数', value: '30' },
+        b: { label: '已开通终端数', value: '30' },
+        c: { label: '开通未激活数', value: '30' }
       }
     ]
   }
@@ -329,35 +363,35 @@ export default class Test extends Vue {
     unit: '元'
   }
 
-  private statisticsDataSource = {
+  private statisticsDataSource: LklStatisticsDataSource = {
     total: {
-      a: { tip: '交易金额(元)', value: '16.20' },
-      b: { tip: 'D0笔数(笔)', value: '16' }
+      a: { label: '交易金额(元)', value: '16.20' },
+      b: { label: 'D0笔数(笔)', value: '16' }
     },
     dimensions: [
       {
         name: '自有',
         isFold: true,
         key: 'self',
-        color: 'red',
-        a: { tip: '交易(元)', value: '1' },
-        b: { tip: 'D0(笔)', value: '1' },
+        // color: 'red',
+        a: { label: '交易(元)', value: '1' },
+        b: { label: 'D0(笔)', value: '1' },
         subItems: [
           {
             name: '模块一',
-            a: { tip: '交易(元)', value: '1' },
-            b: { tip: 'D0(笔)', value: '1' },
+            a: { label: '交易(元)', value: '1' },
+            b: { label: 'D0(笔)', value: '1' },
             subItems: [
               {
                 name: '电签POS非押',
-                a: { tip: '交易(元)', value: '1' },
-                b: { tip: 'D0(笔)', value: '1' },
+                a: { label: '交易(元)', value: '1' },
+                b: { label: 'D0(笔)', value: '1' },
                 subItems: [
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } }
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } }
                 ]
               }
             ]
@@ -368,33 +402,33 @@ export default class Test extends Vue {
         name: '自有',
         isFold: true,
         key: 'self',
-        color: 'red',
-        a: { tip: '交易(元)', value: '1' },
-        b: { tip: 'D0(笔)', value: '1' }
+        // color: 'red',
+        a: { label: '交易(元)', value: '1' },
+        b: { label: 'D0(笔)', value: '1' }
       },
       {
         name: '自有',
         isFold: true,
         key: 'self',
-        color: 'red',
-        a: { tip: '交易(元)', value: '1' },
-        b: { tip: 'D0(笔)', value: '1' },
+        // color: 'red',
+        a: { label: '交易(元)', value: '1' },
+        b: { label: 'D0(笔)', value: '1' },
         subItems: [
           {
             name: '模块一',
-            a: { tip: '交易(元)', value: '1' },
-            b: { tip: 'D0(笔)', value: '1' },
+            a: { label: '交易(元)', value: '1' },
+            b: { label: 'D0(笔)', value: '1' },
             subItems: [
               {
                 name: '电签POS非押',
-                a: { tip: '交易(元)', value: '1' },
-                b: { tip: 'D0(笔)', value: '1' },
+                a: { label: '交易(元)', value: '1' },
+                b: { label: 'D0(笔)', value: '1' },
                 subItems: [
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } },
-                  { name: '贷记卡', a: { tip: '交易(元)', value: '1' }, b: { tip: 'D0(笔)', value: '1' } }
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } },
+                  { name: '贷记卡', a: { label: '交易(元)', value: '1' }, b: { label: 'D0(笔)', value: '1' } }
                 ]
               }
             ]
@@ -405,29 +439,29 @@ export default class Test extends Vue {
     ]
   }
 
-  private statisticsDataSource1 = {
+  private statisticsDataSource1: LklStatisticsDataSource = {
     total: {
-      a: { tip: '总收益(元)', value: '12380.92' }
+      a: { label: '总收益(元)', value: '12380.92' }
     },
     dimensions: [
       {
         name: '自有收益',
         isFold: true,
         key: 'self',
-        a: { tip: '收益(元)', value: '3000.00' },
+        a: { label: '收益(元)', value: '3000.00' },
         subItems: [
-          { name: '广发银行', a: { tip: '收益(元)', value: '2000.00' } },
-          { name: '光大银行', a: { tip: '收益(元)', value: '1000.00' } }
+          { name: '广发银行', a: { label: '收益(元)', value: '2000.00' } },
+          { name: '光大银行', a: { label: '收益(元)', value: '1000.00' } }
         ]
       },
       {
         name: '合作方办卡',
         isFold: true,
         key: 'self',
-        a: { tip: '收益(元)', value: '3000.00' },
+        a: { label: '收益(元)', value: '3000.00' },
         subItems: [
-          { name: '广发银行', a: { tip: '收益(元)', value: '2000.00' } },
-          { name: '光大银行', a: { tip: '收益(元)', value: '1000.00' } }
+          { name: '广发银行', a: { label: '收益(元)', value: '2000.00' } },
+          { name: '光大银行', a: { label: '收益(元)', value: '1000.00' } }
         ]
       }
     ]

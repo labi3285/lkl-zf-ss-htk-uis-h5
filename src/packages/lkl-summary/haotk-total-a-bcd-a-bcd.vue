@@ -1,72 +1,71 @@
 <template>
   <div class="lkl-total-a-bcd-a-bcd">
     <div class="lkl-total-a-bcd-a-bcd-card" :style="{ height }">
-      <div class="lkl-total-a-bcd-a-bcd-card-total-tip">
-        {{ totalTip }}
-        <div v-if="totalArrow" class="lkl-total-a-bcd-a-bcd-card-total-tip-arrow"></div>
-        <div v-if="totalHelp" class="lkl-total-a-bcd-a-bcd-card-total-tip-help"></div>
+      <div v-if="total" class="lkl-total-a-bcd-a-bcd-card-total-label">
+        {{ total.label }}
+        <div v-if="totalArrow" class="lkl-total-a-bcd-a-bcd-card-total-label-arrow"></div>
+        <div v-if="totalHelp" class="lkl-total-a-bcd-a-bcd-card-total-label-help"></div>
       </div>
 
       <div v-if="help" class="lkl-total-a-bcd-a-bcd-card-help"></div>
-
-      <div class="lkl-total-a-bcd-a-bcd-card-total-value">{{ totalValue }}</div>
+      <div v-if="total" class="lkl-total-a-bcd-a-bcd-card-total-value">{{ total.value }}</div>
 
       <div class="lkl-total-a-bcd-a-bcd-card-tip">{{ tip }}</div>
       <div class="lkl-total-a-bcd-a-bcd-card-tip1">{{ tip1 }}</div>
 
       <div v-if="showSub" class="lkl-total-a-bcd-a-bcd-card-row" style="top: 106px">
-        <div class="lkl-total-a-bcd-a-bcd-card-row-a">
-          <div class="lkl-total-a-bcd-a-bcd-card-row-a-tip">
-            {{ aTip }}
+        <div v-if="a" class="lkl-total-a-bcd-a-bcd-card-row-a">
+          <div class="lkl-total-a-bcd-a-bcd-card-row-a-label">
+            {{ a.label }}
           </div>
-          <div class="lkl-total-a-bcd-a-bcd-card-row-a-value">{{ aValue }}</div>
+          <div class="lkl-total-a-bcd-a-bcd-card-row-a-value">{{ a.value }}</div>
         </div>
         <div class="lkl-total-a-bcd-a-bcd-card-row-bcd">
-          <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-tip">
-              {{ bTip }}
+          <div v-if="b" class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-label">
+              {{ b.label }}
             </div>
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ bValue }}</div>
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ b.value }}</div>
           </div>
-          <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-tip">
-              {{ cTip }}
+          <div v-if="c" class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-label">
+              {{ c.label }}
             </div>
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ cValue }}</div>
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ c.value }}</div>
           </div>
-          <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-tip">
-              {{ dTip }}
+          <div v-if="d" class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-label">
+              {{ d.label }}
             </div>
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ dValue }}</div>
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ d.value }}</div>
           </div>
         </div>
       </div>
       <div v-if="showSub" class="lkl-total-a-bcd-a-bcd-card-row" style="top: 166px">
-        <div class="lkl-total-a-bcd-a-bcd-card-row-a">
-          <div class="lkl-total-a-bcd-a-bcd-card-row-a-tip">
-            {{ aTip1 }}
+        <div v-if="a1" class="lkl-total-a-bcd-a-bcd-card-row-a">
+          <div class="lkl-total-a-bcd-a-bcd-card-row-a-label">
+            {{ a1.label }}
           </div>
-          <div class="lkl-total-a-bcd-a-bcd-card-row-a-value">{{ aValue1 }}</div>
+          <div class="lkl-total-a-bcd-a-bcd-card-row-a-value">{{ a1.value }}</div>
         </div>
         <div class="lkl-total-a-bcd-a-bcd-card-row-bcd">
-          <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-tip">
-              {{ bTip1 }}
+          <div v-if="b1" class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-label">
+              {{ b1.label }}
             </div>
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ bValue1 }}</div>
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ b1.value }}</div>
           </div>
-          <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-tip">
-              {{ cTip1 }}
+          <div v-if="c1" class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-label">
+              {{ c1.label }}
             </div>
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ cValue1 }}</div>
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ c1.value }}</div>
           </div>
-          <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-tip">
-              {{ dTip1 }}
+          <div v-if="d1" class="lkl-total-a-bcd-a-bcd-card-row-bcd-item">
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-label">
+              {{ d1.label }}
             </div>
-            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ dValue1 }}</div>
+            <div class="lkl-total-a-bcd-a-bcd-card-row-bcd-item-value">{{ d1.value }}</div>
           </div>
         </div>
       </div>
@@ -76,13 +75,14 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
+import { LklLabelValue } from '../defines/label-value'
 
 @Component
 export default class LklHaoTkTotalABcdABcd extends Vue {
   @Prop({ default: '' }) tip!: string;
   @Prop({ default: '' }) tip1!: string;
-  @Prop({ default: 'Total' }) totalTip!: string;
-  @Prop({ default: '0' }) totalValue!: string;
+
+  @Prop({ default: undefined }) total!: LklLabelValue;
   @Prop({ default: false }) totalArrow!: boolean;
   @Prop({ default: false }) totalHelp!: boolean;
 
@@ -90,23 +90,15 @@ export default class LklHaoTkTotalABcdABcd extends Vue {
 
   @Prop({ default: true }) showSub!: boolean;
 
-  @Prop({ default: 'A' }) aTip!: string;
-  @Prop({ default: '0' }) aValue!: string;
-  @Prop({ default: 'B' }) bTip!: string;
-  @Prop({ default: '0' }) bValue!: string;
-  @Prop({ default: 'C' }) cTip!: string;
-  @Prop({ default: '0' }) cValue!: string;
-  @Prop({ default: 'D' }) dTip!: string;
-  @Prop({ default: '0' }) dValue!: string;
+  @Prop({ default: undefined }) a!: LklLabelValue;
+  @Prop({ default: undefined }) b!: LklLabelValue;
+  @Prop({ default: undefined }) c!: LklLabelValue;
+  @Prop({ default: undefined }) d!: LklLabelValue;
 
-  @Prop({ default: 'A1' }) aTip1!: string;
-  @Prop({ default: '0' }) aValue1!: string;
-  @Prop({ default: 'B1' }) bTip1!: string;
-  @Prop({ default: '0' }) bValue1!: string;
-  @Prop({ default: 'C1' }) cTip1!: string;
-  @Prop({ default: '0' }) cValue1!: string;
-  @Prop({ default: 'D1' }) dTip1!: string;
-  @Prop({ default: '0' }) dValue1!: string;
+  @Prop({ default: undefined }) a1!: LklLabelValue;
+  @Prop({ default: undefined }) b1!: LklLabelValue;
+  @Prop({ default: undefined }) c1!: LklLabelValue;
+  @Prop({ default: undefined }) d1!: LklLabelValue;
 
   private get height () {
     return this.showSub ? '227px' : '100px'
@@ -130,7 +122,7 @@ export default class LklHaoTkTotalABcdABcd extends Vue {
     position: relative;
     overflow: hidden;
     background-color: #ffd53e;
-    &-total-tip {
+    &-total-label {
       position: absolute;
       top: 30px;
       left: 24px;
@@ -186,7 +178,7 @@ export default class LklHaoTkTotalABcdABcd extends Vue {
       left: 0;
       right: 0;
       &-a {
-        &-tip {
+        &-label {
           margin-left: 24px;
           color: #333333;
           font-size: var(--font12);
@@ -208,7 +200,7 @@ export default class LklHaoTkTotalABcdABcd extends Vue {
         &-item {
           flex: 1;
           text-align: center;
-          &-tip {
+          &-label {
             color: #333333;
             font-size: var(--font12);
           }

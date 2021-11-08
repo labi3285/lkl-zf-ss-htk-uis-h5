@@ -13,7 +13,7 @@ export interface LklStatisticsDimension extends LklStatisticsItem {
   key: string
 }
 
-export interface LklStatisticsData {
+export interface LklStatisticsDataSource {
   total: {
     a: LklLabelValue
     b?: LklLabelValue
@@ -22,22 +22,35 @@ export interface LklStatisticsData {
   dimensions: LklStatisticsDimension[]
 }
 
-export interface LklTotalAbListFoldData {
+export interface LklAbTotalListFoldSubItem {
+  name: string,
+  a: {
+    total: LklLabelValue,
+    list: LklLabelValue[]
+  },
+  b: {
+    total: LklLabelValue,
+    list: LklLabelValue[]
+  }
+}
+export interface LklAbTotalListFoldData {
   name: string,
   total: {
     a: LklLabelValue
     b: LklLabelValue
   }
   isFold: boolean,
-  list: {
-    name: string,
-    a: {
-      total: LklLabelValue,
-      list: LklLabelValue[]
-    },
-    b: {
-      total: LklLabelValue,
-      list: LklLabelValue[]
-    }
-  }[]
+  list: LklAbTotalListFoldSubItem[]
+}
+
+export interface LklTipValueAbcListFoldSubItem {
+  name: string,
+  total: LklLabelValue,
+  a: LklLabelValue,
+  b: LklLabelValue,
+  c?: LklLabelValue
+}
+export interface LklTipValueAbcListFoldData extends LklTipValueAbcListFoldSubItem {
+  isFold: boolean,
+  list: LklTipValueAbcListFoldSubItem[]
 }

@@ -20,7 +20,7 @@ import { getQueryString } from '@/packages/utils/query'
   name: 'App'
 })
 export default class App extends Vue {
-  private mounted () {
+  private created () {
     setupProps(defaultSizeConfigs)
     updateColorProps(defaultColorConfigs, getQueryString('darkMode') === '1')
   }
